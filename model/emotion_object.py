@@ -12,14 +12,14 @@ okt = Okt()
 tokenizer  = Tokenizer()
         
 class EmotionAnalysis :
-    def analyze_emotion(self):
+    def analyze_emotion(self, input_sentence):
 
         DATA_CONFIGS = 'data_configs.json'
         prepro_configs = json.load(open('./TEA-Time-AI/model/data/CLEAN_DATA/'+DATA_CONFIGS,'r'))
         tokenizer.fit_on_texts(prepro_configs['vocab'])
 
         MAX_LENGTH = 8 # 문장최대길이
-        sentence = input('감성분석할 문장을 입력해 주세요.: ')
+        sentence = input_sentence
         sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣\\s ]','', sentence)
         stopwords = ['은','는','이','가','하','아','것','들','의','있','되','수','보','주','등','한'] # 불용어 추가할 것이 있으면 추가
         sentence = okt.morphs(sentence, stem=True) # 토큰화
