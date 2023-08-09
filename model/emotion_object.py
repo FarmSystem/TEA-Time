@@ -15,7 +15,7 @@ class EmotionAnalysis :
     def analyze_emotion(self, input_sentence):
 
         DATA_CONFIGS = 'data_configs.json'
-        prepro_configs = json.load(open('./TEA-Time-AI/model/data/CLEAN_DATA/'+DATA_CONFIGS,'r'))
+        prepro_configs = json.load(open('./model/data/CLEAN_DATA/'+DATA_CONFIGS,'r'))
         tokenizer.fit_on_texts(prepro_configs['vocab'])
 
         MAX_LENGTH = 8 # 문장최대길이
@@ -27,17 +27,9 @@ class EmotionAnalysis :
         vector  = tokenizer.texts_to_sequences(sentence)
         pad_new = pad_sequences(vector, maxlen = MAX_LENGTH) # 패딩
 
-        # model.load_weights('./data/DATA_OUT/cnn_classifier_kr/weights.h5') # 모델 불러오기
-        '''
-        with open('./TEA-Time-AI/model/model.pkl', 'rb') as model_file:
-            model = pickle.load(model_file)
-        '''
-        model = load_model('./TEA-Time-AI/model/')
-        model.load_weights('./TEA-Time-AI/model/data/DATA_OUT/cnn_classifier_kr/weights.h5')
+        model = load_model('./model/')
+        model.load_weights('./model/data/DATA_OUT/cnn_classifier_kr/weights.h5')
         predictions = model.predict(pad_new)
-
-        # print(sentence)
-        # print(predictions)
 
         # 주어진 결과값
         emotions = np.array(predictions)
@@ -56,7 +48,6 @@ class EmotionAnalysis :
 
         # 전체적인 기분 요약
         overall_summary = summarize_emotion(emotions)
-        # print(overall_summary)
 
         # 실제 감정 데이터와 레이블
         emotions = np.array(predictions)
@@ -68,13 +59,3 @@ class EmotionAnalysis :
         # 요약된 감정 빈도 계산
         emotion_counts = {emotion: overall_summary.count(emotion) for emotion in emotion_labels}
         print(emotion_counts)
-
-        # 그래프 그리기
-        '''
-        plt.figure(figsize=(8, 6))
-        plt.bar(emotion_labels, [emotion_counts[emotion] for emotion in emotion_labels], color='skyblue')
-        plt.xlabel('Emotion')
-        plt.ylabel('Frequency')
-        plt.title('Emotion Graph')
-        plt.show()
-        '''
