@@ -9,7 +9,7 @@ from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.utils import to_categorical
 
-DATA_PATH = './data/'
+DATA_PATH = 'model/data/'
 train_data = pd.read_csv(DATA_PATH + 'TRAINSET.txt', header = 0, delimiter = '\t', quoting=3, encoding='cp949')
 
 #전처리 함수 만들기
@@ -75,7 +75,7 @@ test_inputs = pad_sequences(test_sequences,maxlen=MAX_SEQUENCE_LENGTH)
 test_label_data = np.array(test_data['감정'])
 test_labels = to_categorical(test_label_data, num_classes=3) # 수정할 부분 : 출력 차원
 
-DEFAULT_PATH  = './data/' # 경로지정
+DEFAULT_PATH  = 'model/data/' # 경로지정
 DATA_PATH = 'CLEAN_DATA/' #.npy파일 저장 경로지정
 TRAIN_INPUT_DATA = 'nsmc_train_input.npy' # 학습 데이터 입력
 TRAIN_LABEL_DATA = 'nsmc_train_label.npy' # 학습 데이터 레이블
