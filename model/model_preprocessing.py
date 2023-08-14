@@ -5,14 +5,12 @@ import re
 import os
 import json
 from konlpy.tag import Okt
+from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.utils import to_categorical
-from keras.preprocessing.text import Tokenizer
 
-DATA_PATH = './model/data/'
-train_data = pd.read_csv(DATA_PATH + 'TRAINSET.txt', header = 0, delimiter = '\t', quoting=3, encoding='utf-8')
-
-train_data['발화'][:10]
+DATA_PATH = './data/'
+train_data = pd.read_csv(DATA_PATH + 'TRAINSET.txt', header = 0, delimiter = '\t', quoting=3, encoding='cp949')
 
 #전처리 함수 만들기
 def preprocessing(review, okt, remove_stopwords = False, stop_words = []):
@@ -44,11 +42,9 @@ for review in train_data['발화']:
     clean_train_review.append(preprocessing(review, okt, remove_stopwords=True, stop_words= stop_words))
   else:
     clean_train_review.append([]) # str이 아닌 행은 빈칸으로 놔두기  
-
-# clean_train_review[:5]
-
+    
 # 테스트 리뷰도 동일하게 전처리
-test_data = pd.read_csv(DATA_PATH + 'TESTCASE.txt', header = 0, delimiter='\t', quoting=3, encoding='utf-8')
+test_data = pd.read_csv(DATA_PATH + 'TESTCASE.txt', header = 0, delimiter='\t', quoting=3, encoding='cp949')
 
 clean_test_review = []
 for review in test_data['발화']:
@@ -56,8 +52,6 @@ for review in test_data['발화']:
     clean_test_review.append(preprocessing(review, okt, remove_stopwords=True, stop_words=stop_words))
   else:
     clean_test_review.append([])
-    
-# print(clean_test_review)
 
 # 수정
 # 인덱스 벡터 변환 후 일정 길이 넘어가거나 모자라는 리뷰 패딩처리
@@ -81,7 +75,7 @@ test_inputs = pad_sequences(test_sequences,maxlen=MAX_SEQUENCE_LENGTH)
 test_label_data = np.array(test_data['감정'])
 test_labels = to_categorical(test_label_data, num_classes=3) # 수정할 부분 : 출력 차원
 
-DEFAULT_PATH  = './model/data/' # 경로지정
+DEFAULT_PATH  = './data/' # 경로지정
 DATA_PATH = 'CLEAN_DATA/' #.npy파일 저장 경로지정
 TRAIN_INPUT_DATA = 'nsmc_train_input.npy' # 학습 데이터 입력
 TRAIN_LABEL_DATA = 'nsmc_train_label.npy' # 학습 데이터 레이블
