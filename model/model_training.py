@@ -1,4 +1,4 @@
-# ÇĞ½À µ¥ÀÌÅÍ ºÒ·¯¿À±â
+# í•™ìŠµ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
 import tensorflow as tf
 import numpy as np
 import pandas as pd
@@ -13,9 +13,9 @@ from keras import layers
 from keras.layers import Dense
 from tqdm import tqdm
 
-# ÀüÃ³¸® µ¥ÀÌÅÍ ºÒ·¯¿À±â
-DATA_PATH = './model/data/CLEAN_DATA/'
-DATA_OUT = './model/data/DATA_OUT/'
+# ì „ì²˜ë¦¬ ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
+DATA_PATH = './data/CLEAN_DATA/'
+DATA_OUT = './data/DATA_OUT/'
 INPUT_TRAIN_DATA = 'nsmc_train_input.npy'
 LABEL_TRAIN_DATA = 'nsmc_train_label.npy'
 DATA_CONFIGS = 'data_configs.json'
@@ -33,7 +33,7 @@ MAX_LEN = train_input.shape[1]
 
 kargs={'model_name': model_name, 'vocab_size':prepro_configs['vocab_size'],'embbeding_size':128, 'num_filters':100,'dropout_rate':0.5, 'hidden_dimension':250,'output_dimension':1}
 
-# ¼öÁ¤
+# ìˆ˜ì •
 @register_keras_serializable()
 class CNNClassifier(tf.keras.Model):
 
@@ -47,8 +47,8 @@ class CNNClassifier(tf.keras.Model):
         self.fc1 = layers.Dense(units=kargs['hidden_dimension'],
                                 activation = tf.keras.activations.relu,
                                 kernel_constraint=tf.keras.constraints.MaxNorm(max_value=3.))
-        self.fc2 = layers.Dense(units=3,  # ¼öÁ¤ÇÒ ºÎºĞ : Ãâ·Â Â÷¿ø º¯°æ
-                                activation=tf.keras.activations.softmax,  # È°¼ºÈ­ ÇÔ¼ö º¯°æ
+        self.fc2 = layers.Dense(units=3,  # ìˆ˜ì •í•  ë¶€ë¶„ : ì¶œë ¥ ì°¨ì› ë³€ê²½
+                                activation=tf.keras.activations.softmax,  # í™œì„±í™” í•¨ìˆ˜ ë³€ê²½
                                 kernel_constraint= tf.keras.constraints.MaxNorm(max_value=3.))
 
     def call(self,x):
@@ -59,14 +59,14 @@ class CNNClassifier(tf.keras.Model):
         x = self.fc2(x)
         return x
 
-# ¼öÁ¤
-# ¸ğµ¨ ÇĞ½À
+# ìˆ˜ì •
+# ëª¨ë¸ í•™ìŠµ
 model = CNNClassifier(**kargs)
 model.compile(optimizer=tf.keras.optimizers.Adam(),
               loss=tf.keras.losses.CategoricalCrossentropy(),
               metrics=[tf.keras.metrics.CategoricalAccuracy(name='accuracy')])
 
-train_label = to_categorical(train_label, num_classes=3) # ¼öÁ¤ ºÎºĞ
+train_label = to_categorical(train_label, num_classes=3) # ìˆ˜ì • ë¶€ë¶„
 
 earlystop_callback = EarlyStopping(monitor='val_accuracy', min_delta=0.0001, patience=2)
 checkpoint_path = DATA_OUT + model_name + '\weights.h5'
@@ -86,7 +86,7 @@ cp_callback = ModelCheckpoint(
 history = model.fit(train_input, train_label, batch_size=BATCH_SIZE, epochs=NUM_EPOCHS,
                     validation_split=VALID_SPLIT, callbacks=[earlystop_callback, cp_callback])
 
-save_model(model, './model')
+save_model(model, './')
 
 # TC
 INPUT_TEST_DATA = 'nsmc_test_input.npy'
@@ -97,5 +97,5 @@ test_input = np.load(open(DATA_PATH+INPUT_TEST_DATA,'rb'))
 test_input = pad_sequences(test_input,maxlen=test_input.shape[1])
 test_label_data = np.load(open(DATA_PATH + LABEL_TEST_DATA, 'rb'))
 
-model.load_weights('./model/data/DATA_OUT/cnn_classifier_kr/weights.h5')
+model.load_weights('./data/DATA_OUT/cnn_classifier_kr/weights.h5')
 model.evaluate(test_input, test_label_data)
