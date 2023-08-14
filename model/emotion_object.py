@@ -1,12 +1,11 @@
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import re
 import json
 from konlpy.tag import Okt
+from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import load_model
-from keras.preprocessing.text import Tokenizer
 
 okt = Okt()
 tokenizer  = Tokenizer()
@@ -15,7 +14,7 @@ class EmotionAnalysis :
     def analyze_emotion(self, input_sentence):
 
         DATA_CONFIGS = 'data_configs.json'
-        prepro_configs = json.load(open('./model/data/CLEAN_DATA/'+DATA_CONFIGS,'r'))
+        prepro_configs = json.load(open('./data/CLEAN_DATA/'+DATA_CONFIGS,'r'))
         tokenizer.fit_on_texts(prepro_configs['vocab'])
 
         MAX_LENGTH = 8 # 문장최대길이
@@ -27,8 +26,8 @@ class EmotionAnalysis :
         vector  = tokenizer.texts_to_sequences(sentence)
         pad_new = pad_sequences(vector, maxlen = MAX_LENGTH) # 패딩
 
-        model = load_model('./model/')
-        model.load_weights('./model/data/DATA_OUT/cnn_classifier_kr/weights.h5')
+        model = load_model('./')
+        model.load_weights('./data/DATA_OUT/cnn_classifier_kr/weights.h5')
         predictions = model.predict(pad_new)
 
         # 주어진 결과값
