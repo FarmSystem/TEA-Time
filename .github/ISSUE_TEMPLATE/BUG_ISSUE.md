@@ -1,6 +1,6 @@
 |Name|About|Title|Labels|Assignees|
 |------|---|---|---|---|
-|Bug report|Bug issue|제목|💣||
+|Bug Issue|Bug issue를 입력해주세요|제목|💣 Bug||
 
 ## 💣 Bug ISSUE
 - 
