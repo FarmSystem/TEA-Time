@@ -61,7 +61,7 @@ train_sequences = tokenizer.texts_to_sequences(clean_train_review)
 test_sequences = tokenizer.texts_to_sequences(clean_test_review)
 
 word_vocab = tokenizer.word_index # 단어사전형태
-MAX_SEQUENCE_LENGTH = 8 # 문장 최대 길이
+MAX_SEQUENCE_LENGTH = 128 # 문장 최대 길이
 
 # 학습 데이터 / post padding > pre padding
 train_inputs = pad_sequences(train_sequences,maxlen=MAX_SEQUENCE_LENGTH) 
