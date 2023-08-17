@@ -30,11 +30,9 @@ class EmotionAnalysis :
         model.load_weights('./data/DATA_OUT/cnn_classifier_kr/weights.h5')
         predictions = model.predict(pad_new)
 
-        # 주어진 결과값
+        # 실제 감정 데이터와 레이블
         emotions = np.array(predictions)
-
-        # 감정 레이블
-        emotion_labels = ['불안', '분노', '기쁨']
+        emotion_labels = ['Anxiety', 'Anger', 'Pleasure']
 
         # 감정 요약 함수
         def summarize_emotion(emotions, threshold=0.35): # 임계값 설정
@@ -46,13 +44,6 @@ class EmotionAnalysis :
             return summary
 
         # 전체적인 기분 요약
-        overall_summary = summarize_emotion(emotions)
-
-        # 실제 감정 데이터와 레이블
-        emotions = np.array(predictions)
-        emotion_labels = ['Anxiety', 'Anger', 'Pleasure']
-
-        # 실제 요약된 감정 데이터
         overall_summary = summarize_emotion(emotions)
 
         # 요약된 감정 빈도 계산
