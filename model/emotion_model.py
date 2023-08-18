@@ -23,7 +23,7 @@ class EmotionAnalysis:
         tokenizer.fit_on_texts(prepro_configs['vocab'])
 
         sentence = kkma.sentences(input_sentence)  # 문장 분리
-        stopwords = ['은','는','이','가','하','아','것','들','의','있','되','수','보','주','등','한','을','를','으로','로'] # 제거할 불용어
+        stopwords = ['은','는','이','가','하','아','것','들','의','있','되','수','보','주','등','한','을','를','으로','로','에','하다'] # 제거할 불용어
         sentence_list = []
         for sent in sentence :
             sent = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣\\s ]', '', sent) # 한글 제외 제거
@@ -33,7 +33,6 @@ class EmotionAnalysis:
             
         vector = tokenizer.texts_to_sequences(sentence_list) # 벡터화
         pad_new = pad_sequences(vector, maxlen=128) # 패딩 / 문장최대길이 조절
-        print(len(pad_new))
 
         predictions = self.model.predict(pad_new) # 전처리 된 문장 모델에 넣고 예측 / 반환값 numpy 배열
         emotion_labels = ['불안', '분노', '기쁨']
