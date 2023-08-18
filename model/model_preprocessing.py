@@ -32,7 +32,7 @@ def preprocessing(review, okt, remove_stopwords = False, stop_words = []):
   return word_review
 
 # 전체 텍스트 전처리
-stop_words = ['은','는','이','가','하','아','것','들','의','있','되','수','보','주','등','한','을','를','으로','로']
+stop_words = ['은','는','이','가','하','아','것','들','의','있','되','수','보','주','등','한','을','를','으로','로','에','하다']
 okt = Okt()
 clean_train_review = []
 

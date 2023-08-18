@@ -14,8 +14,8 @@ from keras.layers import Dense
 from tqdm import tqdm
 
 # 전처리 데이터 불러오기
-DATA_PATH = './data/CLEAN_DATA/'
-DATA_OUT = './data/DATA_OUT/'
+DATA_PATH = 'model/data/CLEAN_DATA/'
+DATA_OUT = 'model/data/DATA_OUT/'
 INPUT_TRAIN_DATA = 'nsmc_train_input.npy'
 LABEL_TRAIN_DATA = 'nsmc_train_label.npy'
 DATA_CONFIGS = 'data_configs.json'
@@ -36,9 +36,9 @@ kargs={
     'model_name': model_name,
     'vocab_size':prepro_configs['vocab_size'],
     'embbeding_size':128, # 임베딩 벡터 수
-    'num_filters':200, # 합성곱 필터 수
+    'num_filters':300, # 합성곱 필터 수
     'dropout_rate':0.4, # 드롭아웃 비율
-    'hidden_dimension':700, # 은닉층
+    'hidden_dimension':800, # 은닉층
     'output_dimension':3 # 출력층 / 3가지 감정 분류
     }
 
@@ -74,7 +74,7 @@ model.compile(optimizer=tf.keras.optimizers.Adam(), # Adam 최적화 알고리�
               loss=tf.keras.losses.CategoricalCrossentropy(),
               metrics=[tf.keras.metrics.CategoricalAccuracy(name='accuracy')])
 
-earlystop_callback = EarlyStopping(monitor='val_accuracy', min_delta=0.0001, patience=2) # 정확도 개선 최소치 및 추가적으로 기다릴 epoch
+earlystop_callback = EarlyStopping(monitor='val_accuracy', min_delta=0.0001, patience=3) # 정확도 개선 최소치 및 추가적으로 기다릴 epoch
 checkpoint_path = DATA_OUT + model_name + '/weights.h5' # 가중치 이름 / 운영체제 따라 경로 설정 다르게
 checkpoint_dir = os.path.dirname(checkpoint_path)
 
@@ -93,7 +93,7 @@ cp_callback = ModelCheckpoint( # ModelCheckpoint 콜백은 모델의 학습 중�
 history = model.fit(train_input, train_label, batch_size=BATCH_SIZE, epochs=NUM_EPOCHS, 
                     validation_split=VALID_SPLIT, callbacks=[earlystop_callback, cp_callback])
 
-save_model(model, './')
+save_model(model, 'model/')
 
 # TC
 INPUT_TEST_DATA = 'nsmc_test_input.npy'
@@ -104,5 +104,5 @@ test_input = np.load(open(DATA_PATH+INPUT_TEST_DATA,'rb'))
 test_input = pad_sequences(test_input,maxlen=test_input.shape[1])
 test_label_data = np.load(open(DATA_PATH + LABEL_TEST_DATA, 'rb'))
 
-model.load_weights('./data/DATA_OUT/cnn_classifier_kr/weights.h5')
+model.load_weights('model/data/DATA_OUT/cnn_classifier_kr/weights.h5')
 model.evaluate(test_input, test_label_data)

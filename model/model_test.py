@@ -2,5 +2,9 @@ from emotion_model import EmotionAnalysis
 
 Analysis = EmotionAnalysis()
 
-emotion = Analysis.analyze_emotion("")
+with open("model/data/model_test.txt") as text :
+    text_test = text.readlines()
+    text_test = "".join(text_test)
+    
+emotion = Analysis.analyze_emotion(text_test)
 print(emotion)
