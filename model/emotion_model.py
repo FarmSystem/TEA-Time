@@ -11,7 +11,6 @@ okt = Okt()
 kkma = Kkma()
 tokenizer = Tokenizer()
 
-
 class EmotionAnalysis:
     def __init__(self):
         self.model = load_model('model/') # 모델 로드
@@ -24,9 +23,11 @@ class EmotionAnalysis:
 
         sentence = kkma.sentences(input_sentence)  # 문장 분리
         stopwords = ['은','는','이','가','하','아','것','들','의','있','되','수','보','주','등','한','을','를','으로','로','에','하다'] # 제거할 불용어
+        sentence_print = []
         sentence_list = []
         for sent in sentence :
             sent = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣\\s ]', '', sent) # 한글 제외 제거
+            sentence_print.append(sent)
             sent = okt.morphs(sent, stem=True) # segmentation
             sent = [word for word in sent if not word in stopwords] # 불용어 제거
             sentence_list.append(sent)
@@ -37,14 +38,20 @@ class EmotionAnalysis:
         predictions = self.model.predict(pad_new) # 전처리 된 문장 모델에 넣고 예측 / 반환값 numpy 배열
         emotion_labels = ['불안', '분노', '기쁨']
 
+        result = []
         def summarize_emotion(emotions, threshold=0.4): # 임계값 설정
-            summary = []
-            for e in emotions:
+            for i in range(len(emotions)):
+                e = emotions[i]
                 dominant_emotion = np.argmax(e) # 가장 높은 점수의 감정 인덱스 
                 if e[dominant_emotion] > threshold: # 임계값 이상의 점수만을 고려
-                    summary.append(emotion_labels[dominant_emotion])
-            return summary
+                    result.append([sentence_print[i], emotion_labels[dominant_emotion], format(e[dominant_emotion]*100,".2f"), True])
+                else :
+                    result.append([sentence_print[i], '_', '_', False])
 
-        overall_summary = summarize_emotion(predictions) # 전체적인 기분 요약
-        emotion_counts = {emotion: overall_summary.count(emotion) for emotion in emotion_labels} # 요약된 감정 빈도 계산
-        return emotion_counts
+        summarize_emotion(predictions) # 전체적인 기분 요약
+        
+        for text in result :
+            if text[3] :
+                print(f'"{text[0]}"은 {text[2]}%의 확률로 {text[1]}을 나타내는 문장입니다.')
+            else :
+                print(f'"{text[0]}"은 감정을 담고 있는 문장이 아닌 것 같습니다.')
