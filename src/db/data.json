@@ -1,0 +1,25 @@
+{
+    "tip" : [
+      {
+        "id" : "1",
+        "title": "22일 일기 제목",
+        "emotions": "2",
+        "content": "Diary Wdanwidnasnd...",
+        "image": "https://www.nicekicks.com/files/2014/10/air-jordan-logo-667x500.jpg"
+      },
+      {
+        "id" : "2",
+        "title": "22일 일기 제목",
+        "emotions": "2",
+        "content": "Diary Wdanwidnasnd...",
+        "image": "https://storage.googleapis.com/sparta-image.appspot.com/lecture/banana.png"
+      },    
+      {
+        "id" : "3",
+        "title": "22일 일기 제목",
+        "emotions": "2",
+        "content": "Diary Wdanwidnasnd...",
+        "image": "https://storage.googleapis.com/sparta-image.appspot.com/lecture/banana.png"
+      }
+   ]
+}
