@@ -1,6 +1,7 @@
 export const theme = {
-    itemBackground : "#c8d9b2",
+    itemBackground : 'white',
     main : '#7778bdd',
-    text : '#cfcfcf',
+    text : '#6c755f',
+    borderColor : 'black',
     justifyContent: 'space-around',
 };

@@ -22,6 +22,17 @@ const StyledText = styled.Text`
 font-size : 30px;
 `;
 
+const Backcolor = styled.TouchableOpacity`
+width : 100px;
+height : 50px;
+margin : 3px 0;
+padding : 15px 20px;
+border-radius : 10px;
+justify-content: space-around;
+background-color : white;
+color : ${({theme}) => theme.text};
+`;
+
 const styles = StyleSheet.create({
     container : {
         flex : 1,
@@ -35,13 +46,17 @@ const styles = StyleSheet.create({
     PlusButton : {
         justifyContent: 'space-between',
         alignItems : 'space-around',
-        top : 170
+        top : 40
     },
     image : {
       width : '80%',
       height : 300,
     },
-
+    body : {
+      color : '#37474f',
+      fontSize : 16,
+      lineHeight : 21,
+    },
 });
 
 
@@ -49,7 +64,7 @@ const Styledfilter = StyleSheet.create({
   filter : {
     justifyContent : 'space-between',
     alignItems : 'flex-end',
-    top : -200
+    top : -65
   }
 })
 
@@ -58,22 +73,6 @@ width : ${({width}) => width - 40}px;
 `;
 
 //const width = Dimensions.get('window').width;
-
-/*export class Calendar extends Component {
-   render(){
-      return (
-        <View style = {styles.container}>
-            <View style = {styles.word}>
-              <StyledText>Calendar!</StyledText>
-            </View>
-
-            <View style = {styles.Button}>
-                <RoundButton />
-            </View>
-        </View>
-    );
-  }  
-}*/   
 
 const diary = StyleSheet.create({
     card: {
@@ -140,14 +139,6 @@ function Diarylist() {
     );
   };
 
-/*export function data(){
-    const [newTask, setNewTask] = useState('');
-    const [tasks, setTasks] = useState({
-      '1' : {id : '1', title : '22일 일기 제목' },
-      '2' : {id : '2', title : '23일 일기 제목'},
-      '3' : {id : '3', title : '24일 일기 제목'},
-    });
-  };*/
 
 export const Calendar = () => {
     return (
@@ -162,18 +153,15 @@ export class DiaryList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showFilter: false, // 초기에는 Filter 컴포넌트를 렌더링하지 않도록 설정
+      clicked : true // 초기에는 Filter 컴포넌트를 렌더링하지 않도록 설정
     };
   }
 
   _FilterPress = () => {
-    this.setState(prevState => ({
-      showFilter: !prevState.showFilter, // 상태 변경으로 Filter 컴포넌트의 렌더링 여부를 변경
-    }));
+    this.setState({clicked : false});
 
     console.log('Filter 버튼이 눌렸습니다.');
   };
-
     render(){
        const { showFilter } = this.state;
        return (
@@ -181,17 +169,21 @@ export class DiaryList extends Component {
           <View style = {styles.container}>
              {/*<Diarylist/>*/}
              <View style = {Styledfilter.filter}>
-               <Button 
-               title = "최신순"
-               onPress = {this._FilterPress } />
+               {
+                 this.state.clicked
+                   ? <Button title = "최신순" onPress = {() => alert('click!!')} />
+                   : <Filter />
+               }
              </View>
              {showFilter && <Filter />}
              {/*<List width = {width}>
               {data.tip.map(item => (<Task key = {item.id} text = {item.title}/>))}
              </List>*/}
                 <View style = {styles.word}>
-                  <Show text = "22일 일기 제목"/>
-                  <Show text = "23일 일기 제목"/>
+                  <Show title = "24일 일기 제목"/>
+                  <Show title = "23일 일기 제목"/>
+                  <Show title = "22일 일기 제목"/>
+                  <Show title = "21일 일기 제목"/>
                 </View>
              <View style = {styles.PlusButton}>
                  <RoundButton title = "+"/>

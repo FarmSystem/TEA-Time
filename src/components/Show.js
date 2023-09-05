@@ -1,4 +1,5 @@
 import React from 'react';
+import {StyleSheet, Text} from 'react-native';
 import styled from 'styled-components/native';
 //import {Dimensions} from 'react-native';
 
@@ -10,6 +11,7 @@ padding : 15px 20px;
 border-radius : 10px;
 justify-content: space-around;
 background-color : ${({theme}) => theme.itemBackground};
+border : 2px solid #D9D9D9;
 color : ${({theme}) => theme.text};
 `;
 
@@ -21,19 +23,29 @@ color : ${({theme}) => theme.text};
     return <StyledInput width = {width} />;
 };*/
 
-const Text = styled.Text`
-font-size : 25px;
-font-weight : 600;
-color : white;
-text-align : center;
+const Title = styled.Text`
+font-size : 20px;
+font-weight : bold;
+color : black;
+text-align : left;
 align-items : center;
 `
+
+const styles = StyleSheet.create({
+    body : {
+        color : '#37474f',
+        fontSize : 13,
+        lineHeight : 21,
+        textAlign : 'right',
+      },
+});
 
 const Show = props => {
     //const width = Dimensions.get('window').width;
     return (
         <StyledInput>
-            <Text>{props.text}</Text>
+            <Title>{props.title}</Title>
+            <Text style = {styles.body}>일기의 내용이 들어갈 자리...</Text>
         </StyledInput>
     );
 };
