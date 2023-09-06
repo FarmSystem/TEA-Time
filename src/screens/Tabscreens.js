@@ -44,9 +44,10 @@ const styles = StyleSheet.create({
         alignItems : 'center',
     },
     PlusButton : {
-        justifyContent: 'space-between',
-        alignItems : 'space-around',
-        top : 40
+        position : "absolute",
+        top : 580,
+        right : 100,
+        left : 300,
     },
     image : {
       width : '80%',
@@ -62,9 +63,11 @@ const styles = StyleSheet.create({
 
 const Styledfilter = StyleSheet.create({
   filter : {
+    position : "absolute",
     justifyContent : 'space-between',
     alignItems : 'flex-end',
-    top : -65
+    top : 0,
+    left : 250,
   }
 })
 
