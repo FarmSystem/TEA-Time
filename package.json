@@ -15,7 +15,7 @@
     "expo-status-bar": "~1.6.0",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
-    "react-native": "0.72.3",
+    "react-native": "0.72.4",
     "react-native-action-button": "^2.8.5",
     "styled-components": "^6.0.7"
   },
