@@ -1,5 +1,4 @@
 import React from "react";
-// import {TabNavigation} from './navigations/Tab';
 import { TabNavigation } from "./src/navigations/Tab";
 import { NavigationContainer } from "@react-navigation/native";
 
