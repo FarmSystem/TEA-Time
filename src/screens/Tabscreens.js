@@ -144,12 +144,19 @@ function Diarylist() {
 export const CalendarPage = () => {
   const [selected, setSelected] = useState("");
   return (
-    <Container>
+    <Container
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+      }}
+    >
       <Calendar
         style={{
           borderWidth: 1,
           borderColor: "gray",
           height: 350,
+          width: 375,
         }}
         theme={{
           backgroundColor: "#ffffff",
@@ -185,6 +192,9 @@ export const CalendarPage = () => {
         }}
         // hideArrows={false}
       />
+      <View style={styles.word}>
+        <Show title="24일 일기 제목" />
+      </View>
     </Container>
   );
 };
