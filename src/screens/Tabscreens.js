@@ -59,13 +59,14 @@ const styles = StyleSheet.create({
     lineHeight: 21,
   },
   emotionContainer: {
+    flex: 0.3,
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
   },
   emoBox: {
-    width: 15,
-    height: 15,
+    width: 25,
+    height: 25,
   },
 });
 
@@ -202,10 +203,14 @@ export const CalendarPage = () => {
         // hideArrows={false}
       />
       <View style={styles.emotionContainer}>
-        <View style={[styles.emoBox, { backgroundColor: "green" }]} />
-        <Text>Good</Text>
-        <View style={[styles.emoBox, { backgroundColor: "red" }]} />
-        <Text>Bad</Text>
+        <>
+          <View style={[styles.emoBox, { backgroundColor: "green" }]} />
+          <Text style={{ fontSize: 20 }}>Good</Text>
+        </>
+        <>
+          <View style={[styles.emoBox, { backgroundColor: "red" }]} />
+          <Text style={{ fontSize: 20 }}>Bad</Text>
+        </>
       </View>
       <View style={styles.emotionContainer}>
         <Show title="24일 일기 제목" />
