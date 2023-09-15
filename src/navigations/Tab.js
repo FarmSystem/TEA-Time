@@ -1,11 +1,12 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
-  CalendarPage,
+  // CalendarPage,
   DiaryList,
   Chart,
   Settings,
 } from "../screens/Tabscreens";
+import { CalendarPage } from "../screens/CalendarPage";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 //import IconButton from '../components/IconButton';

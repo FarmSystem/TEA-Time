@@ -159,73 +159,73 @@ function Diarylist() {
   );
 }
 
-export const CalendarPage = () => {
-  const [selected, setSelected] = useState("");
-  return (
-    <Container
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-      }}
-    >
-      <Calendar
-        style={{
-          borderWidth: 1,
-          borderColor: "gray",
-          height: 350,
-          width: 375,
-        }}
-        theme={{
-          backgroundColor: "#ffffff",
-          calendarBackground: "#ffffff",
-          textSectionTitleColor: "#b6c1cd",
-          selectedDayBackgroundColor: "#00adf5",
-          selectedDayTextColor: "#ffffff",
-          todayTextColor: "#00adf5",
-          dayTextColor: "#2d4150",
-          textDisabledColor: "#9E9E9E",
-        }}
-        onDayPress={(day) => {
-          setSelected(day.dateString);
-        }}
-        enableSwipeMonths={true}
-        markedDates={{
-          [selected]: {
-            selected: true,
-            disableTouchEvent: true,
-            selectedDotColor: "orange",
-          },
-          "2023-09-02": { selected: true, marked: true, selectedColor: "red" },
-          "2023-09-16": {
-            selected: true,
-            marked: true,
-            selectedColor: "skyblue",
-          },
-          "2023-09-27": {
-            selected: true,
-            marked: true,
-            selectedColor: "yellow",
-          },
-        }}
-        // hideArrows={false}
-      />
-      <View style={styles.emotionContainer}>
-        <View style={styles.emotionFlexBox}>
-          <View style={[styles.emoBox, { backgroundColor: "green" }]} />
-          <Text style={{ fontSize: 20 }}>Good</Text>
-        </View>
-        <View style={styles.emotionFlexBox}>
-          <View style={[styles.emoBox, { backgroundColor: "red" }]} />
-          <Text style={{ fontSize: 20 }}>Bad</Text>
-        </View>
-      </View>
-      <View>
-        <Show title="24일 일기 제목" />
-      </View>
-    </Container>
-  );
-};
+// export const CalendarPage = () => {
+//   const [selected, setSelected] = useState("");
+//   return (
+//     <Container
+//       style={{
+//         display: "flex",
+//         flexDirection: "column",
+//         justifyContent: "flex-start",
+//       }}
+//     >
+//       <Calendar
+//         style={{
+//           borderWidth: 1,
+//           borderColor: "gray",
+//           height: 350,
+//           width: 375,
+//         }}
+//         theme={{
+//           backgroundColor: "#ffffff",
+//           calendarBackground: "#ffffff",
+//           textSectionTitleColor: "#b6c1cd",
+//           selectedDayBackgroundColor: "#00adf5",
+//           selectedDayTextColor: "#ffffff",
+//           todayTextColor: "#00adf5",
+//           dayTextColor: "#2d4150",
+//           textDisabledColor: "#9E9E9E",
+//         }}
+//         onDayPress={(day) => {
+//           setSelected(day.dateString);
+//         }}
+//         enableSwipeMonths={true}
+//         markedDates={{
+//           [selected]: {
+//             selected: true,
+//             disableTouchEvent: true,
+//             selectedDotColor: "orange",
+//           },
+//           "2023-09-02": { selected: true, marked: true, selectedColor: "red" },
+//           "2023-09-16": {
+//             selected: true,
+//             marked: true,
+//             selectedColor: "skyblue",
+//           },
+//           "2023-09-27": {
+//             selected: true,
+//             marked: true,
+//             selectedColor: "yellow",
+//           },
+//         }}
+//         // hideArrows={false}
+//       />
+//       <View style={styles.emotionContainer}>
+//         <View style={styles.emotionFlexBox}>
+//           <View style={[styles.emoBox, { backgroundColor: "green" }]} />
+//           <Text style={{ fontSize: 20 }}>Good</Text>
+//         </View>
+//         <View style={styles.emotionFlexBox}>
+//           <View style={[styles.emoBox, { backgroundColor: "red" }]} />
+//           <Text style={{ fontSize: 20 }}>Bad</Text>
+//         </View>
+//       </View>
+//       <View>
+//         <Show title="24일 일기 제목" />
+//       </View>
+//     </Container>
+//   );
+// };
 
 export class DiaryList extends Component {
   constructor(props) {
