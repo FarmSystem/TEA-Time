@@ -68,14 +68,14 @@ const styles = StyleSheet.create({
 });
 
 export const CalendarPage = () => {
-  const [selected, setSelected] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
 
   // 선택한 날짜를 "yyyymmdd" 형식으로 변환하는 함수
   const formatSelectedDate = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 1을 더하고 두 자리로 맞춥니다.
-    const day = String(date.getDate()).padStart(2, "0"); // 일자를 두 자리로 맞춥니다.
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}${month}${day}`;
   };
 
@@ -98,39 +98,33 @@ export const CalendarPage = () => {
           backgroundColor: "#ffffff",
           calendarBackground: "#ffffff",
           textSectionTitleColor: "#b6c1cd",
-          selectedDayBackgroundColor: "#00adf5",
-          selectedDayTextColor: "#ffffff",
           todayTextColor: "#00adf5",
           dayTextColor: "#2d4150",
           textDisabledColor: "#9E9E9E",
         }}
         onDayPress={(day) => {
-          setSelected(formatSelectedDate(day.dateString)); // 선택한 날짜를 변환하여 저장
+          setSelectedDate(day.dateString); // 선택한 날짜 저장
         }}
         enableSwipeMonths={true}
+        markingType="custom"
         markedDates={{
-          [selected]: {
-            selected: true,
-            disableTouchEvent: true,
-            selectedDotColor: "orange",
-          },
-          "2023-09-02": { selected: true, marked: true, selectedColor: "red" },
-          "2023-09-16": {
-            selected: true,
-            marked: true,
-            selectedColor: "skyblue",
-          },
-          "2023-09-27": {
-            selected: true,
-            marked: true,
-            selectedColor: "yellow",
+          [selectedDate]: {
+            customStyles: {
+              container: {
+                backgroundColor: "orange", // 선택한 날짜의 배경색을 변경
+              },
+              text: {
+                color: "white", // 선택한 날짜의 텍스트 색상을 변경
+              },
+            },
           },
         }}
-        // hideArrows={false}
       />
       <View style={styles.emotionContainer}>
         {/* 선택한 날짜를 표시 */}
-        <Text style={{ fontSize: 20 }}>{selected}</Text>
+        <Text style={{ fontSize: 20 }}>
+          {selectedDate ? formatSelectedDate(selectedDate) : ""}
+        </Text>
         <View style={styles.emotionFlexBox}>
           <View style={[styles.emoBox, { backgroundColor: "green" }]} />
           <Text style={{ fontSize: 20 }}>Good</Text>
@@ -141,7 +135,7 @@ export const CalendarPage = () => {
         </View>
       </View>
       <View>
-        <Show title="24일 일기 제목" />
+        <Show title="24일 일기 제목입니다." />
       </View>
     </Container>
   );
