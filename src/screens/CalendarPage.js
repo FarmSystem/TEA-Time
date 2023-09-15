@@ -141,7 +141,7 @@ export const CalendarPage = () => {
         </View>
       </View>
       <View>
-        <Show title="24일 일기 제목입니다." />
+        <Show title="24일 일기 제목" />
       </View>
     </Container>
   );
