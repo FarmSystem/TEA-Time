@@ -69,6 +69,16 @@ const styles = StyleSheet.create({
 
 export const CalendarPage = () => {
   const [selected, setSelected] = useState("");
+
+  // 선택한 날짜를 "yyyymmdd" 형식으로 변환하는 함수
+  const formatSelectedDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // 월은 0부터 시작하므로 1을 더하고 두 자리로 맞춥니다.
+    const day = String(date.getDate()).padStart(2, "0"); // 일자를 두 자리로 맞춥니다.
+    return `${year}${month}${day}`;
+  };
+
   return (
     <Container
       style={{
@@ -95,7 +105,7 @@ export const CalendarPage = () => {
           textDisabledColor: "#9E9E9E",
         }}
         onDayPress={(day) => {
-          setSelected(day.dateString);
+          setSelected(formatSelectedDate(day.dateString)); // 선택한 날짜를 변환하여 저장
         }}
         enableSwipeMonths={true}
         markedDates={{
@@ -119,6 +129,8 @@ export const CalendarPage = () => {
         // hideArrows={false}
       />
       <View style={styles.emotionContainer}>
+        {/* 선택한 날짜를 표시 */}
+        <Text style={{ fontSize: 20 }}>{selected}</Text>
         <View style={styles.emotionFlexBox}>
           <View style={[styles.emoBox, { backgroundColor: "green" }]} />
           <Text style={{ fontSize: 20 }}>Good</Text>
