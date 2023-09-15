@@ -1,10 +1,13 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { DiaryList, Chart, Settings } from "../screens/Tabscreens";
-import { CalendarPage } from "../screens/CalendarPage";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 //import IconButton from '../components/IconButton';
+
+// 페이지 컴포넌트화를 위해 탭 별로 페이지 만들어 분리하기
+import { CalendarPage } from "../screens/CalendarPage";
+import { SettingPage } from "../screens/SettingPage";
 
 const TabIcon = ({ name, size, color }) => {
   return <MaterialCommunityIcons name={name} size={size} color={color} />;
@@ -69,7 +72,7 @@ export const TabNavigation = () => {
 
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={SettingPage}
         options={{
           headerStyle: { backgroundColor: "#F4E8D1" },
           fontWeight: "bold",

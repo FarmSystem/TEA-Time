@@ -210,11 +210,3 @@ export const Chart = () => {
     </Container>
   );
 };
-
-export const Settings = () => {
-  return (
-    <Container>
-      <StyledText>Settings</StyledText>
-    </Container>
-  );
-};
