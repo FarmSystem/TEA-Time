@@ -1,11 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  // CalendarPage,
-  DiaryList,
-  Chart,
-  Settings,
-} from "../screens/Tabscreens";
+import { DiaryList, Chart, Settings } from "../screens/Tabscreens";
 import { CalendarPage } from "../screens/CalendarPage";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
