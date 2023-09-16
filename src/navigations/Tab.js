@@ -8,7 +8,7 @@ import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 // 페이지 컴포넌트화를 위해 탭 별로 페이지 만들어 분리하기
 import { CalendarPage } from "../screens/CalendarPage";
 import { SettingPage } from "../screens/SettingPage";
-import { ChartPage } from "../screens/ChartPage";
+import ChartPage from "../screens/ChartPage";
 
 const TabIcon = ({ name, size, color }) => {
   return <MaterialCommunityIcons name={name} size={size} color={color} />;
@@ -67,7 +67,7 @@ export const TabNavigation = () => {
         options={{
           headerStyle: { backgroundColor: "#F4E8D1" },
           fontWeight: "bold",
-          tabBarIcon: (props) => TabIcon({ ...props, name: "chart-bar" }),
+          // tabBarIcon: (props) => TabIcon({ ...props, name: "chart-bar" }),
         }}
       />
 
