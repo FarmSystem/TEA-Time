@@ -64,6 +64,7 @@ export const SettingPage = () => {
     }
   };
 
+  // 현재는 사용 안하는 데이터더미들
   const recommended = [
     { title: "Use FaceID to sign in", id: "face", type: "switch" },
     { title: "Auto-Lock security", id: "autolock", type: "switch" },
@@ -76,9 +77,15 @@ export const SettingPage = () => {
   ];
 
   const privacy = [
-    { title: "User Agreement", id: "Agreement", type: "button" },
-    { title: "Privacy", id: "Privacy", type: "button" },
-    { title: "About", id: "About", type: "button" },
+    { title: "이용약관", id: "TermsOfUse", type: "button" },
+    { title: "개인정보처리방침", id: "privacyPolicy", type: "button" },
+    { title: "개발/관리자 정보", id: "developers", type: "button" },
+  ];
+
+  const generalSettings = [
+    { title: "프로필", id: "profile", type: "button" },
+    { title: "다크모드", id: "darkmode", type: "switch" },
+    { title: "로그아웃", id: "signOut", type: "button" },
   ];
 
   return (
@@ -87,7 +94,7 @@ export const SettingPage = () => {
       contentContainerStyle={styles.settings}
     >
       <FlatList
-        data={recommended}
+        data={generalSettings}
         keyExtractor={(item, index) => item.id}
         renderItem={renderItem}
         ListHeaderComponent={
@@ -98,33 +105,21 @@ export const SettingPage = () => {
               size={theme.SIZES.BASE}
               style={{ paddingBottom: 5 }}
             >
-              Recommended Settings
+              일반 설정
             </Text>
             <Text center muted size={12}>
-              These are the most important settings
+              기본 설정 리스트입니다.
             </Text>
           </Block>
         }
       />
+
       <Block style={styles.title}>
         <Text bold center size={theme.SIZES.BASE} style={{ paddingBottom: 5 }}>
-          Payment Settings
+          개인정보 보호 설정
         </Text>
         <Text center muted size={12}>
-          These are also important settings
-        </Text>
-      </Block>
-      <FlatList
-        data={payment}
-        keyExtractor={(item, index) => item.id}
-        renderItem={renderItem}
-      />
-      <Block style={styles.title}>
-        <Text bold center size={theme.SIZES.BASE} style={{ paddingBottom: 5 }}>
-          Privacy Settings
-        </Text>
-        <Text center muted size={12}>
-          Third most important settings
+          정보 관련 규제 설정입니다.
         </Text>
       </Block>
       <FlatList
