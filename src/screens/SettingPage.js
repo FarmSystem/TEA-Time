@@ -94,6 +94,7 @@ export const SettingPage = () => {
       contentContainerStyle={styles.settings}
     >
       <FlatList
+        onPress={() => navigation.navigate("Profile")}
         data={generalSettings}
         keyExtractor={(item, index) => item.id}
         renderItem={renderItem}
