@@ -203,10 +203,10 @@ export class DiaryList extends Component {
   }
 }
 
-export const Chart = () => {
-  return (
-    <Container>
-      <StyledText>Chart</StyledText>
-    </Container>
-  );
-};
+// export const Chart = () => {
+//   return (
+//     <Container>
+//       <StyledText>Chart</StyledText>
+//     </Container>
+//   );
+// };
