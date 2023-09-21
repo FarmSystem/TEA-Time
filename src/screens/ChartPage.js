@@ -38,9 +38,10 @@ const Section1 = styled.View`
 `;
 
 const Section2 = styled.View`
-  flex: 1;
-  background-color: white;
+  flex: 0.2;
+  background-color: orange;
   padding: 20px;
+  width: 100%;
 `;
 
 const Section3 = styled.View`
@@ -54,16 +55,46 @@ const Section4 = styled.View`
   align-items: center;
 `;
 
+// 차트 나누는 버튼 디자인
+const ChartButton = styled.TouchableOpacity`
+  flex: 0.3;
+  background-color: gray;
+  width: 100%;
+  height: 100%;
+  justifycontent: "center";
+  alignitems: "center";
+  text-align: "center";
+  border: 2px solid white;
+  border-radius: 10%;
+`;
+
+const ChartText = styled.Text`
+  text-align: center;
+  align-items: center;
+  justifycontent: center;
+  font-size: 20px;
+  font-weight: bold;
+`;
+
 export default function ChartPage() {
   // 평균 계산 로직을 추가
   const average =
     LineData.reduce((sum, data) => sum + data.value, 0) / LineData.length;
 
+  function handleMonthChartAlert() {
+    alert("월별 차트 눌림");
+    // return;
+  }
+  function handleDayChartAlert() {
+    alert("월별 차트 눌림");
+    // return;
+  }
+
   return (
     <Container>
-      <Section1>
+      {/* <Section1>
         <Text>감정 분석 차트</Text>
-      </Section1>
+      </Section1> */}
 
       <Section2>
         <View
@@ -72,12 +103,12 @@ export default function ChartPage() {
             justifyContent: "space-around",
           }}
         >
-          <TouchableOpacity>
-            <Text>월별 차트</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Text>일별 차트</Text>
-          </TouchableOpacity>
+          <ChartButton onPress={handleMonthChartAlert}>
+            <ChartText>월별 차트</ChartText>
+          </ChartButton>
+          <ChartButton onPress={handleDayChartAlert}>
+            <ChartText>일별 차트</ChartText>
+          </ChartButton>
         </View>
       </Section2>
 
@@ -91,6 +122,7 @@ export default function ChartPage() {
             endFillColor="rgb(203, 241, 250)"
             endOpacity={0.3}
             scrollEventThrottle={16}
+            width={350}
             // pointerConfig={{}}
           />
         </ScrollView>
