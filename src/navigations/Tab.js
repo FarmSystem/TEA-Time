@@ -55,7 +55,7 @@ export const TabNavigation = () => {
       />
 
       <Tab.Screen
-        name="Chart"
+        name="감정 분석 차트"
         component={ChartPage}
         options={{
           headerStyle: { backgroundColor: "#F4E8D1" },
@@ -73,7 +73,7 @@ export const TabNavigation = () => {
           tabBarIcon: (props) => TabIcon({ ...props, name: "account-cog" }),
         }}
       />*/}
-      
+
       <Tab.Screen
         name="DiaryWrite"
         component={WritePage}
@@ -83,7 +83,6 @@ export const TabNavigation = () => {
           tabBarIcon: (props) => TabIcon({ ...props, name: "account-cog" }),
         }}
       />
-
     </Tab.Navigator>
   );
 };
