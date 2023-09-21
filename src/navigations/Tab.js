@@ -8,6 +8,7 @@ import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 // 페이지 컴포넌트화를 위해 탭 별로 페이지 만들어 분리하기
 import { CalendarPage } from "../screens/CalendarPage";
 import { SettingPage } from "../screens/SettingPage";
+import WritePage from "../screens/WritePage";
 import ChartPage from "../screens/ChartPage";
 
 const TabIcon = ({ name, size, color }) => {
@@ -24,14 +25,6 @@ const styles = StyleSheet.create({
     top: 30,
   },
 });
-
-/*export const search = () => {
-    return (
-        <Container>
-            <IconButton />
-        </Container>
-    )
-}*/
 
 export const TabNavigation = () => {
   return (
@@ -71,7 +64,7 @@ export const TabNavigation = () => {
         }}
       />
 
-      <Tab.Screen
+      {/*<Tab.Screen
         name="Settings"
         component={SettingPage}
         options={{
@@ -79,7 +72,18 @@ export const TabNavigation = () => {
           fontWeight: "bold",
           tabBarIcon: (props) => TabIcon({ ...props, name: "account-cog" }),
         }}
+      />*/}
+      
+      <Tab.Screen
+        name="DiaryWrite"
+        component={WritePage}
+        options={{
+          headerStyle: { backgroundColor: "#F4E8D1" },
+          fontWeight: "bold",
+          tabBarIcon: (props) => TabIcon({ ...props, name: "account-cog" }),
+        }}
       />
+
     </Tab.Navigator>
   );
 };

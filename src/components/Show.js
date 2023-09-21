@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, Image} from 'react-native';
 import styled from 'styled-components/native';
+import {CATEGORIES} from '../db/data';
 //import {Dimensions} from 'react-native';
 
 const StyledInput = styled.TouchableOpacity`
 width : 350px;
-height : 100px;
+height : 120px;
 margin : 3px 0;
 padding : 15px 20px;
 border-radius : 10px;
@@ -45,6 +46,9 @@ const Show = props => {
     return (
         <StyledInput>
             <Title>{props.title}</Title>
+            <Image
+            style={{height:'45%',width:'25%'}}
+            source={{uri:'https://legacy.reactjs.org/logo-og.png'}}/>
             <Text style = {styles.body}>일기의 내용이 들어갈 자리...</Text>
         </StyledInput>
     );

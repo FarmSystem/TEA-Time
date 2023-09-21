@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { StyleSheet, ScrollView, Text, View, Image } from "react-native";
+import { StyleSheet, ScrollView, Text, View, Image, Alert } from "react-native";
 import styled, { ThemeProvider } from "styled-components/native";
 import RoundButton from "../components/RoundButton";
 import data from "../db/data.json";
@@ -8,6 +8,8 @@ import { Filter } from "../components/Filter";
 import Show from "../components/Show";
 import { theme } from "../theme";
 import { Task } from "../components/Task";
+import {Write} from "./WritePage";
+
 //let Icon = require('../assets/icons/search2.png');
 
 const Container = styled.View`
@@ -171,23 +173,23 @@ export class DiaryList extends Component {
 
     console.log("Filter 버튼이 눌렸습니다.");
   };
+
   render() {
+    const {navigation} = this.props;
     const { showFilter } = this.state;
     return (
       <ThemeProvider theme={theme}>
         <View style={styles.container}>
           {/*<Diarylist/>*/}
           <View style={Styledfilter.filter}>
-            {this.state.clicked ? (
-              <Button title="최신순" onPress={() => alert("click!!")} />
+            {this.state.clicked? (
+              <Button title="최신순"/>
             ) : (
               <Filter />
             )}
           </View>
           {showFilter && <Filter />}
-          {/*<List width = {width}>
-              {data.tip.map(item => (<Task key = {item.id} text = {item.title}/>))}
-             </List>*/}
+
           <View style={styles.word}>
             <Show title="24일 일기 제목" />
             <Show title="23일 일기 제목" />
@@ -195,7 +197,7 @@ export class DiaryList extends Component {
             <Show title="21일 일기 제목" />
           </View>
           <View style={styles.PlusButton}>
-            <RoundButton title="+" />
+            <RoundButton title="+" onPress={() => this.props.navigation.navigate('Write')}/>
           </View>
         </View>
       </ThemeProvider>
