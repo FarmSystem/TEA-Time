@@ -1,8 +1,10 @@
 import tensorflow as tf
 import numpy as np
+from konlpy.tag import Kkma
 from keras.models import load_model
 from transformers import DistilBertTokenizer
 
+kkma = Kkma()
 model_name = "distilbert-base-multilingual-cased"
 tokenizer = DistilBertTokenizer.from_pretrained(model_name)
 
@@ -22,15 +24,22 @@ class EmotionAnalysis :
         input_ids = self.BERTtokenizer(input_sentence)
         
         summarize_emotion = []
+        emotion_lst = ["기쁨", "당황", "분노", "불안", "슬픔"]
         prediction = self.model.predict(input_ids, verbose=1)
-        for i in prediction["logits"] :
-            logits = np.array(i)
+        for sent, emotion in zip(input_sentence, prediction["logits"]) :
+            logits = np.array(emotion)
             softmax_scores = np.exp(logits) / np.sum(np.exp(logits))
-            summarize_emotion.append(softmax_scores)
+            dominant_emotion = np.argmax(softmax_scores) 
+            summarize_emotion.append([sent, emotion_lst[dominant_emotion], format(softmax_scores[dominant_emotion]*100,".2f")])
+            
         return summarize_emotion
+    
+    def print_emotion(self, sentence) :
+        for text in sentence :
+            print(f'"{text[0]}"은 {text[2]}%의 확률로 {text[1]}을 나타내는 문장입니다.')
             
     def analyze_emotion(self, input_sentence) :
-        result = self.prob_emotion(input_sentence)
+        sentence = kkma.sentences(input_sentence)
+        sentence = self.prob_emotion(sentence)
         
-        for i in result :
-            print(i)
+        self.print_emotion(sentence)
