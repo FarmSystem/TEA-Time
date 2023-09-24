@@ -36,6 +36,7 @@ class EmotionAnalysis :
         input_ids = tf.constant(input_ids)
         attention_masks = tf.constant(attention_masks)
         
+        '''
         # BERT 모델에 입력 데이터 전달
         outputs = self.model(input_ids, attention_masks)
         # 소프트맥스 함수를 사용하여 확률 분포 계산
@@ -43,8 +44,29 @@ class EmotionAnalysis :
         
         # 확률 분포 반환
         return softmax_output.tolist()[0]
+        '''
         
     def prob_emotion(self, input_sentence) :
+        
+        test = tokenizer(input_sentence,
+                         truncation = True,
+                         input_sentence = True)
+        test_ = tf.data.Dataset.from_tensor_slices((dict(test),)).batch(32)
+        prediction = self.model.predict(test_, verbose=1)
+        print(prediction)
+        return [0]
+    
+        '''
+        test = tokenizer.encode_plus(input_sentence,
+                                     max_length=128,
+                                     add_special_tokens = True,
+                                     pad_to_max_length=True,
+                                     return_attention_mask=False,
+                                     truncation=True)
+        print(self.model(test))
+        '''
+        
+        '''
         input_ids, attention_masks = self.BERTtokenizer(input_sentence, tokenizer)
         
         emotion_list = []
@@ -52,6 +74,7 @@ class EmotionAnalysis :
             emotion_list.append(self.analyze_emotion(id, mask))
             
         return emotion_list
+        '''
             
     def print_emotion(self, input_sentence) :
         result = self.prob_emotion(input_sentence)
