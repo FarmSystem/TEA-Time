@@ -33,6 +33,6 @@
   "seq_classif_dropout": 0.2,
   "sinusoidal_pos_embds": false,
   "tie_weights_": true,
-  "transformers_version": "4.33.2",
+  "transformers_version": "4.33.3",
   "vocab_size": 119547
 }
