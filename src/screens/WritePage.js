@@ -1,5 +1,5 @@
-import React from "react";
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import React, {useState} from "react";
+import { Text, StyleSheet, View, TouchableOpacity, Switch, ScrollView } from 'react-native';
 import styled, {ThemeProvider} from "styled-components/native";
 import { theme } from "../theme";
 import * as ImagePicker from "expo-image-picker";
@@ -133,14 +133,25 @@ const pickEmoji = () => {
 }
 
 const WritePage = () => {
+
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
   return (
     <Container>
       <View>
        <ThemeProvider theme={theme}>
         <View style = {styles.Save}>
           <Savebutton>
-            <Title>저장하기</Title>
+            <Title>작성하기</Title>
           </Savebutton>
+          <Switch style = {{position : "absolute", top : 45, left : -200}}
+          trackColor={{false: '#767577', true: '#799462'}}
+          thumbColor={isEnabled ? '#ffffff' : '#d4e8b0'} 
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+           />
         </View>
 
         <StyledInput style = {{position : "absolute", top : -30}}/>
@@ -151,7 +162,7 @@ const WritePage = () => {
            <Text>😀</Text>
           </Emoji>
         </View>
-        <WriteBox style = {{top : 40, height : 250, width : 350, fontSize : 15}}/>
+        <WriteBox multiline={true} style = {{top : 40, height : 250, width : 350, fontSize : 15}}/>
         <ImageBox style = {{top : 55, height : 160}}>
           <PutImage style = {{left : 85}}>
             <Title style = {{color : 'black', fontWeight : 'bold'}}
