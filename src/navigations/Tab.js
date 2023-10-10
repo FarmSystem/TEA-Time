@@ -10,6 +10,7 @@ import { CalendarPage } from "../screens/CalendarPage";
 import { SettingPage } from "../screens/SettingPage";
 import WritePage from "../screens/WritePage";
 import ChartPage from "../screens/ChartPage";
+import Mypage from "../screens/Mypage";
 
 const TabIcon = ({ name, size, color }) => {
   return <MaterialCommunityIcons name={name} size={size} color={color} />;
@@ -75,8 +76,10 @@ export const TabNavigation = () => {
       />*/}
 
       <Tab.Screen
-        name="DiaryWrite"
-        component={WritePage}
+        //name="DiaryWrite"
+        name = "Mypage"
+        //component={WritePage}
+        component = {Mypage}
         options={{
           headerStyle: { backgroundColor: "#F4E8D1" },
           fontWeight: "bold",
