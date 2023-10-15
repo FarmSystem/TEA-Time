@@ -13,6 +13,7 @@ class EmotionAnalysis :
         self.model = load_model('BERTmodel/model/')
         self.model.load_weights('BERTmodel/model.h5/tf_model.h5')
     
+    # 바트모델에 적합하게 문장 전처리
     def BERTtokenizer(self, data):
         input_ids = tokenizer(data,
                               truncation = True,
@@ -20,6 +21,7 @@ class EmotionAnalysis :
         input_ids = tf.data.Dataset.from_tensor_slices((dict(input_ids),)).batch(32)
         return input_ids
         
+    # 각 문장별로 어떤 감정을 내포하고 있는지 분류하고 summarize_emotion 리스트를 반환
     def prob_emotion(self, input_sentence) :
         input_ids = self.BERTtokenizer(input_sentence)
         
@@ -38,6 +40,7 @@ class EmotionAnalysis :
         for text in sentence :
             print(f'"{text[0]}"은 {text[2]}%의 확률로 {text[1]}을 나타내는 문장입니다.')
             
+    # 주어진 전체 문장을 kkma 객체를 이용하여 문장별로 분류
     def analyze_emotion(self, input_sentence) :
         sentence = kkma.sentences(input_sentence)
         sentence = self.prob_emotion(sentence)
