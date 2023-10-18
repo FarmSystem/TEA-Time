@@ -20,7 +20,6 @@ class EmotionModel:
     """
     BERT tokenizer를 이용하여 문장을 토큰화
     """
-
     @staticmethod
     def bert_tokenizer(data):
         input_ids = tokenizer(data,
@@ -32,7 +31,6 @@ class EmotionModel:
     """
     각 문장별 어떤 감정을 내포하고 있는지 분류하고 summarize_emotion 리스트를 반환
     """
-
     def prob_emotion(self, input_sentence):
         input_ids = self.bert_tokenizer(input_sentence)
 
@@ -58,7 +56,6 @@ class EmotionModel:
     """
     주어진 전체 문장을 kkma 객체를 이용하여 문장별로 분류
     """
-
     def analyze_emotion(self, input_sentence):
         sentence = kkma.sentences(input_sentence)
         sentence = self.prob_emotion(sentence)
