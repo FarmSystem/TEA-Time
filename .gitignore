@@ -3,4 +3,5 @@
 .env
 venv/
 __pycache__/
+**/__pycache__/
 weights.h5
