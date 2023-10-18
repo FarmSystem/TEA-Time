@@ -2,15 +2,19 @@ import tensorflow as tf
 import numpy as np
 from konlpy.tag import Kkma
 from keras.models import load_model
-from transformers import DistilBertTokenizer
+from transformers import DistilBertTokenizer, TFDistilBertForSequenceClassification
 
 kkma = Kkma()
 model_name = "distilbert-base-multilingual-cased"
+model = TFDistilBertForSequenceClassification.from_pretrained(
+    model_name,
+    num_labels=5
+)
 tokenizer = DistilBertTokenizer.from_pretrained(model_name)
 
 class EmotionAnalysis :
     def __init__(self) :
-        self.model = load_model('BERTmodel/model/')
+        self.model = model
         self.model.load_weights('BERTmodel/model.h5/tf_model.h5')
     
     # 바트모델에 적합하게 문장 전처리
