@@ -1,12 +1,8 @@
 from fastapi import APIRouter
 from app.ai.emotion_model import EmotionModel
-from pydantic import BaseModel
+from app.schemas.emotion import PredictData
 
 router = APIRouter()
-
-
-class PredictData(BaseModel):
-    data: str
 
 
 @router.post("/predict")
