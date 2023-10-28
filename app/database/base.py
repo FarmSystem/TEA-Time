@@ -1,15 +1,8 @@
-from typing import Any
-from sqlalchemy.ext.declarative import as_declarative, declared_attr
-
-
-@as_declarative()
-class Base:
-    id: Any
-    __name__: str
-
-    """
-    Generate __tablename__ automatically
-    """
-    @declared_attr
-    def __tablename__(self) -> str:
-        return self.__name__.lower()
+from app.database.base_class import Base
+from app.models.diary import Diary
+from app.models.reaction import Reaction
+from app.models.user import User
+from app.models.authentication import Authentication
+from app.models.rank import Rank
+from app.models.status import Status
+from app.models.diary_result import DiaryResult
