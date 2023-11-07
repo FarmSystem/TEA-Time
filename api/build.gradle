@@ -37,7 +37,7 @@ dependencies {
 }
 
 task copyGitSubmodule(type: Copy) {
-	from './properties'
+	from '../properties'
 	include '*.yml'
 	into './src/main/resources'
 
