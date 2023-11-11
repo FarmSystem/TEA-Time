@@ -1,19 +1,13 @@
-springdoc:
-    swagger-ui:
-        path: /api-docs
+spring.profiles.default: local
 
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/teatime?ServerTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: create
-    database: postgresql
-    properties:
-        hibernate:
-            dialect: org.hibernate.dialect.PostgreSQLDialect
-            format_sql: true
-            show_sql: true
+---
+
+spring.config.activate.on-profile: local
+
+---
+
+spring.config.activate.on-profile: dev
+
+---
+
+spring.config.activate.on-profile: prod

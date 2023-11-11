@@ -1,6 +1,6 @@
 package com.farm.api.domain;
 
-import com.farm.api.type.MetaEmotions;
+import com.farm.api.domain.MetaType.MetaEmotions;
 import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;

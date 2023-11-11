@@ -1,4 +1,4 @@
-package com.farm.api.type;
+package com.farm.api.domain.MetaType;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

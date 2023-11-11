@@ -1,0 +1,3 @@
+[submodule "properties"]
+	path = properties
+	url = https://github.com/kurtyoon/properties.git
