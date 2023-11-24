@@ -36,9 +36,6 @@ public class SecurityConfig {
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(config -> config
                         .requestMatchers(Constant.AUTH_WHITELIST).permitAll()
-                        // Security 설정 오류로 인해 API 테스트 시 임시로 모든 요청에 대한 접근을 허용
-                        .requestMatchers("*").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling((exceptionHandling) ->

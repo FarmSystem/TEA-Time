@@ -4,6 +4,7 @@ public class Constant {
     public static final String[] AUTH_WHITELIST = {
             "/api-docs",
             "/swagger-ui/index.html",
+            "/swagger-ui/**",
             "/v3/api-docs/**",
             "/api/v1/auth/kakao",
             "/api/v1/auth/kakao/callback",

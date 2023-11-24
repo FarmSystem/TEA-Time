@@ -7,6 +7,7 @@ import com.farm.api.oauth.AuthService;
 import com.farm.api.security.jwt.JwtProvider;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -74,8 +75,8 @@ public class AuthController {
 
     @GetMapping("/logout")
     @Operation(summary = "Logout", description = "해당 사용자의 로그아웃을 진행합니다.")
-    public ResponseDto<Boolean> logout(String socialId) {
-        return new ResponseDto<>(authService.logout(socialId));
+    public ResponseDto<Boolean> logout(HttpServletRequest request) {
+        return new ResponseDto<>(authService.logout(request));
     }
 
     @PostMapping("/refresh")
