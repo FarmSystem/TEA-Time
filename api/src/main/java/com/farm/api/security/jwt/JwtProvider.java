@@ -45,6 +45,7 @@ public class JwtProvider implements InitializingBean {
      */
     public String createToken(String socialId, UserType userType, boolean isAccess) {
         Claims claims = Jwts.claims();
+        log.info("socialId: {}", socialId);
 
         claims.put("id", socialId);
         if (isAccess) {
@@ -96,7 +97,7 @@ public class JwtProvider implements InitializingBean {
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
-                .getId();
+                .get("id", String.class);
     }
 
     public Claims validateToken(String token) throws JwtException {

@@ -96,7 +96,8 @@ public class AuthService {
                 .build();
     }
 
-    public Boolean logout(String socialId) {
+    public Boolean logout(HttpServletRequest request) {
+        String socialId = jwtProvider.getSocialId(JwtProvider.resolveToken(request));
         User user = userRepository.findBySocialIdAndIsLogin(socialId, true)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
         user.logoutUser();
