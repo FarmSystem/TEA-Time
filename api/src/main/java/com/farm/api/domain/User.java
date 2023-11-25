@@ -66,9 +66,6 @@ public class User {
     // ============================= One to One Relationship =============================
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-    private Authentication authentication;
-
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private Status status;
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)

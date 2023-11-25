@@ -1,6 +1,7 @@
 package com.farm.api.domain;
 
 import com.farm.api.domain.MetaType.MetaEmotions;
+import com.farm.api.domain.MetaType.MetaSentences;
 import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
@@ -28,7 +29,7 @@ public class DiaryResult {
     @Type(JsonBinaryType.class)
     @Column(name = "sentences", columnDefinition = "jsonb")
     @Nullable
-    private String sentences;
+    private MetaSentences sentences;
 
     @Column(name = "summation")
     @Lob
