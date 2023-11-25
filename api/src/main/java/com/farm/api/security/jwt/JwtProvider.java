@@ -45,8 +45,6 @@ public class JwtProvider implements InitializingBean {
      */
     public String createToken(String socialId, UserType userType, boolean isAccess) {
         Claims claims = Jwts.claims();
-        log.info("socialId: {}", socialId);
-
         claims.put("id", socialId);
         if (isAccess) {
             claims.put("userType", userType);
