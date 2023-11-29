@@ -32,4 +32,8 @@ public class MetaDiary {
         this.emoji = emoji;
         this.isPrivate = isPrivate;
     }
+
+    public void updateIsPrivate(boolean isPrivate) {
+        this.isPrivate = isPrivate;
+    }
 }

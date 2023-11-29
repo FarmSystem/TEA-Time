@@ -9,7 +9,7 @@ import lombok.*;
 import org.hibernate.annotations.Type;
 
 @Entity
-@Getter @Setter
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
