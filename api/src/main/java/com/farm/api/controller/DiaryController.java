@@ -21,13 +21,9 @@ public class DiaryController {
     private final DiaryService diaryService;
 
     @PostMapping
-    public ResponseDto<Long> createDiary(@RequestParam("title") String title,
-                                       @RequestParam("content") String content,
-                                       @RequestParam("emotion") String emotion,
-                                        @RequestParam("is_private") String isPrivate,
-                                        @RequestParam("image") MultipartFile image,
-                                        @SocialId String socialId) throws IOException {
-        DiaryCreateRequestDto requestDto = new DiaryCreateRequestDto(title, content, emotion, isPrivate);
+    public ResponseDto<Long> createDiary(@SocialId String socialId,
+                                         @RequestPart MultipartFile image,
+                                         DiaryCreateRequestDto requestDto) throws IOException {
         return new ResponseDto<>(diaryService.createDiary(socialId, requestDto, image));
     }
 
