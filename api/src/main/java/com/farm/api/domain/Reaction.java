@@ -1,10 +1,11 @@
 package com.farm.api.domain;
 
+import com.farm.api.domain.EnumType.ReactionType;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Getter @Setter
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,7 +18,8 @@ public class Reaction {
     private Long id;
 
     @Column(name = "reaction_type")
-    private String reactionType;
+    @Enumerated(EnumType.STRING)
+    private ReactionType reactionType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "diary_id")
@@ -26,4 +28,11 @@ public class Reaction {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @Builder
+    public Reaction(ReactionType reactionType, Diary diary, User user) {
+        this.reactionType = reactionType;
+        this.diary = diary;
+        this.user = user;
+    }
 }

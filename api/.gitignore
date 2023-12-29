@@ -38,3 +38,6 @@ out/
 
 ### application.yml ###
 application-local.yml
+
+### images ###
+images/

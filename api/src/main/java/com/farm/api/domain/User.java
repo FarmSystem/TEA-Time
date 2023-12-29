@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "`users`")
@@ -64,9 +64,6 @@ public class User {
     private Timestamp updatedAt;
 
     // ============================= One to One Relationship =============================
-
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-    private Authentication authentication;
 
     @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private Status status;

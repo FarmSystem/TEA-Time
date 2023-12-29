@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "`diary`")
@@ -61,11 +61,8 @@ public class Diary {
         updatedAt = Timestamp.valueOf(LocalDateTime.now());
     }
 
-    public void updateDiaryToPublic(MetaDiary diary) {
-        this.diary.setPrivate(false);
-    }
-
-    public void updateDiaryToPrivate(MetaDiary diary) {
-        this.diary.setPrivate(true);
+    public void updateDiaryPrivacy(MetaDiary diary) {
+        this.diary.updateIsPrivate(!diary.isPrivate());
+        updatedAt = Timestamp.valueOf(LocalDateTime.now());
     }
 }

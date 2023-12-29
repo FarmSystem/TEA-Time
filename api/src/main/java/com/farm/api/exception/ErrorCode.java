@@ -33,6 +33,8 @@ public enum ErrorCode {
      * 404: Not Found
      */
     NOT_FOUND_USER("4040", HttpStatus.NOT_FOUND, "Not Found User"),
+    NOT_FOUND_DIARY("4041", HttpStatus.NOT_FOUND, "Not Found Diary"),
+    NOT_FOUND_REACTION_TYPE("4042", HttpStatus.NOT_FOUND, "Not Found Reaction Type"),
 
     /**
      * 500: Internal Server Error
