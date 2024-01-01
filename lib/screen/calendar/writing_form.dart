@@ -39,10 +39,15 @@ class WritingFormPage extends StatelessWidget {
             Container(
               width: 350,
               height: 405,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey), // 테두리 색상 지정
+                borderRadius: BorderRadius.circular(8), // 테두리 모서리 둥글게
+              ),
               child: TextField(
                 maxLines: null, // 여러 줄 입력 가능
                 decoration: InputDecoration(
                   hintText: '내용을 자유롭게 입력하세요',
+                  border: InputBorder.none, // 기존 테두리를 무시하도록 함
                 ),
               ),
             ),
