@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tea_time/screen/base/default_back_appbar.dart';
 
 import '../base/default_appbar.dart';
+import 'writing_form.dart'; // 글쓰기 폼 페이지를 import
 
 class CalendarScreen extends StatelessWidget {
   const CalendarScreen({Key? key}) : super(key: key);
@@ -47,7 +48,11 @@ class CalendarScreen extends StatelessWidget {
             height: 56,
             child: ElevatedButton(
               onPressed: () {
-                // 버튼 클릭 시 다이어리 작성 페이지로 이동
+                // 글쓰기 폼 페이지로 이동
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WritingFormPage()),
+                );
               },
               child: Text('다이어리 작성하기'),
             ),
