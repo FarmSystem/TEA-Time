@@ -49,21 +49,29 @@ class EmotionAnalysis :
         dic_count = {"기쁨" : 0, "당황" : 0, "분노" : 0, "불안" : 0, "슬픔" : 0}
         dic_ratio = {"기쁨" : 0, "당황" : 0, "분노" : 0, "불안" : 0, "슬픔" : 0}
         sum_sent = 0
+        score = 0
         
         for text in sentence :
             dic_emotion[text[1]] += float(text[2])
             dic_count[text[1]] += 1
             sum_sent += 1
             
-        for e in dic_emotion :
-            dic_emotion[e] = round(dic_emotion[e], 2)
-            
         if sum_sent != 0 :
             for e in dic_emotion :
                 if dic_count[e] != 0 :
-                    dic_ratio[e] = round(dic_count[e] / sum_sent, 2)
+                    dic_ratio[e] = round((dic_count[e] / sum_sent) * 100, 3)
+                    
+        for e in dic_emotion :
+            if dic_count[e] != 0 :
+                dic_emotion[e] = dic_emotion[e] / dic_count[e]
+            if e == "기쁨" :
+                score += dic_emotion[e] * (dic_ratio[e] / 100)
+            else :
+                score -= dic_emotion[e] * (dic_ratio[e] / 100)
+        score = (score + 100) / 2
+        score = round(score, 3)
         
-        return dic_emotion, dic_ratio
+        return score, dic_ratio
             
     # 주어진 전체 문장을 kkma 객체를 이용하여 문장별로 분류
     def analyze_emotion(self, input_sentence) :
