@@ -17,7 +17,8 @@ void main() async {
   await initializeDateFormatting();
 
   // runApp
-  runApp(const AppPage(initialRoute: "/sign-in"));
+  // runApp(const AppPage(initialRoute: "/sign-in"));
+  runApp(const AppPage(initialRoute: "/calendar_screen"));
 }
 
 class AppPage extends StatelessWidget {
