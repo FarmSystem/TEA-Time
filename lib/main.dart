@@ -30,6 +30,7 @@ class AppPage extends StatelessWidget {
     FlutterNativeSplash.remove();
 
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "TeaTime",
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
