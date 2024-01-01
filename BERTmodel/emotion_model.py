@@ -44,9 +44,31 @@ class EmotionAnalysis :
         for text in sentence :
             print(f'"{text[0]}"은 {text[2]}%의 확률로 {text[1]}을 나타내는 문장입니다.')
             
+    def result_emotion(self, sentence) :
+        dic_emotion = {"기쁨" : 0, "당황" : 0, "분노" : 0, "불안" : 0, "슬픔" : 0}
+        dic_count = {"기쁨" : 0, "당황" : 0, "분노" : 0, "불안" : 0, "슬픔" : 0}
+        dic_ratio = {"기쁨" : 0, "당황" : 0, "분노" : 0, "불안" : 0, "슬픔" : 0}
+        sum_sent = 0
+        
+        for text in sentence :
+            dic_emotion[text[1]] += float(text[2])
+            dic_count[text[1]] += 1
+            sum_sent += 1
+            
+        for e in dic_emotion :
+            dic_emotion[e] = round(dic_emotion[e], 2)
+            
+        if sum_sent != 0 :
+            for e in dic_emotion :
+                if dic_count[e] != 0 :
+                    dic_ratio[e] = round(dic_count[e] / sum_sent, 2)
+        
+        return dic_emotion, dic_ratio
+            
     # 주어진 전체 문장을 kkma 객체를 이용하여 문장별로 분류
     def analyze_emotion(self, input_sentence) :
         sentence = kkma.sentences(input_sentence)
         sentence = self.prob_emotion(sentence)
+        emotion_score, emotion_ratio = self.result_emotion(sentence)
         
-        self.print_emotion(sentence)
+        return emotion_score, emotion_ratio
