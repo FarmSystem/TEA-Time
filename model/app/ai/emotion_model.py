@@ -3,6 +3,7 @@ import numpy as np
 from konlpy.tag import Kkma
 from transformers import DistilBertTokenizer, TFDistilBertForSequenceClassification
 
+
 kkma = Kkma()
 model_name = "distilbert-base-multilingual-cased"
 model = TFDistilBertForSequenceClassification.from_pretrained(
@@ -35,7 +36,7 @@ class EmotionModel:
         input_ids = self.bert_tokenizer(input_sentence)
 
         summarize_emotion = []
-        emotion_lst = ["기쁨", "당황", "분노", "불안", "슬픔"]
+        emotion_lst = ["happy", "embarrassment", "anger", "anxiety", "sadness"]
         prediction = self.model.predict(input_ids, verbose=1)
         for sent, emotion in zip(input_sentence, prediction["logits"]):
             logits = np.array(emotion)
@@ -53,11 +54,42 @@ class EmotionModel:
             return_list.append(f'"{text[0]}"은 {text[2]}%의 확률로 {text[1]}을 나타내는 문장입니다.')
         return return_list
 
+
+    def result_emotion(self, sentence):
+        dic_emotion = {"happy": 0, "embarrassment": 0, "anger": 0, "anxiety": 0, "sadness": 0}
+        dic_count = {"happy": 0, "embarrassment": 0, "anger": 0, "anxiety": 0, "sadness": 0}
+        dic_ratio = {"happy": 0, "embarrassment": 0, "anger": 0, "anxiety": 0, "sadness": 0}
+        sum_sent = 0
+        score = 0
+
+        for text in sentence:
+            dic_emotion[text[1]] += float(text[2])
+            dic_count[text[1]] += 1
+            sum_sent += 1
+
+        if sum_sent != 0:
+            for e in dic_count:
+                if dic_count[e] != 0:
+                    dic_ratio[e] = round((dic_count[e] / sum_sent) * 100, 3)
+
+        for e in dic_emotion:
+            if dic_count[e] != 0:
+                dic_emotion[e] = dic_emotion[e] / dic_count[e]
+            if e == "happy":
+                score += dic_emotion[e] * (dic_ratio[e] / 100)
+            else:
+                score -= dic_emotion[e] * (dic_ratio[e] / 100)
+        score = (score + 100) / 2
+        score = round(score, 3)
+
+        return score, dic_ratio
+
     """
     주어진 전체 문장을 kkma 객체를 이용하여 문장별로 분류
     """
     def analyze_emotion(self, input_sentence):
         sentence = kkma.sentences(input_sentence)
         sentence = self.prob_emotion(sentence)
+        emotion_score, emotion_ratio = self.result_emotion(sentence)
 
-        return self.print_emotion(sentence)
+        return emotion_score, emotion_ratio

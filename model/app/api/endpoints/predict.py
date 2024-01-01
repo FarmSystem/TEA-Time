@@ -8,5 +8,5 @@ router = APIRouter()
 @router.post("/predict")
 async def predict(predict_data: PredictData):
     emotion = EmotionModel()
-    result = emotion.analyze_emotion(predict_data.data)
-    return {"message": result}
+    score, emotions = emotion.analyze_emotion(predict_data.content)
+    return {"score": score, "emotion": emotions}
