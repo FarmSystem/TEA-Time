@@ -4,8 +4,8 @@ import 'package:tea_time/screen/base/default_back_appbar.dart';
 import '../base/default_appbar.dart';
 import 'writing_form.dart'; // 글쓰기 폼 페이지를 import
 
-class CalendarScreen extends StatelessWidget {
-  const CalendarScreen({Key? key}) : super(key: key);
+class MainScreen extends StatelessWidget {
+  const MainScreen({Key? key}) : super(key: key);
 
   final String username = "티타임";
 

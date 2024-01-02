@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tea_time/screen/calendar/calendar_screen.dart';
+import 'package:tea_time/screen/main/main_screen.dart';
 import 'package:tea_time/screen/chart/chart_screen.dart';
 import 'package:tea_time/screen/diary/diary_screen.dart';
 import 'package:tea_time/screen/setting/setting_screen.dart';
@@ -21,7 +21,7 @@ class RootScreen extends StatelessWidget {
           () => IndexedStack(
             index: viewModel.selectedIndex,
             children: const [
-              CalendarScreen(),
+              MainScreen(),
               DiaryScreen(),
               ChartScreen(),
               SettingScreen(),

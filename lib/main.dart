@@ -18,7 +18,7 @@ void main() async {
 
   // runApp
   // runApp(const AppPage(initialRoute: "/sign-in"));
-  runApp(const AppPage(initialRoute: "/calendar_screen"));
+  runApp(const AppPage(initialRoute: "/main_screen"));
 }
 
 class AppPage extends StatelessWidget {

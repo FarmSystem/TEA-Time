@@ -22,9 +22,12 @@ class WritingFormPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('제목'),
+                Text(
+                  '제목',
+                  style: TextStyle(fontSize: 20),
+                ),
                 Container(
-                  width: 200, // 수정 가능한 사이즈
+                  width: 300, // 수정 가능한 사이즈
                   child: TextField(
                     decoration: InputDecoration(
                       hintText: '제목을 입력하세요',
