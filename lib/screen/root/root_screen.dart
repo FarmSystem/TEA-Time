@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tea_time/screen/main/main_screen.dart';
 import 'package:tea_time/screen/chart/chart_screen.dart';
-import 'package:tea_time/screen/diary/diary_screen.dart';
+import 'package:tea_time/screen/diary/community_screen.dart';
 import 'package:tea_time/screen/setting/setting_screen.dart';
 
 import '../../viewmodel/root_viewmodel.dart';
@@ -22,7 +22,7 @@ class RootScreen extends StatelessWidget {
             index: viewModel.selectedIndex,
             children: const [
               MainScreen(),
-              DiaryScreen(),
+              CommunityScreen(),
               ChartScreen(),
               SettingScreen(),
             ],

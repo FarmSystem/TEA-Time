@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../base/default_appbar.dart';
 
-class DiaryScreen extends StatelessWidget {
-  const DiaryScreen({super.key});
+class CommunityScreen extends StatelessWidget {
+  const CommunityScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +11,11 @@ class DiaryScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: DefaultAppBar(
-          title: 'Diary List',
+          title: 'Community List',
         ),
       ),
       body: Center(
-        child: Text("Diary"),
+        child: Text("Community"),
       ),
     );
   }
