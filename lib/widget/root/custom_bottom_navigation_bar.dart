@@ -45,7 +45,7 @@ class CustomBottomNavigationBar extends GetView<RootViewModel> {
                           Color(0xFF38B3FF), BlendMode.srcATop)
                       : ColorFilter.mode(Colors.grey[400]!, BlendMode.srcATop),
                 ),
-                label: "달력"),
+                label: "홈"),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
                   'assets/icons/calendar.svg',
