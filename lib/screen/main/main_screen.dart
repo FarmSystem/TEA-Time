@@ -3,6 +3,7 @@ import 'package:tea_time/screen/base/default_back_appbar.dart';
 
 import '../base/default_appbar.dart';
 import 'writing_form.dart'; // 글쓰기 폼 페이지를 import
+import 'help_page.dart'; // 도움말 페이지 import
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -62,6 +63,10 @@ class MainScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // floating 버튼 클릭 시 help 페이지로 이동
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HelpPage()),
+          );
         },
         child: Icon(Icons.help),
       ),
