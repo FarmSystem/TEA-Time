@@ -68,7 +68,12 @@ class MainScreen extends StatelessWidget {
             MaterialPageRoute(builder: (context) => HelpPage()),
           );
         },
-        child: Icon(Icons.help),
+        child: Icon(
+          Icons.help,
+          color: Colors.black,
+        ),
+        shape: CircleBorder(),
+        // help 버튼 동그랗게 만들기
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
