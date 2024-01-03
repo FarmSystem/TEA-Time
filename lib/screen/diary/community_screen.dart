@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../base/default_appbar.dart';
+import 'add_friend_screen.dart'; // 추가된 부분
 
 class CommunityScreen extends StatefulWidget {
   const CommunityScreen({Key? key}) : super(key: key);
@@ -10,7 +11,6 @@ class CommunityScreen extends StatefulWidget {
 }
 
 class _CommunityScreenState extends State<CommunityScreen> {
-  // 서버에서 받아올 데이터 예시 (나중에 class 파일 따로 만들어서 던질 예정)
   List<Post> posts = [
     Post('사용자1', '2022-01-01', '다이어리 제목 1', '게시물 내용 1'),
     Post('사용자2', '2022-01-02', '다이어리 제목 2', '게시물 내용 2'),
@@ -31,6 +31,18 @@ class _CommunityScreenState extends State<CommunityScreen> {
           return buildPostItem(posts[index]);
         },
       ),
+      // 우측 하단에 버튼 추가
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // 버튼을 누를 때 addFriend_screen.dart로 이동
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddFriendPage()),
+          );
+        },
+        child: Icon(Icons.add),
+        shape: CircleBorder(),
+      ),
     );
   }
 
@@ -45,8 +57,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
             children: [
               CircleAvatar(
                 radius: 30,
-                backgroundImage:
-                    AssetImage('assets/profile_picture.jpg'), // 프로필 이미지
+                backgroundImage: AssetImage('assets/profile_picture.jpg'),
               ),
               SizedBox(width: 16),
               Column(

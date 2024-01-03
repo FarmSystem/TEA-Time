@@ -58,8 +58,8 @@ class _ChartScreenContent extends StatelessWidget {
 
                     return LineChart(
                       LineChartData(
-                        gridData: FlGridData(show: false),
-                        titlesData: FlTitlesData(show: false),
+                        gridData: FlGridData(show: true),
+                        titlesData: FlTitlesData(show: true),
                         borderData: FlBorderData(
                           show: true,
                           border: Border.all(
