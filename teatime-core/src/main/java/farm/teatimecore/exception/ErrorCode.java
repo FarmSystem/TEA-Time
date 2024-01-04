@@ -14,6 +14,7 @@ public enum ErrorCode {
     BAD_REQUEST_ERROR(400, HttpStatus.BAD_REQUEST, "잘못된 요청입니다."),
     INVALID_PARAMETER_ERROR(400, HttpStatus.BAD_REQUEST, "요휴하지 않은 파라미터입니다."),
     MISSING_REQUEST_PARAMETER_ERROR(400, HttpStatus.BAD_REQUEST, "필수 요청 파라미터가 누락되었습니다."),
+    INVALID_HEADER_ERROR(400, HttpStatus.BAD_REQUEST, "유효하지 않은 헤더입니다."),
 
     /**
      * 401 Unauthorized
