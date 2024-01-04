@@ -1,5 +1,17 @@
-jar { enabled = false }
+ext {
+    springCloudVersion = "2023.0.0"
+}
 
 dependencies {
     implementation project(":teatime-core")
+    implementation project(":teatime-domain")
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }

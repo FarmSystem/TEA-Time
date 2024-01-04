@@ -10,10 +10,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Getter
@@ -67,6 +64,12 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Diary> diaries = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Following> followers;
+
+    @OneToMany(mappedBy = "following", cascade = CascadeType.ALL)
+    private Set<Following> followings;
 
     @Builder
     public User(String email, String password, String nickname, EProvider provider, ERole role) {

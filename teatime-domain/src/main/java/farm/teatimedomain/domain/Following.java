@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
-@Table(name = "reactions")
-public class Reaction {
+@Table(name = "followings")
+public class Following {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -20,12 +20,12 @@ public class Reaction {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="diary_id", nullable = false)
-    private Diary diary;
+    @JoinColumn(name="following_id", nullable = false)
+    private User following;
 
     @Builder
-    private Reaction(User user, Diary diary) {
+    private Following(User user, User following) {
         this.user = user;
-        this.diary = diary;
+        this.following = following;
     }
 }
