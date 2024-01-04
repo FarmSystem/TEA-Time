@@ -809,3 +809,6 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/python,java,intellij,pycharm,vs,macos,windows
 
 *.gradle/
+*/buildDir/
+*/application-local.yml
+*/application-dev.yml

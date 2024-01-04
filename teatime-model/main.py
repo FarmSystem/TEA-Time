@@ -6,10 +6,10 @@ from app.core.config import settings
 
 
 """
-OpenAPI docs: http://localhost:8080/api/docs
+OpenAPI docs: http://localhost:8080/model/docs
 """
 app = FastAPI(
-    title=settings.PROJECT_NAME, docs_url="/api/docs", openapi_url="/api"
+    title=settings.PROJECT_NAME, docs_url="/model/docs", openapi_url="/model"
 )
 
 
@@ -27,9 +27,9 @@ if settings.BACKEND_CORS_ORIGINS:
 
 
 """
-API 라우터 경로를 /api/v1으로 지정
+API 라우터 경로를 /model으로 지정
 """
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", reload=True, port=8000)
+    uvicorn.run("main:app", host="0.0.0.0", reload=True, port=8082)

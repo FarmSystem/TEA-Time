@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    API_V1_STR: str = "/api/v1"
+    API_V1_STR: str = "/model"
     SERVER_NAME: str = "localhost"
     SERVER_HOST: str = "localhost"
     """
