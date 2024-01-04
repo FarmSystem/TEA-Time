@@ -1,0 +1,5 @@
+rootProject.name = 'teatime'
+include(":teatime-core")
+include(":teatime-api")
+include(":teatime-gateway")
+include(":teatime-domain")

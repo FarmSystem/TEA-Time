@@ -1,0 +1,5 @@
+jar { enabled = false }
+
+dependencies {
+    implementation project(":teatime-core")
+}
