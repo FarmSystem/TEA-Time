@@ -807,3 +807,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/python,java,intellij,pycharm,vs,macos,windows
+
+*.gradle/
