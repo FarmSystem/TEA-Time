@@ -15,21 +15,31 @@ public enum ErrorCode {
     INVALID_PARAMETER_ERROR(400, HttpStatus.BAD_REQUEST, "요휴하지 않은 파라미터입니다."),
     MISSING_REQUEST_PARAMETER_ERROR(400, HttpStatus.BAD_REQUEST, "필수 요청 파라미터가 누락되었습니다."),
     INVALID_HEADER_ERROR(400, HttpStatus.BAD_REQUEST, "유효하지 않은 헤더입니다."),
+    MISSING_REQUEST_HEADER_ERROR(400, HttpStatus.BAD_REQUEST, "필수 요청 헤더가 누락되었습니다."),
 
     /**
      * 401 Unauthorized
      */
     UNAUTHORIZED_ERROR(401, HttpStatus.UNAUTHORIZED, "인증되지 않은 사용자입니다."),
+    FAILURE_LOGIN(401, HttpStatus.UNAUTHORIZED, "로그인에 실패했습니다."),
+    TOKEN_MALFORMED_ERROR(401, HttpStatus.UNAUTHORIZED, "토큰이 올바르지 않습니다."),
+    TOKEN_TYPE_ERROR(401, HttpStatus.UNAUTHORIZED, "토큰 타입이 일치하지 않거나 비어있습니다."),
+    EXPIRED_TOKEN_ERROR(401, HttpStatus.UNAUTHORIZED, "만료된 토큰입니다."),
+    TOKEN_UNSUPPORTED_ERROR(401, HttpStatus.UNAUTHORIZED, "지원하지않는 토큰입니다."),
+    TOKEN_UNKNOWN_ERROR(401, HttpStatus.UNAUTHORIZED, "알 수 없는 토큰입니다."),
 
     /**
      * 403 Forbidden
      */
     FORBIDDEN_ERROR(403, HttpStatus.FORBIDDEN, "접근 권한이 없습니다."),
+    ACCESS_DENIED(403, HttpStatus.FORBIDDEN, "접근 권한이 없습니다."),
 
     /**
      * 404 Not Found
      */
     NOT_FOUND_ERROR(404, HttpStatus.NOT_FOUND, "요청하신 리소스를 찾을 수 없습니다."),
+    NOT_FOUND_END_POINT(404, HttpStatus.NOT_FOUND, "존재하지 않는 API 엔드포인트입니다."),
+    NOT_FOUND_LOGIN_USER(404, HttpStatus.NOT_FOUND, "로그인한 사용자가 존재하지 않습니다."),
 
     /**
      * 405 Method Not Allowed
