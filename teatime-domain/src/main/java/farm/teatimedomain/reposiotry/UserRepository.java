@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -20,6 +21,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying(clearAutomatically = true)
     @Query("update User u set u.refreshToken = :refreshToken, u.isLogin = :isLogin where u.id = :id")
     void updateRefreshTokenAndLoginStatus(Long id, String refreshToken, Boolean isLogin);
+
+    Optional<User> findByIdAndRefreshTokenAndIsLogin(Long id, String refreshToken, Boolean isLogin);
+
     interface UserSecurityForm {
         Long getId();
         ERole getRole();

@@ -19,10 +19,9 @@ import java.util.*;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false, unique = true)
-    private UUID id;
+    private Long id;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -122,5 +121,16 @@ public class User {
         if (isPublic != this.isPublic) {
             this.isPublic = isPublic;
         }
+    }
+
+    public static User signUp(String email, String nickname, String encodedPassword) {
+        User user = User.builder()
+                .email(email)
+                .password(encodedPassword)
+                .nickname(nickname)
+                .provider(EProvider.DEFAULT)
+                .role(ERole.USER)
+                .build();
+        return user;
     }
 }
