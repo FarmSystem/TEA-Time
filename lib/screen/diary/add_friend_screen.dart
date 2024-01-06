@@ -60,13 +60,16 @@ class AddFriendPage extends StatelessWidget {
               ),
             ),
             // 추가된 부분: 검색 결과를 표시하는 카드
-            Card(
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.grey,
+            Container(
+              margin: EdgeInsets.only(top: 8.0), // 카드 상단 마진 부여
+              child: Card(
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.grey,
+                  ),
+                  title: Text('검색된 회원 이름'),
+                  subtitle: Text('검색된 회원 상세 정보'),
                 ),
-                title: Text('검색된 회원 이름'),
-                subtitle: Text('검색된 회원 상세 정보'),
               ),
             ),
           ],
