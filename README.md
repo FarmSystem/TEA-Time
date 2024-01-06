@@ -1,17 +1,5 @@
 # tea_time
 
-A new Flutter project.
+## 작성한 일기를 기반으로 감정분석을 수행하여
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# TEA-TIME_FE
+## 사용자에게 감정 점수를 제공하는 서비스
