@@ -1,6 +1,8 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 
+import 'notification_page.dart';
+
 class AddFriendPage extends StatelessWidget {
   const AddFriendPage({super.key});
 
@@ -14,7 +16,19 @@ class AddFriendPage extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: const Text('회원 찾기'),
+        title: const Text('친구 추가'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              // 알림 페이지로 이동하는 로직을 여기에 구현
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NotificationPage()),
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
