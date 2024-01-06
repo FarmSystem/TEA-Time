@@ -9,27 +9,66 @@ class AddFriendPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: Text('친구 추가'),
+        title: const Text('회원 찾기'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // 1번 child
+            Text(
+              '사용자의 이름을 통해서 친구추가 기능을 부여할 예정',
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(height: 16),
+            // 추천 회원 리스트를 가로로 스크롤 가능하게 표시
             Container(
-              child: Text(
-                '사용자의 이름을 통해서 친구추가 기능을 부여할 예정',
-                style: TextStyle(fontSize: 20),
+              height: 120, // 카드의 높이 설정
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 5, // 추천 회원의 수, 예시로 5로 설정
+                itemBuilder: (BuildContext context, int index) {
+                  return Card(
+                    child: Container(
+                      width: 100, // 카드의 너비 설정
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          CircleAvatar(
+                            radius: 30, // 아바타 크기 설정
+                            backgroundColor: Colors.grey,
+                          ),
+                          Text('회원 $index'),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
-            ), // 간격 조절
-            SizedBox(height: 16)
-            // 간격 조절
+            ),
+            SizedBox(height: 16),
+            // 검색을 통해 찾은 회원 정보 표시
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'TEA : TIME 회원의 닉네임을 검색해보세요!',
+              ),
+            ),
+            // 추가된 부분: 검색 결과를 표시하는 카드
+            Card(
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.grey,
+                ),
+                title: Text('검색된 회원 이름'),
+                subtitle: Text('검색된 회원 상세 정보'),
+              ),
+            ),
           ],
         ),
       ),
