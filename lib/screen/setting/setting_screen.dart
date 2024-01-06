@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:tea_time/screen/setting/Calendar/Calendar_screen.dart';
 import '../base/default_appbar.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -29,11 +29,18 @@ class SettingScreen extends StatelessWidget {
   Widget buildSettingItem(BuildContext context, String title, String route) {
     return InkWell(
       onTap: () {
-        // 각 항목을 누를 때 해당 페이지로 이동
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SettingDetailScreen(route)),
-        );
+        // '달력' 항목을 누를 때 CalendarScreen 페이지로 이동하도록 처리
+        if (title == '달력') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CalendarScreen()),
+          );
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SettingDetailScreen(route)),
+          );
+        }
       },
       child: Padding(
         padding: const EdgeInsets.all(16.0),
