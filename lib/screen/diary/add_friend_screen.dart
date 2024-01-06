@@ -36,8 +36,8 @@ class AddFriendPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              '사용자의 이름을 통해서 친구추가 기능을 부여할 예정',
-              style: TextStyle(fontSize: 20),
+              'TEA : TIME 에서 추천하는 5명의 회원입니다.',
+              style: TextStyle(fontSize: 18),
             ),
             SizedBox(height: 16),
             // 추천 회원 리스트를 가로로 스크롤 가능하게 표시
