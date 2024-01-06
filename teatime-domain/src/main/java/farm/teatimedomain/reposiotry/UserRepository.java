@@ -24,6 +24,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByIdAndRefreshTokenAndIsLogin(Long id, String refreshToken, Boolean isLogin);
 
+    Optional<User> findById(Long id);
+
     interface UserSecurityForm {
         Long getId();
         ERole getRole();

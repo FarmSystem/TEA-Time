@@ -11,6 +11,7 @@ import farm.teatimeapi.security.handler.signout.CustomSignOutProcessHandler;
 import farm.teatimeapi.security.handler.signout.CustomSignOutResultHandler;
 import farm.teatimeapi.security.service.CustomUserDetailService;
 import farm.teatimeapi.utils.JwtUtil;
+import farm.teatimecore.contrant.Constants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,7 +44,9 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(registry ->
                         registry
-                                .anyRequest().permitAll())
+                                .requestMatchers(Constants.NO_NEED_AUTH_URLS.toArray(String[]::new)).permitAll()
+                                .requestMatchers(Constants.USER_URLS.toArray(String[]::new)).hasAnyRole("USER")
+                                .anyRequest().authenticated())
                 .formLogin(configurer -> configurer
                         .loginPage("/login")
                         .loginProcessingUrl("/api/auth/sign-in")

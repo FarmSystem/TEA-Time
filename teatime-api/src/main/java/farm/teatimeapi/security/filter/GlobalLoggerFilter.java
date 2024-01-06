@@ -25,7 +25,7 @@ public class GlobalLoggerFilter extends OncePerRequestFilter {
         Long preHandleTime = (Long) request.getAttribute("INTERCEPTOR_PRE_HANDLE_TIME");
         Long postHandleTime = System.currentTimeMillis();
 
-        log.info("[Global] HTTP Request Has Been Processed! It Tokes {}ms. ({} {} {})",
+        log.info("[Global] HTTP Request Has Been Processed! It Takes {}ms. ({} {} {})",
                 postHandleTime - preHandleTime,
                 request.getHeader("X-FORWARDED-FOR") != null ? request.getHeader("X-FORWARDED-FOR") : request.getRemoteAddr(),
                 request.getMethod(),

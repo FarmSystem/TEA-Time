@@ -2,7 +2,6 @@ package farm.teatimeapi.security.handler.jwt;
 
 import farm.teatimeapi.security.info.AbstractAuthenticationFailure;
 import farm.teatimecore.exception.ErrorCode;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.access.AccessDeniedException;

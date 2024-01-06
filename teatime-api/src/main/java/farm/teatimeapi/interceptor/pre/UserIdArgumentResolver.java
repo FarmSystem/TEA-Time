@@ -1,6 +1,7 @@
 package farm.teatimeapi.interceptor.pre;
 
 import farm.teatimecore.annotation.UserId;
+import farm.teatimecore.contrant.Constants;
 import farm.teatimecore.exception.CustomException;
 import farm.teatimecore.exception.ErrorCode;
 import org.springframework.core.MethodParameter;
@@ -14,13 +15,13 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 public class UserIdArgumentResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameter().getType().equals(Long.class)
+        return parameter.getParameterType().equals(Long.class)
                 && parameter.hasParameterAnnotation(UserId.class);
     }
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        final Object userIdObj = webRequest.getAttribute("USER_ID", NativeWebRequest.SCOPE_REQUEST);
+        final Object userIdObj = webRequest.getAttribute(Constants.USER_ID_INTERCEPTOR, NativeWebRequest.SCOPE_REQUEST);
 
         if (userIdObj == null) {
             throw new CustomException(ErrorCode.INVALID_HEADER_ERROR);
