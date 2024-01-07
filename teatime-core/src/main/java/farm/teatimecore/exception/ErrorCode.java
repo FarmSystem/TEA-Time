@@ -16,6 +16,8 @@ public enum ErrorCode {
     MISSING_REQUEST_PARAMETER_ERROR(400, HttpStatus.BAD_REQUEST, "필수 요청 파라미터가 누락되었습니다."),
     INVALID_HEADER_ERROR(400, HttpStatus.BAD_REQUEST, "유효하지 않은 헤더입니다."),
     MISSING_REQUEST_HEADER_ERROR(400, HttpStatus.BAD_REQUEST, "필수 요청 헤더가 누락되었습니다."),
+    DUPLICATED_NICKNAME_ERROR(400, HttpStatus.BAD_REQUEST, "중복된 닉네임입니다."),
+    DUPLICATED_EMAIL_ERROR(400, HttpStatus.BAD_REQUEST, "중복된 이메일입니다."),
 
     /**
      * 401 Unauthorized

@@ -23,7 +23,10 @@ import java.io.Serializable;
 public class TestController {
     private final UserRepository userRepository;
     @GetMapping("")
-    public ResponseDto<UserDto> getUser(@UserId Long userId) {
+    public ResponseDto<UserDto> getUser(
+//            @UserId Long userId
+    ) {
+        Long userId = 2L;
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_LOGIN_USER));
         return ResponseDto.ok(UserDto.of(user.getNickname(), user.getId()));

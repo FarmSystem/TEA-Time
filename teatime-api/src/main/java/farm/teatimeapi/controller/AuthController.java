@@ -16,10 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -49,5 +46,15 @@ public class AuthController {
         }
 
         return ResponseDto.ok(jwtTokenDto);
+    }
+
+    @GetMapping("/email")
+    public ResponseDto<?> emailDuplication(@RequestParam String email) {
+        return ResponseDto.ok(authService.emailDuplication(email));
+    }
+
+    @GetMapping("/nickname")
+    public ResponseDto<?> nicknameDuplication(@RequestParam String nickname) {
+        return ResponseDto.ok(authService.nicknameDuplication(nickname));
     }
 }

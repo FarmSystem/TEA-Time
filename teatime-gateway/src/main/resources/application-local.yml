@@ -13,11 +13,12 @@ spring:
     name: gateway-service
   cloud:
     gateway:
-      - id: teatime-api
-        uri: lb://TEATIME-API
-        predicates:
-          - Path=/api/**
-      - id: teatime-model
-        uri: http://localhost:8082
-        predicates:
-          - Path=/model/**
+      routes:
+        - id: teatime-api
+          uri: lb://TEATIME-API
+          predicates:
+            - Path=/api/**
+        - id: teatime-model
+          uri: http://localhost:8082
+          predicates:
+            - Path=/model/**

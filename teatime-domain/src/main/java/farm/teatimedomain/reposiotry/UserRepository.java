@@ -26,6 +26,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findById(Long id);
 
+    Long countByEmail(String email);
+
+    Long countByNickname(String nickname);
+
     interface UserSecurityForm {
         Long getId();
         ERole getRole();

@@ -11,6 +11,8 @@ public class Constants {
     public static List<String> NO_NEED_AUTH_URLS = List.of(
             "/api/auth/sign-in",
             "/api/auth/sign-up",
+            "/api/auth/nickname",
+            "api/auth/email",
             "/api-docs.html",
             "/swagger-ui/index.html",
             "/swagger-ui/swagger-ui.css",
