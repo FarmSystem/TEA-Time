@@ -36,4 +36,18 @@ public class AuthService {
         return jwtTokenDto;
     }
 
+    public String emailDuplication(String email) {
+        if (userRepository.countByEmail(email) != 0) {
+            throw new CustomException(ErrorCode.DUPLICATED_EMAIL_ERROR);
+        }
+        return null;
+    }
+
+    public String nicknameDuplication(String nickname) {
+        if (userRepository.countByNickname(nickname) != 0) {
+            throw new CustomException(ErrorCode.DUPLICATED_NICKNAME_ERROR);
+        }
+        return null;
+    }
+
 }

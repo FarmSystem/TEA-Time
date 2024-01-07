@@ -8,7 +8,6 @@ import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,10 +32,10 @@ public class JwtUtil implements InitializingBean {
         this.key = Keys.hmacShaKeyFor(bytes);
     }
 
-    public JwtTokenDto generateTokens(Long id, ERole role) {
+    public JwtTokenDto generateTokens(Long userId, ERole role) {
         return new JwtTokenDto(
-                generateToken(id, role, accessTokenExpire * 1000),
-                generateToken(id, null, refreshTokenExpire * 1000)
+                generateToken(userId, role, accessTokenExpire * 1000),
+                generateToken(userId, null, refreshTokenExpire * 1000)
         );
     }
 
@@ -48,9 +47,9 @@ public class JwtUtil implements InitializingBean {
                 .getBody();
     }
 
-    private String generateToken(Long id, ERole role, Integer expire) {
+    private String generateToken(Long userId, ERole role, Integer expire) {
         Claims claims = Jwts.claims();
-        claims.put(Constants.USER_ID_CLAIM_NAME, id);
+        claims.put(Constants.USER_ID_CLAIM_NAME, userId);
         if (role != null)
             claims.put(Constants.USER_ROLE_CLAIM_NAME, role);
         return Jwts.builder()
