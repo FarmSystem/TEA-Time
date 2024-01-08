@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 public record ResponseDto<T>(
         @JsonIgnore HttpStatus httpStatus,
@@ -34,6 +35,10 @@ public record ResponseDto<T>(
 
     public static ResponseDto<Object> fail(final MissingServletRequestParameterException e) {
         return new ResponseDto<>(HttpStatus.BAD_REQUEST, false, null, ExceptionDto.of(ErrorCode.MISSING_REQUEST_PARAMETER_ERROR));
+    }
+
+    public static ResponseDto<Object> fail(final MethodArgumentTypeMismatchException e) {
+        return new ResponseDto<>(HttpStatus.INTERNAL_SERVER_ERROR, false, null, ExceptionDto.of(ErrorCode.INVALID_PARAMETER_ERROR));
     }
 
     public static ResponseDto<Object> fail(final CustomException e) {
