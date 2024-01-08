@@ -39,21 +39,21 @@ public class DairyController {
     @Operation(summary = "특정 일기 자세히 보기", description = "특정 일기를 자세히 보여줍니다.")
     @GetMapping("/{diaryId}")
     public ResponseDto<DiaryDetailDto> getDiaryDetail(
-//            @UserId Long userId,
             @PathVariable @Schema(description = "다이어리 ID") Long diaryId
     ) {
-        Long userId = 1L;
-        return ResponseDto.ok(diaryService.getDiaryDetail(userId, diaryId));
+        return ResponseDto.ok(diaryService.getDiaryDetail(diaryId));
     }
 
     @Operation(summary = "다이어리 수정하기", description = "다이어리를 수정합니다.")
-    @PatchMapping("/{diaryId}")
+    @PatchMapping(value = "/{diaryId}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseDto<DiaryDetailDto> updateDiary(
 //            @UserId Long userId,
-            @PathVariable @Schema(description = "다이어리 ID") Long diaryId
+            @PathVariable @Schema(description = "다이어리 ID") Long diaryId,
+            @Nullable @RequestPart("image") @Schema(description = "다이어리 관련 이미지") MultipartFile image,
+            @RequestParam("data") CreateDiaryDto createDiaryDto
     ) {
         Long userId = 1L;
-        return ResponseDto.ok(diaryService.updateDiary(userId, diaryId));
+        return ResponseDto.ok(diaryService.updateDiary(userId, diaryId, createDiaryDto, image));
     }
 
     @Operation(summary = "다이어리 삭제하기", description = "다이어리를 삭제합니다.")
