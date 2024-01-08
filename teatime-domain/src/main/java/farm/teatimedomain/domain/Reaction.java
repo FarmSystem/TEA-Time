@@ -28,4 +28,11 @@ public class Reaction {
         this.user = user;
         this.diary = diary;
     }
+
+    public static Reaction fromDto(User user, Diary diary) {
+        return Reaction.builder()
+                .user(user)
+                .diary(diary)
+                .build();
+    }
 }

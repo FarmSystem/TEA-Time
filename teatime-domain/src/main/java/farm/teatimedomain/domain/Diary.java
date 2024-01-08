@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -33,6 +34,12 @@ public class Diary {
     @OneToOne(mappedBy = "diary")
     private Analysis analysis;
 
+    @OneToMany(mappedBy = "diary")
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "diary")
+    private List<Reaction> reactions;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -44,6 +51,15 @@ public class Diary {
         this.image = image;
         this.user = user;
         this.createdAt = LocalDate.now();
+    }
+
+    public static Diary fromDto(String title, String content, String image, User user) {
+        return Diary.builder()
+                .title(title)
+                .content(content)
+                .image(image)
+                .user(user)
+                .build();
     }
 
     public void update(String title, String content, String image) {

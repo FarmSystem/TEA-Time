@@ -18,6 +18,7 @@ public enum ErrorCode {
     MISSING_REQUEST_HEADER_ERROR(400, HttpStatus.BAD_REQUEST, "필수 요청 헤더가 누락되었습니다."),
     DUPLICATED_NICKNAME_ERROR(400, HttpStatus.BAD_REQUEST, "중복된 닉네임입니다."),
     DUPLICATED_EMAIL_ERROR(400, HttpStatus.BAD_REQUEST, "중복된 이메일입니다."),
+    USER_NOT_MATCH(400, HttpStatus.BAD_REQUEST, "사용자가 작성자와 일치하지 않습니다."),
 
     /**
      * 401 Unauthorized
@@ -42,6 +43,8 @@ public enum ErrorCode {
     NOT_FOUND_ERROR(404, HttpStatus.NOT_FOUND, "요청하신 리소스를 찾을 수 없습니다."),
     NOT_FOUND_END_POINT(404, HttpStatus.NOT_FOUND, "존재하지 않는 API 엔드포인트입니다."),
     NOT_FOUND_LOGIN_USER(404, HttpStatus.NOT_FOUND, "로그인한 사용자가 존재하지 않습니다."),
+    NOT_FOUND_USER(404, HttpStatus.NOT_FOUND, "사용자가 존재하지 않습니다."),
+    NOT_FOUND_DIARY(404, HttpStatus.NOT_FOUND, "다이어리가 존재하지 않습니다."),
 
     /**
      * 405 Method Not Allowed
@@ -51,7 +54,9 @@ public enum ErrorCode {
     /**
      * 500 Internal Server Error
      */
-    INTERNAL_SERVER_ERROR(500, HttpStatus.INTERNAL_SERVER_ERROR, "서버에 오류가 발생하였습니다.");
+    INTERNAL_SERVER_ERROR(500, HttpStatus.INTERNAL_SERVER_ERROR, "서버에 오류가 발생하였습니다."),
+    FILE_DELETE_ERROR(500, HttpStatus.INTERNAL_SERVER_ERROR, "파일 삭제에 실패하였습니다."),
+    FILE_UPLOAD_ERROR(500, HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패하였습니다.");
 
     private final Integer code;
     private final HttpStatus status;

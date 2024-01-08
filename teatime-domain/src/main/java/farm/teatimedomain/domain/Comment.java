@@ -38,4 +38,12 @@ public class Comment {
         this.diary = diary;
         this.createdAt = LocalDate.now();
     }
+
+    public static Comment fromDto(String content, User user, Diary diary) {
+        return Comment.builder()
+                .content(content)
+                .user(user)
+                .diary(diary)
+                .build();
+    }
 }

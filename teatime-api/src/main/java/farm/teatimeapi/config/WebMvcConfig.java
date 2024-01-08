@@ -1,4 +1,4 @@
-package farm.teatimeapi.security.config;
+package farm.teatimeapi.config;
 
 import farm.teatimeapi.interceptor.pre.UserIdArgumentResolver;
 import farm.teatimeapi.interceptor.pre.UserIdInterceptor;
