@@ -1,4 +1,7 @@
 spring:
+  web:
+    resources:
+      add-mappings: false
   application:
     name: teatime-api
   datasource:

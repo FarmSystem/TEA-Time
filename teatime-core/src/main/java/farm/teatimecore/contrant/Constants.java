@@ -12,7 +12,7 @@ public class Constants {
             "/api/auth/sign-in",
             "/api/auth/sign-up",
             "/api/auth/nickname",
-            "api/auth/email",
+            "/api/auth/email",
             "/api-docs.html",
             "/swagger-ui/index.html",
             "/swagger-ui/swagger-ui.css",
