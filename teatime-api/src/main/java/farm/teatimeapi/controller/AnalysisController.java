@@ -1,5 +1,7 @@
 package farm.teatimeapi.controller;
 
+import farm.teatimeapi.dto.analysis.response.DiaryAnalysisDto;
+import farm.teatimeapi.service.AnalysisService;
 import farm.teatimecore.annotation.UserId;
 import farm.teatimecore.dto.ResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Tag(name = "Analysis", description = "다이어리 분석 관련 API")
 public class AnalysisController {
+    private final AnalysisService analysisService;
 
     @Operation(summary = "월별 다이어리 분석 불러오기", description = "월별 다이어리 분석을 불러옵니다.")
     @GetMapping("/monthly")
@@ -35,10 +38,10 @@ public class AnalysisController {
     }
 
     @Operation(summary = "회원 다이어리 분석 내용 조회", description = "회원의 다이어리 분석 내용을 조회합니다.")
-    @GetMapping("/{memberId}")
-    public ResponseDto<?> getMemberAnalysis(
-            @PathVariable Long memberId
+    @GetMapping("/{diaryId}")
+    public ResponseDto<DiaryAnalysisDto> getMemberAnalysis(
+            @PathVariable Long diaryId
     ) {
-        return ResponseDto.ok(null);
+        return ResponseDto.ok(analysisService.getDiaryAnalysis(diaryId));
     }
 }

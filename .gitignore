@@ -810,5 +810,5 @@ $RECYCLE.BIN/
 
 *.gradle/
 */buildDir/
-*/application-local.yml
-*/application-dev.yml
+**/resources/application-local.yml
+**/resources/application-dev.yml

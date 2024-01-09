@@ -26,6 +26,7 @@ public class DiaryService {
     public DiaryDetailDto createDiary(Long userId, CreateDiaryDto createDiaryDto, MultipartFile image) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        user.writeDiary();
         return DiaryDetailDto.fromEntity(diaryRepository.save(Diary
                 .fromDto(createDiaryDto.title(), createDiaryDto.content(), imageUtil.uploadImage(image), user)));
     }

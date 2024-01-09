@@ -48,9 +48,21 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
 
+
 jwt:
   secret-key: 7DulQvT+WYY5q0FFjH6sBnc9hVEeQeeIOc4Zy7i9hw2UCMHeoTCM7RH2Y26mfesalooCXdFA36IRd4W/6qDh6Q==
   access-token-expire-period: 7200
   refresh-token-expire-period: 1209600
 server:
   port: 8081
+cloud:
+  aws:
+    s3:
+      bucket: teatime-api
+    credentials:
+      access-key: qwer
+      secret-key: qwer
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
