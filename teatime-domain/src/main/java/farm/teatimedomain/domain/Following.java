@@ -28,4 +28,11 @@ public class Following {
         this.user = user;
         this.following = following;
     }
+
+    public static Following of(User user, User following) {
+        return Following.builder()
+                .user(user)
+                .following(following)
+                .build();
+    }
 }

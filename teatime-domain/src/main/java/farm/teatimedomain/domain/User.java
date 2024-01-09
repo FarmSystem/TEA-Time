@@ -46,6 +46,9 @@ public class User {
     @Column(name = "profile_image")
     private String profileImage = "default";
 
+    @Column(name = "introduction")
+    private String introduction = "자기소개를 입력해주세요!";
+
     @Column(name = "is_login", columnDefinition = "TINYINT(1)")
     private Boolean isLogin;
 
@@ -65,10 +68,10 @@ public class User {
     private List<Diary> diaries = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Following> followers;
+    private Set<Following> followers = new HashSet<>();
 
     @OneToMany(mappedBy = "following", cascade = CascadeType.ALL)
-    private Set<Following> followings;
+    private Set<Following> followings = new HashSet<>();
 
     @Builder
     public User(String email, String password, String nickname, EProvider provider, ERole role) {
@@ -109,7 +112,7 @@ public class User {
         this.refreshToken = refreshToken;
     }
 
-    public void updateUserInfo(String nickname, String profileImage, Boolean isPublic) {
+    public void updateUserInfo(String nickname, String profileImage, Boolean isPublic, String introduction) {
         if (nickname != null && (!Objects.equals(this.nickname, nickname))) {
             this.nickname = nickname;
         }
@@ -120,6 +123,10 @@ public class User {
 
         if (isPublic != this.isPublic) {
             this.isPublic = isPublic;
+        }
+
+        if (introduction != null && (!Objects.equals(this.introduction, introduction))) {
+            this.introduction = introduction;
         }
     }
 
