@@ -4,7 +4,10 @@ import 'package:get/get.dart';
 
 class DefaultBackAppBar extends StatelessWidget {
   final String title;
-  const DefaultBackAppBar({Key? key, required this.title}) : super(key: key);
+  const DefaultBackAppBar({
+    super.key,
+    required this.title,
+});
 
   @override
   Widget build(BuildContext context) {

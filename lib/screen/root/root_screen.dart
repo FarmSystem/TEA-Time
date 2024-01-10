@@ -5,7 +5,7 @@ import 'package:tea_time/screen/chart/chart_screen.dart';
 import 'package:tea_time/screen/diary/community_screen.dart';
 import 'package:tea_time/screen/setting/setting_screen.dart';
 
-import '../../viewmodel/root_viewmodel.dart';
+import '../../viewModel/Root/root_view_model.dart';
 import '../../widget/root/custom_bottom_navigation_bar.dart';
 
 class RootScreen extends StatelessWidget {
