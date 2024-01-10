@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tea_time/screen/base/default_back_appbar.dart';
+import 'package:tea_time/widget/Base/default_back_appbar.dart';
 
-import '../base/default_appbar.dart';
+import '../../widget/Base/default_appbar.dart';
 import 'writing_form.dart'; // 글쓰기 폼 페이지를 import
 import 'help_page.dart'; // 도움말 페이지 import
 

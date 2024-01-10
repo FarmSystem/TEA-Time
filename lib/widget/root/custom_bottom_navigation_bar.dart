@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../viewmodel/root_viewmodel.dart';
+import '../../viewModel/Root/root_view_model.dart';
 
 class CustomBottomNavigationBar extends GetView<RootViewModel> {
   const CustomBottomNavigationBar({super.key});

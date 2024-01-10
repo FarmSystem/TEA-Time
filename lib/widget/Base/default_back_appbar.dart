@@ -4,14 +4,20 @@ import 'package:get/get.dart';
 
 class DefaultBackAppBar extends StatelessWidget {
   final String title;
-  const DefaultBackAppBar({Key? key, required this.title}) : super(key: key);
+  const DefaultBackAppBar({
+    super.key,
+    required this.title,
+});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(
         title,
-        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            fontFamily: "Pretendard"),
       ),
       centerTitle: true,
       surfaceTintColor: Colors.white,
@@ -30,9 +36,9 @@ class DefaultBackAppBar extends StatelessWidget {
         label: const Text(
           "뒤로",
           style: TextStyle(
-            color: Colors.grey,
-            fontFamily: "SUIT",
-            fontSize: 14,
+            color: Color(0xFF434A54),
+            fontFamily: "Pretendard",
+            fontSize: 18,
             fontWeight: FontWeight.w600,
             height: 1.4,
           ),

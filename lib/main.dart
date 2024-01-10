@@ -4,8 +4,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:tea_time/screen/SignUp/signup_screen.dart';
 import 'package:tea_time/screen/root/root_screen.dart';
-import 'package:tea_time/screen/signin/sign_in_screen.dart';
+import 'package:tea_time/screen/Entry/entry_screen.dart';
 
 void main() async {
   // dotenv
@@ -17,8 +18,7 @@ void main() async {
   await initializeDateFormatting();
 
   // runApp
-  // runApp(const AppPage(initialRoute: "/sign-in"));
-  runApp(const AppPage(initialRoute: "/main_screen"));
+  runApp(const AppPage(initialRoute: "/entry"));
 }
 
 class AppPage extends StatelessWidget {
@@ -49,14 +49,9 @@ class AppPage extends StatelessWidget {
       ),
       initialRoute: initialRoute,
       getPages: [
-        GetPage(
-          name: '/sign-in',
-          page: () => const SignInScreen(),
-        ),
-        GetPage(
-          name: '/',
-          page: () => const RootScreen(),
-        ),
+        GetPage(name: '/', page: () => const RootScreen()),
+        GetPage(name: '/entry', page: () => SignInScreen()),
+        GetPage(name: '/sign-up', page: () => SignUpScreen()),
       ],
     );
   }
