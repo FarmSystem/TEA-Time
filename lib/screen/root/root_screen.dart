@@ -14,21 +14,23 @@ class RootScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final RootViewModel viewModel = Get.put(RootViewModel());
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: Obx(
-          () => IndexedStack(
-            index: viewModel.selectedIndex,
-            children: const [
-              MainScreen(),
-              CommunityScreen(),
-              ChartScreen(),
-              SettingScreen(),
-            ],
+    return Container(
+      color: const Color(0xFFFFFFFF),
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: Obx(
+                () => IndexedStack(
+                  index: viewModel.selectedIndex,
+                  children: const [
+                  MainScreen(),
+                  CommunityScreen(),
+                  ChartScreen(),
+                  SettingScreen(),
+                ],),
           ),
+          bottomNavigationBar: const CustomBottomNavigationBar(),
         ),
-        bottomNavigationBar: const CustomBottomNavigationBar(),
       ),
     );
   }
