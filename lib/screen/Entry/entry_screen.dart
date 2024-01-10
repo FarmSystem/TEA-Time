@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tea_time/provider/Auth/auth_provider.dart';
 import 'package:tea_time/screen/Entry/Widget/text_field_container.dart';
-import 'package:tea_time/viewModel/login_view_model.dart';
+import 'package:tea_time/viewModel/Entry/login_view_model.dart';
 
 class SignInScreen extends StatefulWidget {
   final AuthProvider authProvider = AuthProvider();
