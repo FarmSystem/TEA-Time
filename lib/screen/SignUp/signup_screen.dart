@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:tea_time/screen/base/default_back_appbar.dart';
+import 'package:tea_time/widget/Base/default_back_appbar.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});

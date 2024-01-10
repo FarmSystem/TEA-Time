@@ -50,7 +50,7 @@ class AppPage extends StatelessWidget {
       initialRoute: initialRoute,
       getPages: [
         GetPage(name: '/', page: () => const RootScreen()),
-        GetPage(name: '/entry', page: () => const SignInScreen()),
+        GetPage(name: '/entry', page: () => SignInScreen()),
         GetPage(name: '/sign-up', page: () => SignUpScreen()),
       ],
     );

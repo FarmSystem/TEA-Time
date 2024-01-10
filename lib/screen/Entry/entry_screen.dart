@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:tea_time/provider/Auth/auth_provider.dart';
 import 'package:tea_time/screen/Entry/Widget/text_field_container.dart';
 import 'package:tea_time/viewModel/login_view_model.dart';
 
 class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+  final AuthProvider authProvider = AuthProvider();
+
+  SignInScreen({super.key});
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -14,6 +17,8 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   late final SignInViewModel _viewModel;
+
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -27,6 +32,40 @@ class _SignInScreenState extends State<SignInScreen> {
     super.dispose();
 
     _viewModel.dispose();
+  }
+
+  bool canSend() {
+    return _viewModel.emailTextController.text.isNotEmpty &&
+        _viewModel.passwordTextController.text.isNotEmpty;
+  }
+
+  void onTapNext() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    final isSuccess = await widget.authProvider.signIn(
+      _viewModel.emailTextController.text,
+      _viewModel.passwordTextController.text,
+    );
+
+    setState(() {
+      isLoading = false;
+    });
+
+    if (isSuccess) {
+      Get.offAndToNamed("/");
+    } else {
+      Get.snackbar(
+        "로그인 실패",
+        "이메일 또는 비밀번호를 확인해주세요.",
+        margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        duration: const Duration(milliseconds: 1500),
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
+        colorText: Colors.black,
+      );
+    }
   }
 
   @override
@@ -61,10 +100,10 @@ class _SignInScreenState extends State<SignInScreen> {
                       const SizedBox(
                         height: 20,
                       ),
-                      SvgPicture.asset('assets/icons/login_logo.svg',
+                      Image.asset('assets/images/login_logo.png',
                           width: MediaQuery.of(context).size.width * 0.8),
                       const Text(
-                        "감정을 기록하고 공유해봐요.",
+                        "감정을 기록하고 공유해요.",
                         style: TextStyle(
                           color: Color.fromRGBO(38, 38, 38, 70),
                           fontSize: 20,
@@ -187,7 +226,9 @@ class _SignInScreenState extends State<SignInScreen> {
                           const Spacer(),
                           InkWell(
                             onTap: () => {
-                              Get.offAndToNamed("/"),
+                              if (canSend()) {
+                                onTapNext(),
+                              }
                             },
                             child: Container(
                               margin: EdgeInsets.only(
@@ -214,7 +255,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),

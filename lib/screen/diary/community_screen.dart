@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../base/default_appbar.dart';
+import '../../widget/Base/default_appbar.dart';
 import 'add_friend_screen.dart'; // 추가된 부분
 
 class CommunityScreen extends StatefulWidget {

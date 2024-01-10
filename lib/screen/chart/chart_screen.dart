@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:tea_time/bloc/chart/chart_bloc.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-import '../base/default_appbar.dart';
+import '../../widget/Base/default_appbar.dart';
 
 class ChartScreen extends StatelessWidget {
   const ChartScreen({Key? key});
