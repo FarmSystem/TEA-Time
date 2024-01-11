@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tea_time/screen/setting/Calendar/Calendar_screen.dart';
+import 'package:tea_time/view/setting/Calendar_screen.dart';
 import '../../widget/Base/default_appbar.dart';
 
 class SettingScreen extends StatelessWidget {

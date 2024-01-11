@@ -1,6 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:tea_time/util/function/logOnDev.dart';
+import 'package:tea_time/util/function/log_on_dev.dart';
 
 abstract class BaseConnect extends GetConnect {
   @override

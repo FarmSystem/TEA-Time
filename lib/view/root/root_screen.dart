@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tea_time/screen/main/main_screen.dart';
-import 'package:tea_time/screen/chart/chart_screen.dart';
-import 'package:tea_time/screen/diary/community_screen.dart';
-import 'package:tea_time/screen/setting/setting_screen.dart';
+import 'package:tea_time/view/chart/chart_screen.dart';
+import 'package:tea_time/view/diary/community_screen.dart';
+import 'package:tea_time/view/main/main_screen.dart';
+import 'package:tea_time/view/setting/setting_screen.dart';
 
 import '../../viewModel/Root/root_view_model.dart';
 import '../../widget/root/custom_bottom_navigation_bar.dart';
