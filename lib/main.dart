@@ -4,9 +4,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:tea_time/screen/SignUp/signup_screen.dart';
-import 'package:tea_time/screen/root/root_screen.dart';
-import 'package:tea_time/screen/Entry/entry_screen.dart';
+import 'package:tea_time/view/join/signup_screen.dart';
+import 'package:tea_time/view/entry/entry_screen.dart';
+import 'package:tea_time/view/root/root_screen.dart';
 
 void main() async {
   // dotenv

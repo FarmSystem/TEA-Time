@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/route_manager.dart';
-import 'package:tea_time/util/function/logOnDev.dart';
+import 'package:tea_time/util/function/log_on_dev.dart';
 import 'package:tea_time/util/enum/secure_token_key.dart';
 
 class HttpUtil {
