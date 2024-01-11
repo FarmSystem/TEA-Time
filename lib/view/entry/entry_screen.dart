@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:tea_time/provider/Auth/auth_provider.dart';
+import 'package:tea_time/util/class/app_routes.dart';
 import 'package:tea_time/view/entry/widget/text_field_container.dart';
 import 'package:tea_time/viewModel/Entry/login_view_model.dart';
 
@@ -196,7 +197,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         children: [
                           InkWell(
                             onTap: () => {
-                              Get.toNamed("/sign-up"),
+                              Get.toNamed(Routes.JOIN),
                             },
                             child: Container(
                               margin: EdgeInsets.only(

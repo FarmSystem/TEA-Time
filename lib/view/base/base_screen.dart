@@ -35,6 +35,8 @@ abstract class BaseScreen<T extends GetxController> extends GetView<T> {
   /// Default는 appBar, body, bottomNavigationBar
   Widget _buildScaffold(BuildContext context) {
     return Scaffold(
+      backgroundColor: safeAreaColor,
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       appBar: buildAppBar(context),
       body: wrapWithInnerSafeArea
         ? SafeArea(
@@ -48,6 +50,11 @@ abstract class BaseScreen<T extends GetxController> extends GetView<T> {
   @protected
   void initViewModel() {
     viewModel.initialized;
+  }
+
+  @protected
+  void disposeViewModel() {
+    viewModel.dispose();
   }
 
   /// 뷰 모델
