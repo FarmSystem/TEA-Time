@@ -6,4 +6,6 @@ abstract class Routes {
   static const SETTING = '/setting';
   static const COMMUNITY = '/community';
   static const SIGNUP = '/sign-up';
+  static const HELP = '/help';
+  static const POSTING = '/posting';
 }
