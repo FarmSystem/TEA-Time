@@ -1,4 +1,14 @@
 
+String? validateNickname(String? value) {
+  if (value == null || value.isEmpty) {
+    return '닉네임을 입력해주세요.';
+  } else if (value.contains(' ')) {
+    return '닉네임에 공백을 포함할 수 없습니다.';
+  } else {
+    return null;
+  }
+}
+
 String? validateEmail(String? email) {
   String pattern =
       r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"

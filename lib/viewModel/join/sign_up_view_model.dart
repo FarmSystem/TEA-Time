@@ -8,6 +8,7 @@ class SignUpViewModel extends GetxController {
   late final TextEditingController _passwordCheckTextController;
   late bool _passwordVisible;
   late bool _passwordCheckVisible;
+  late bool _isValidForm;
 
   TextEditingController get emailTextController => _emailTextController;
   TextEditingController get nicknameTextController => _nicknameTextController;
@@ -15,6 +16,7 @@ class SignUpViewModel extends GetxController {
   TextEditingController get passwordCheckTextController => _passwordCheckTextController;
   bool get passwordVisible => _passwordVisible;
   bool get passwordCheckVisible => _passwordCheckVisible;
+  bool get isValidForm => _isValidForm;
 
   @override
   void onInit() {
@@ -26,6 +28,7 @@ class SignUpViewModel extends GetxController {
     _passwordCheckTextController = TextEditingController(text: "");
     _passwordVisible = false;
     _passwordCheckVisible = false;
+    _isValidForm = false;
   }
 
   void changePasswordVisible() {
@@ -34,5 +37,12 @@ class SignUpViewModel extends GetxController {
 
   void changePasswordCheckVisible() {
     _passwordCheckVisible = !_passwordCheckVisible;
+  }
+
+  void validateForm() {
+    _isValidForm = _emailTextController.text.isNotEmpty &&
+        _nicknameTextController.text.isNotEmpty &&
+        _passwordTextController.text.isNotEmpty &&
+        _passwordCheckTextController.text.isNotEmpty;
   }
 }
