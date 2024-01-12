@@ -56,7 +56,7 @@ class _SignInScreenState extends State<SignInScreen> {
     });
 
     if (isSuccess) {
-      Get.offAndToNamed(Routes.HOME);
+      Get.offAndToNamed(Routes.ROOT);
     }
     // } else {
     //   Get.snackbar(

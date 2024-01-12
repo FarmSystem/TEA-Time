@@ -55,11 +55,11 @@ class _CommunityScreenState extends State<CommunityScreen> {
           padding: const EdgeInsets.all(16.0),
           child: Row(
             children: [
-              CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage('assets/profile_picture.jpg'),
+              const CircleAvatar(
+                radius: 25,
+                  backgroundImage: AssetImage('assets/images/default.png'),
               ),
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -76,7 +76,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(
             post.title,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         ),
 
@@ -92,13 +92,13 @@ class _CommunityScreenState extends State<CommunityScreen> {
             ),
             child: Text(
               post.content,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
           ),
         ),
 
         // 구분선 추가
-        Divider(height: 1, color: Colors.grey),
+        const Divider(height: 1, color: Colors.grey),
 
         // ...
       ],

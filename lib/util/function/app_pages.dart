@@ -4,9 +4,9 @@ import 'package:tea_time/binding/root_binding.dart';
 import 'package:tea_time/util/class/app_routes.dart';
 import 'package:tea_time/view/entry/entry_screen.dart';
 import 'package:tea_time/view/join/join_screen.dart';
-import 'package:tea_time/view/main/help_page.dart';
-import 'package:tea_time/view/main/home_screen.dart';
-import 'package:tea_time/view/main/writing_form.dart';
+import 'package:tea_time/view/home/help_page.dart';
+import 'package:tea_time/view/home/home_screen.dart';
+import 'package:tea_time/view/home/writing_form.dart';
 import 'package:tea_time/view/root/root_screen.dart';
 import 'package:tea_time/view/setting/setting_screen.dart';
 
