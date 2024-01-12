@@ -35,6 +35,7 @@ abstract class BaseScreen<T extends GetxController> extends GetView<T> {
   /// Default는 appBar, body, bottomNavigationBar
   Widget _buildScaffold(BuildContext context) {
     return Scaffold(
+      extendBody: extendBodyBehindAppBar,
       backgroundColor: safeAreaColor,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       appBar: buildAppBar(context),
@@ -43,6 +44,7 @@ abstract class BaseScreen<T extends GetxController> extends GetView<T> {
         bottom: false,
         child: buildBody(context),
       ) : buildBody(context),
+      bottomNavigationBar: buildBottomNavigationBar(context),
     );
   }
 
@@ -87,11 +89,22 @@ abstract class BaseScreen<T extends GetxController> extends GetView<T> {
 
   /// Scaffold의 Top extendBody (default: false)
   @protected
-  bool get setTopOuterSafeArea => false;
+  bool get setTopOuterSafeArea => true;
 
   /// Scaffold의 Bottom extendBody (default: true)
   @protected
   bool get setBottomOuterSafeArea => true;
+
+  /// Floating Action Button 구성
+  @protected
+  FloatingActionButton? get buildFloatingActionButton => null;
+
+  /// Floating Action Button 위치
+  @protected
+  FloatingActionButtonLocation? get floatingActionButtonLocation => null;
+
+  @protected
+  bool get extendBodyBehindAppBar => false;
 
   /// AppBar
   @protected

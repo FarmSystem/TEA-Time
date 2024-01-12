@@ -9,7 +9,7 @@ class DefaultAppBar extends StatelessWidget {
     return AppBar(
       title: Text(
         title,
-        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
       ),
       centerTitle: true,
       surfaceTintColor: Colors.white,
