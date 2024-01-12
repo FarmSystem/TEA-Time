@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:tea_time/provider/Auth/auth_provider.dart';
 import 'package:tea_time/util/class/app_routes.dart';
-import 'package:tea_time/view/entry/widget/text_field_container.dart';
+import 'package:tea_time/util/function/validate_user_info.dart';
+import 'package:tea_time/widget/entry/text_field_container.dart';
 import 'package:tea_time/viewModel/Entry/login_view_model.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -44,28 +45,30 @@ class _SignInScreenState extends State<SignInScreen> {
       isLoading = true;
     });
 
-    final isSuccess = await widget.authProvider.signIn(
-      _viewModel.emailTextController.text,
-      _viewModel.passwordTextController.text,
-    );
+    // final isSuccess = await widget.authProvider.signIn(
+    //   _viewModel.emailTextController.text,
+    //   _viewModel.passwordTextController.text,
+    // );
+    final isSuccess = true;
 
     setState(() {
       isLoading = false;
     });
 
     if (isSuccess) {
-      Get.offAndToNamed("/");
-    } else {
-      Get.snackbar(
-        "로그인 실패",
-        "이메일 또는 비밀번호를 확인해주세요.",
-        margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-        duration: const Duration(milliseconds: 1500),
-        snackPosition: SnackPosition.TOP,
-        backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
-        colorText: Colors.black,
-      );
+      Get.offAndToNamed(Routes.HOME);
     }
+    // } else {
+    //   Get.snackbar(
+    //     "로그인 실패",
+    //     "이메일 또는 비밀번호를 확인해주세요.",
+    //     margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+    //     duration: const Duration(milliseconds: 1500),
+    //     snackPosition: SnackPosition.TOP,
+    //     backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
+    //     colorText: Colors.black,
+    //   );
+    // }
   }
 
   @override
@@ -226,9 +229,10 @@ class _SignInScreenState extends State<SignInScreen> {
                           const Spacer(),
                           InkWell(
                             onTap: () => {
-                              if (canSend()) {
-                                onTapNext(),
-                              }
+                              // if (canSend()) {
+                              //   onTapNext(),
+                              // }
+                              onTapNext(),
                             },
                             child: Container(
                               margin: EdgeInsets.only(
@@ -264,36 +268,5 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
         )
     );
-  }
-
-  String? validateEmail(String? value) {
-    String pattern =
-        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-        r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-        r"{0,253}[a-zA-Z0-9])?)*$";
-
-    RegExp regex = RegExp(pattern);
-
-    if (value == null || value.isEmpty || !regex.hasMatch(value)) {
-      return 'Enter a valid email address';
-    } else {
-      return null;
-    }
-  }
-
-  String? validatePassword(String? value) {
-    String pattern =
-        r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$";
-    RegExp regex = RegExp(pattern);
-    if (value == null || value.isEmpty) {
-      return 'Required';
-    }
-    if (value.length < 8) {
-      return "Length should be 8 or more";
-    }
-    if (!regex.hasMatch(value)) {
-      return "Must contain atleast 1 uppecase, 1 lowercase, 1 special character,";
-    }
-    return null;
   }
 }

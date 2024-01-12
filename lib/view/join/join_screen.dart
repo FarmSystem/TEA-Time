@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:tea_time/util/class/app_routes.dart';
 import 'package:tea_time/util/function/validate_user_info.dart';
 import 'package:tea_time/view/base/base_screen.dart';
-import 'package:tea_time/view/join/widget/input_box_container.dart';
-import 'package:tea_time/view/join/widget/send_button.dart';
+import 'package:tea_time/widget/join/input_box_container.dart';
+import 'package:tea_time/widget/join/send_button.dart';
 import 'package:tea_time/viewModel/join/sign_up_view_model.dart';
 import 'package:tea_time/widget/Base/default_back_appbar.dart';
 
@@ -90,12 +90,6 @@ class JoinScreen extends BaseScreen<SignUpViewModel> {
 
   @override
   Color? get unSafeAreaColor => Colors.white;
-
-  @override
-  void dispose() {
-    Get.delete<SignUpViewModel>();
-    super.disposeViewModel();
-  }
 
   @override
   PreferredSize buildAppBar(BuildContext context) {
