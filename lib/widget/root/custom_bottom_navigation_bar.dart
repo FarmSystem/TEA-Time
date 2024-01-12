@@ -22,7 +22,7 @@ class CustomBottomNavigationBar extends BaseWidget<RootViewModel> {
 
             /// 아이템 색깔
             unselectedItemColor: Colors.grey[400],
-            selectedItemColor: const Color(0xFF38B3FF),
+            selectedItemColor: const Color.fromRGBO(109, 178, 148, 1),
 
             /// 탭 애니메이션 변경 (fixed: 없음)
             type: BottomNavigationBarType.fixed,
@@ -40,7 +40,7 @@ class CustomBottomNavigationBar extends BaseWidget<RootViewModel> {
                     height: 24,
                     colorFilter: viewModel.selectedIndex == 0
                         ? const ColorFilter.mode(
-                            Color(0xFF38B3FF), BlendMode.srcATop)
+                        Color.fromRGBO(109, 178, 148, 1), BlendMode.srcATop)
                         : ColorFilter.mode(Colors.grey[400]!, BlendMode.srcATop),
                   ),
                   label: "홈"),
@@ -50,7 +50,7 @@ class CustomBottomNavigationBar extends BaseWidget<RootViewModel> {
                     height: 24,
                     colorFilter: viewModel.selectedIndex == 1
                         ? const ColorFilter.mode(
-                            Color(0xFF38B3FF), BlendMode.srcATop)
+                        Color.fromRGBO(109, 178, 148, 1), BlendMode.srcATop)
                         : ColorFilter.mode(Colors.grey[400]!, BlendMode.srcATop),
                   ),
                   label: "커뮤니티"),
@@ -60,7 +60,7 @@ class CustomBottomNavigationBar extends BaseWidget<RootViewModel> {
                     height: 24,
                     colorFilter: viewModel.selectedIndex == 2
                         ? const ColorFilter.mode(
-                            Color(0xFF38B3FF), BlendMode.srcATop)
+                        Color.fromRGBO(109, 178, 148, 1), BlendMode.srcATop)
                         : ColorFilter.mode(Colors.grey[400]!, BlendMode.srcATop),
                   ),
                   label: "감정분석"),
@@ -70,7 +70,7 @@ class CustomBottomNavigationBar extends BaseWidget<RootViewModel> {
                     height: 24,
                     colorFilter: viewModel.selectedIndex == 3
                         ? const ColorFilter.mode(
-                            Color(0xFF38B3FF), BlendMode.srcATop)
+                        Color.fromRGBO(109, 178, 148, 1), BlendMode.srcATop)
                         : ColorFilter.mode(Colors.grey[400]!, BlendMode.srcATop),
                   ),
                   label: "설정"),

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:tea_time/view/base/base_screen.dart';
 import 'package:tea_time/view/chart/chart_screen.dart';
 import 'package:tea_time/view/diary/community_screen.dart';
-import 'package:tea_time/view/main/home_screen.dart';
+import 'package:tea_time/view/home/home_screen.dart';
 import 'package:tea_time/view/setting/setting_screen.dart';
 
 import 'package:tea_time/viewModel/root/root_view_model.dart';
