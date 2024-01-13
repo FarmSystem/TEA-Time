@@ -41,28 +41,6 @@ public class CommunityController {
         return ResponseDto.ok(null);
     }
 
-    @Operation(summary = "회원 팔로우 기능", description = "선택한 회원을 팔로우합니다.")
-    @PostMapping("/follow/{memberId}")
-    public ResponseDto<?> followMember(
-//            @UserId Long userId,
-            @PathVariable Long memberId
-    ) {
-        Long userId = 1L;
-        communityService.followMember(userId, memberId);
-        return ResponseDto.ok(null);
-    }
-
-    @Operation(summary = "회원 팔로우 취소 기능", description = "선택한 회원의 팔로우를 취소합니다.")
-    @DeleteMapping("/follow/{memberId}")
-    public ResponseDto<?> unfollowMember(
-//            @UserId Long userId,
-            @PathVariable Long memberId
-    ) {
-        Long userId = 1L;
-        communityService.unfollowMember(userId, memberId);
-        return ResponseDto.ok(null);
-    }
-
     @Operation(summary = "회원 프로필 페이지", description = "선택한 회원의 프로필 페이지를 불러옵니다.")
     @GetMapping("/member/{memberId}")
     public ResponseDto<?> getMemberProfile(
