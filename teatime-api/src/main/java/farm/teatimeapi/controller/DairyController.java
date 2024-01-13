@@ -66,27 +66,4 @@ public class DairyController {
         diaryService.deleteDiary(userId, diaryId);
         return ResponseDto.ok(null);
     }
-
-    @Operation(summary = "다이어리 댓글 달기", description = "다이어리에 댓글을 답니다.")
-    @PostMapping("/{diaryId}/comments")
-    public ResponseDto<?> createComment(
-//            @UserId Long userId,
-            @PathVariable @Schema(description = "다이어리 ID") Long diaryId,
-            @RequestBody @Schema(description = "댓글 내용") String content
-    ) {
-        Long userId = 1L;
-        commentService.createComment(userId, diaryId, content);
-        return ResponseDto.created(null);
-    }
-
-    @Operation(summary = "다이어리 반응 달기", description = "다이어리에 반응을 답니다.")
-    @PostMapping("/{diaryId}/reactions")
-    public ResponseDto<?> createReaction(
-//            @UserId Long userId,
-            @PathVariable @Schema(description = "다이어리 ID") Long diaryId
-    ) {
-        Long userId = 1L;
-        reactionService.postReaction(userId, diaryId);
-        return ResponseDto.created(null);
-    }
 }

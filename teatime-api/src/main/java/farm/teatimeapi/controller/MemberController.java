@@ -60,13 +60,4 @@ public class MemberController {
         memberService.updateProfile(userId, updateUserinfoDto, image);
         return ResponseDto.ok(null);
     }
-
-    @Operation(summary = "회원 레벨 보기", description = "사용자의 레벨을 불러옵니다.")
-    @GetMapping("/level")
-    public ResponseDto<MemberLevelDto> getLevel(
-//            @UserId Long userId
-    ) {
-        Long userId = 1L;
-        return ResponseDto.ok(memberService.getMemberLevel(userId));
-    }
 }

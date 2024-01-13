@@ -48,7 +48,6 @@ public class SecurityConfig {
                                 .requestMatchers(Constants.USER_URLS.toArray(String[]::new)).hasAnyRole("USER")
                                 .anyRequest().authenticated())
                 .formLogin(configurer -> configurer
-                        .loginPage("/login")
                         .loginProcessingUrl("/api/auth/sign-in")
                         .usernameParameter("email")
                         .passwordParameter("password")
