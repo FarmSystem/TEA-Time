@@ -50,14 +50,4 @@ public class CommunityController {
     ) {
         return ResponseDto.ok(communityService.getMemberProfile(memberId, page, size));
     }
-
-    @Operation(summary = "회원 알림 보기", description = "회원의 댓글 및 반응 알림을 불러옵니다.")
-    @GetMapping("/notice")
-    public ResponseDto<?> getNotice(
-//            @UserId Long userId
-    ) {
-        Long userId = 1L;
-
-        return ResponseDto.ok(null);
-    }
 }
