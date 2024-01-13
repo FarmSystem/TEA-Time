@@ -7,7 +7,6 @@ import farm.teatimecore.exception.CustomException;
 import farm.teatimecore.exception.ErrorCode;
 import farm.teatimedomain.domain.Diary;
 import farm.teatimedomain.domain.User;
-import farm.teatimedomain.reposiotry.CommentRepository;
 import farm.teatimedomain.reposiotry.DiaryRepository;
 import farm.teatimedomain.reposiotry.UserRepository;
 import lombok.RequiredArgsConstructor;

@@ -36,15 +36,7 @@ public record DiaryDetailDto (
 
         @JsonProperty("created_at")
         @Schema(name = "created_at", description = "다이어리 생성 시간")
-        String createdAt,
-
-        @JsonProperty("comments")
-        @Schema(name = "comments", description = "댓글 목록")
-        List<CommentDto> comments,
-
-        @JsonProperty("reactions")
-        @Schema(name = "reactions", description = "반응 목록")
-        List<ReactionDto> reactions
+        String createdAt
 ) {
     public static DiaryDetailDto fromEntity(Diary diary) {
         return DiaryDetailDto.builder()
@@ -55,8 +47,6 @@ public record DiaryDetailDto (
                 .content(diary.getContent())
                 .diaryImage(diary.getImage())
                 .createdAt(diary.getCreatedAt().toString())
-                .comments(diary.getComments().stream().map(CommentDto::fromEntity).toList())
-                .reactions(diary.getReactions().stream().map(ReactionDto::fromEntity).toList())
                 .build();
     }
 }
