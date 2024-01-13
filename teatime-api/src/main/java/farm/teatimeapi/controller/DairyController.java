@@ -4,8 +4,6 @@ import farm.teatimeapi.dto.diary.request.CreateDiaryDto;
 import farm.teatimeapi.dto.diary.response.DiaryDetailDto;
 import farm.teatimeapi.service.CommentService;
 import farm.teatimeapi.service.DiaryService;
-import farm.teatimeapi.service.ReactionService;
-import farm.teatimecore.annotation.UserId;
 import farm.teatimecore.dto.ResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -23,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class DairyController {
     private final DiaryService diaryService;
     private final CommentService commentService;
-    private final ReactionService reactionService;
 
     @Operation(summary = "일기 생성", description = "일기를 생성합니다.")
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
