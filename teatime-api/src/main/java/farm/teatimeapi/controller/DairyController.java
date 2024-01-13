@@ -78,15 +78,4 @@ public class DairyController {
         commentService.createComment(userId, diaryId, content);
         return ResponseDto.created(null);
     }
-
-    @Operation(summary = "다이어리 반응 달기", description = "다이어리에 반응을 답니다.")
-    @PostMapping("/{diaryId}/reactions")
-    public ResponseDto<?> createReaction(
-//            @UserId Long userId,
-            @PathVariable @Schema(description = "다이어리 ID") Long diaryId
-    ) {
-        Long userId = 1L;
-        reactionService.postReaction(userId, diaryId);
-        return ResponseDto.created(null);
-    }
 }
