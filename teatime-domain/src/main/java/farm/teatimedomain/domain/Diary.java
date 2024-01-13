@@ -37,9 +37,6 @@ public class Diary {
     @OneToMany(mappedBy = "diary")
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "diary")
-    private List<Reaction> reactions;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
