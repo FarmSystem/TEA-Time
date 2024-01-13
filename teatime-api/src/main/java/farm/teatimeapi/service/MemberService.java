@@ -20,6 +20,11 @@ public class MemberService {
     private final UserRepository userRepository;
     private final ImageUtil imageUtil;
 
+    public String getNickname(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        return user.getNickname();
+    }
+
     public void getCalendar(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
     }

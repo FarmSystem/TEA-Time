@@ -20,6 +20,15 @@ import org.springframework.web.multipart.MultipartFile;
 public class MemberController {
     private final MemberService memberService;
 
+    @Operation(summary  = "회원 닉네임 불러오기", description = "회원의 닉네임을 불러옵니다.")
+    @GetMapping("/nickname")
+    public ResponseDto<?> getNickname(
+//            @UserId Long userId
+    ) {
+        Long userId = 1L;
+        return ResponseDto.ok(memberService.getNickname(userId));
+    }
+
     @Operation(summary = "마이페이지 달력 화면 불러오기", description = "마이페이지 달력 화면을 불러옵니다.")
     @GetMapping("/calendar")
     public ResponseDto<?> getCalendar(
