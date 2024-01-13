@@ -3,10 +3,9 @@ import 'package:tea_time/binding/entry_binding.dart';
 import 'package:tea_time/binding/root_binding.dart';
 import 'package:tea_time/util/class/app_routes.dart';
 import 'package:tea_time/view/entry/entry_screen.dart';
+import 'package:tea_time/view/home/posting_screen.dart';
 import 'package:tea_time/view/join/join_screen.dart';
-import 'package:tea_time/view/home/help_page.dart';
 import 'package:tea_time/view/home/home_screen.dart';
-import 'package:tea_time/view/home/writing_form.dart';
 import 'package:tea_time/view/root/root_screen.dart';
 import 'package:tea_time/view/setting/setting_screen.dart';
 
@@ -27,18 +26,13 @@ List<GetPage> appPages = [
     binding: EntryBinding()
   ),
   GetPage(
-    name: Routes.HELP,
-    page: () => const HelpPage(),
-    binding: RootBinding()
-  ),
-  GetPage(
     name: Routes.HOME,
     page: () => const HomeScreen(),
     binding: RootBinding()
   ),
   GetPage(
     name: Routes.POSTING,
-    page: () => WritingFormPage(),
+    page: () => const PostingScreen(),
     binding: RootBinding()
   ),
   GetPage(

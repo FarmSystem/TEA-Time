@@ -6,6 +6,7 @@ import 'package:tea_time/util/class/app_routes.dart';
 import 'package:tea_time/view/base/base_screen.dart';
 import 'package:tea_time/view/base/base_widget.dart';
 import 'package:tea_time/viewModel/home/home_view_model.dart';
+import 'package:tea_time/widget/home/calendar_widget.dart';
 
 class HomeScreen extends BaseScreen<HomeViewModel> {
   const HomeScreen({super.key});
@@ -83,19 +84,19 @@ class _MiddleWidget extends BaseWidget<HomeViewModel> {
 
   @override
   Widget buildView(BuildContext context) {
-    return ListView.builder(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        itemCount: 4,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            width: 150,
-            height: 150,
-            margin: const EdgeInsets.all(8),
-            color: Colors.grey,
-          );
-        },
-      );
+    return Column(
+      children: [
+        const SizedBox(height: 16),
+        const Text("이번달의 다이어리",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Color.fromRGBO(38, 38, 38, 1),
+          )
+        ),
+        CalendarWidget(),
+      ]
+    );
   }
 }
 
@@ -118,8 +119,13 @@ class _PostingButton extends StatelessWidget {
         onPressed: () {
           Get.toNamed(Routes.POSTING);
         },
-        color: const Color.fromRGBO(109, 178, 148, 1),
+        color: const Color.fromRGBO(109, 178, 148, 170),
         textColor: const Color.fromRGBO(38, 38, 38, 1),
+        minWidth: MediaQuery.of(context).size.width * 0.8,
+        height: 50,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: const Text("다이어리 작성하기"),
       )
     );
