@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:tea_time/provider/Base/http_util.dart';
+import 'package:tea_time/util/function/log_on_dev.dart';
 
 class HomeProvider {
   static final Dio authDio = HttpUtil().authDio;
@@ -18,6 +19,7 @@ class HomeProvider {
         );
       }
     } on Exception catch (e) {
+      logOnDev("[Home Provider Error] $e");
       rethrow;
     }
   }

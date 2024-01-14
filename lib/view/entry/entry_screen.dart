@@ -45,11 +45,10 @@ class _SignInScreenState extends State<SignInScreen> {
       isLoading = true;
     });
 
-    // final isSuccess = await widget.authProvider.signIn(
-    //   _viewModel.emailTextController.text,
-    //   _viewModel.passwordTextController.text,
-    // );
-    final isSuccess = true;
+    final isSuccess = await widget.authProvider.signIn(
+      _viewModel.emailTextController.text,
+      _viewModel.passwordTextController.text,
+    );
 
     setState(() {
       isLoading = false;
@@ -57,18 +56,17 @@ class _SignInScreenState extends State<SignInScreen> {
 
     if (isSuccess) {
       Get.offAndToNamed(Routes.ROOT);
+    } else {
+      Get.snackbar(
+        "로그인 실패",
+        "이메일 또는 비밀번호를 확인해주세요.",
+        margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        duration: const Duration(milliseconds: 1500),
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
+        colorText: Colors.black,
+      );
     }
-    // } else {
-    //   Get.snackbar(
-    //     "로그인 실패",
-    //     "이메일 또는 비밀번호를 확인해주세요.",
-    //     margin: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-    //     duration: const Duration(milliseconds: 1500),
-    //     snackPosition: SnackPosition.TOP,
-    //     backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
-    //     colorText: Colors.black,
-    //   );
-    // }
   }
 
   @override
@@ -227,32 +225,37 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                           ),
                           const Spacer(),
-                          InkWell(
-                            onTap: () => {
-                              // if (canSend()) {
-                              //   onTapNext(),
-                              // }
-                              onTapNext(),
-                            },
-                            child: Container(
-                              margin: EdgeInsets.only(
-                                  right: MediaQuery.of(context).size.width * 0.1),
-                              width: MediaQuery.of(context).size.width * 0.38,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: const Color(0xFF54B492),
-                                  width: 1,
+                          Theme(
+                            data: ThemeData(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                            ),
+                            child: InkWell(
+                              onTap: () => {
+                                if (canSend()) {
+                                  onTapNext(),
+                                }
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                    right: MediaQuery.of(context).size.width * 0.1),
+                                width: MediaQuery.of(context).size.width * 0.38,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: const Color(0xFF54B492),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(29),
                                 ),
-                                borderRadius: BorderRadius.circular(29),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  "로그인",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Color(0xFF54B492),
+                                child: const Center(
+                                  child: Text(
+                                    "로그인",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Color(0xFF54B492),
+                                    ),
                                   ),
                                 ),
                               ),

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:tea_time/model/analysis/diary_analysis.dart';
 import 'package:tea_time/provider/base/http_util.dart';
 
 class AnalysisProvider {
@@ -36,7 +37,7 @@ class AnalysisProvider {
     }
   }
 
-  Future getMemberAnalysis(int diaryId) async {
+  Future<DiaryAnalysis> getMemberAnalysis(int diaryId) async {
     try {
       final response = await authDio.get("/analysis/$diaryId");
 
