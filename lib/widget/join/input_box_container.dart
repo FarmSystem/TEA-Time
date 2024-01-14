@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:tea_time/view/base/base_widget.dart';
+import 'package:tea_time/viewModel/join/sign_up_view_model.dart';
 
 typedef ValidationCallback = String? Function(String value);
 typedef ButtonPressedCallback = void Function();
 
-class InputBoxContainer extends BaseWidget {
+class InputBoxContainer extends BaseWidget<SignUpViewModel> {
   final String label;
   final ValidationCallback? validate;
   final ButtonPressedCallback? onPressed;
@@ -44,7 +46,7 @@ class InputBoxContainer extends BaseWidget {
         Center(
           child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
-              height: 30,
+              height: 40,
               child: TextFormField(
                   enabled: true,
                   decoration: InputDecoration(
@@ -52,21 +54,25 @@ class InputBoxContainer extends BaseWidget {
                     suffixIcon: hasButton ? Align(
                       alignment: Alignment.center,
                       widthFactor: 1,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(210, 232, 223, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 10),
+                        child: ElevatedButton(
+                          onPressed: () {
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromRGBO(210, 232, 223, 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+                            elevation: 0,
                           ),
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                          elevation: 0,
-                        ),
-                        child: const Text(
-                          '중복확인',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Color.fromRGBO(38, 38, 38, 1),
+                          child: const Text(
+                            '중복확인',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Color.fromRGBO(38, 38, 38, 1),
+                            ),
                           ),
                         ),
                       ),

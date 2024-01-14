@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tea_time/util/class/app_routes.dart';
 import 'package:tea_time/util/function/validate_user_info.dart';
 import 'package:tea_time/view/base/base_screen.dart';
+import 'package:tea_time/view/base/base_widget.dart';
 import 'package:tea_time/widget/join/input_box_container.dart';
 import 'package:tea_time/widget/join/send_button.dart';
 import 'package:tea_time/viewModel/join/sign_up_view_model.dart';
@@ -97,5 +98,14 @@ class JoinScreen extends BaseScreen<SignUpViewModel> {
       preferredSize: Size.fromHeight(kToolbarHeight),
       child: DefaultBackAppBar(title: '회원가입')
     );
+  }
+}
+
+class _MiddleWidget extends BaseWidget<SignUpViewModel> {
+  const _MiddleWidget();
+
+  @override
+  Widget buildView(BuildContext context) {
+    return Container();
   }
 }
