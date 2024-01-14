@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:tea_time/provider/Base/http_util.dart';
+import 'package:tea_time/provider/base/http_util.dart';
 import 'package:tea_time/util/function/log_on_dev.dart';
 
-class HomeProvider {
+class UserInfoProvider {
   static final Dio authDio = HttpUtil().authDio;
 
-  Future<String> getUserNickname() async {
+  Future<Map<String, dynamic>> getUserInfo() async {
     try {
       final response = await authDio.get(
-        "/me/nickname",
+        "/me"
       );
 
       if (response.statusCode == 200) {
@@ -19,7 +19,7 @@ class HomeProvider {
         );
       }
     } on Exception catch (e) {
-      logOnDev("[Home Provider Error] $e");
+      logOnDev("[User Info Provider Error] $e");
       rethrow;
     }
   }

@@ -27,7 +27,7 @@ class _ChartScreenContent extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: DefaultAppBar(
-          title: 'Emotion Chart',
+          title: '감정분석',
         ),
       ),
       body: Padding(

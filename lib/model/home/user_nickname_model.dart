@@ -1,5 +1,5 @@
 class UserNicknameModel {
-  String nickname;
+  final String nickname;
 
   UserNicknameModel(this.nickname);
 

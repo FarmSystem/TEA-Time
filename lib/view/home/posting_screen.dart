@@ -71,7 +71,7 @@ class PostingScreen extends BaseScreen<PostingViewModel> {
 
           MaterialButton(
             onPressed: () {},
-            color: const Color.fromRGBO(109, 178, 148, 170),
+            color: const Color.fromRGBO(210, 232, 223, 1),
             textColor: const Color.fromRGBO(38, 38, 38, 1),
             minWidth: MediaQuery.of(context).size.width * 0.8,
             height: 50,

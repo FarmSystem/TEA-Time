@@ -22,7 +22,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: DefaultAppBar(
-          title: 'Community',
+          title: '커뮤니티',
         ),
       ),
       body: ListView.builder(

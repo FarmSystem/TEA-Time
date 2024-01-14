@@ -1,17 +1,19 @@
-import 'package:tea_time/provider/setting/setting_provider.dart';
+import 'package:get/get.dart';
+import 'package:tea_time/model/setting/user_info_model.dart';
+import 'package:tea_time/provider/setting/user_info_provider.dart';
 
-class SettingRepository {
-  final SettingProvider _settingProvider;
+class SettingRepository extends GetxService {
+  late final UserInfoProvider _userInfoProvider;
+  @override
+  onInit() {
+    // Dependency Injection
+    _userInfoProvider = Get.find<UserInfoProvider>();
 
-  SettingRepository(this._settingProvider);
-
-  Future<int> getUserLevel() async {
-    final userLevel = await _settingProvider.getUserLevel();
-    return userLevel.level;
+    super.onInit();
   }
 
-  Future<int> getUserScore() async {
-    final userScore = await _settingProvider.getUserLevel();
-    return userScore.score;
+  Future<UserInfoModel> getUserInfo() async {
+    Map<String, dynamic> response = await _userInfoProvider.getUserInfo();
+    return UserInfoModel.fromJson(response);
   }
 }
