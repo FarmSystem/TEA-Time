@@ -100,7 +100,7 @@ class HttpUtil {
       return;
     }
 
-    options.headers[HttpHeaders.acceptCharsetHeader] = 'Bearer $accessToken';
+    options.headers[HttpHeaders.authorizationHeader] = 'Bearer $accessToken';
 
     logOnDev("[${options.method}] ${options.path} | START");
 

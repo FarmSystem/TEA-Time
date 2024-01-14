@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tea_time/util/class/app_routes.dart';
@@ -44,7 +43,7 @@ class _TopWidget extends BaseWidget<HomeViewModel> {
   Widget buildView(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: RichText(
+      child: Obx(() => RichText(
           text: TextSpan(
               style: const TextStyle(
                 fontSize: 18,
@@ -53,13 +52,13 @@ class _TopWidget extends BaseWidget<HomeViewModel> {
               children: [
                 const TextSpan(
                     text: '안녕하세요 ',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(38, 38, 38, 1),
-                  )
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(38, 38, 38, 1),
+                    )
                 ),
                 TextSpan(
-                  text: viewModel.username.value,
+                  text: viewModel.nickname,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Color.fromRGBO(109, 178, 148, 1),
@@ -67,14 +66,14 @@ class _TopWidget extends BaseWidget<HomeViewModel> {
                 ),
                 const TextSpan(
                     text: '님 :)',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(38, 38, 38, 1),
-                  )
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(38, 38, 38, 1),
+                    )
                 ),
               ]
           )
-      ),
+      ),),
     );
   }
 }
@@ -119,7 +118,7 @@ class _PostingButton extends StatelessWidget {
         onPressed: () {
           Get.toNamed(Routes.POSTING);
         },
-        color: const Color.fromRGBO(109, 178, 148, 170),
+        color: const Color.fromRGBO(210, 232, 223, 1),
         textColor: const Color.fromRGBO(38, 38, 38, 1),
         minWidth: MediaQuery.of(context).size.width * 0.8,
         height: 50,

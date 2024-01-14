@@ -56,13 +56,11 @@ class AuthProvider {
       String email,
       String password,
       String nickname,
-      String introduction,
       ) async {
     final requestBody = <String, dynamic> {
       "email": email,
       "password": password,
       "nickname": nickname,
-      "introduction": introduction,
     };
 
     try {
