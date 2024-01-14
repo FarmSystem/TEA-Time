@@ -1,6 +1,7 @@
 package farm.teatimeapi.controller;
 
 import farm.teatimeapi.dto.member.request.UpdateUserinfoDto;
+import farm.teatimeapi.dto.member.response.MemberCalendarDto;
 import farm.teatimeapi.dto.member.response.MemberLevelDto;
 import farm.teatimeapi.service.MemberService;
 import farm.teatimecore.annotation.UserId;
@@ -31,22 +32,11 @@ public class MemberController {
 
     @Operation(summary = "마이페이지 달력 화면 불러오기", description = "마이페이지 달력 화면을 불러옵니다.")
     @GetMapping("/calendar")
-    public ResponseDto<?> getCalendar(
+    public ResponseDto<MemberCalendarDto> getCalendar(
 //            @UserId Long userId
     ) {
         Long userId = 1L;
-        memberService.getCalendar(userId);
-        return ResponseDto.ok(null);
-    }
-
-    @Operation(summary = "특정 날짜 다이어리 불러오기", description = "특정 날짜의 다이어리를 불러옵니다.")
-    @GetMapping("/calendar/{diaryId}")
-    public ResponseDto<?> getDiary(
-//            @UserId Long userId,
-            @PathVariable Long diaryId
-    ) {
-        Long userId = 1L;
-        return ResponseDto.ok(null);
+        return ResponseDto.ok(memberService.getCalendar(userId));
     }
 
     @Operation(summary = "본인 프로필 화면 보기", description = "사용자의 프로필 화면을 불러옵니다.")

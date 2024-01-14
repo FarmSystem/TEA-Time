@@ -19,6 +19,6 @@ spring:
           predicates:
             - Path=/api/**
         - id: teatime-model
-          uri: http://localhost:8082
+          uri: lb://TEATIME-MODEL
           predicates:
             - Path=/model/**

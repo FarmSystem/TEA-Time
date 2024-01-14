@@ -39,8 +39,6 @@ public record MemberProfileDto (
                 .userId(user.getId())
                 .profileImage(user.getProfileImage())
                 .nickname(user.getNickname())
-                .following(user.getFollowings().size())
-                .follower(user.getFollowers().size())
                 .diaries(diaries.stream().map(DiaryTokenDto::fromEntity).toList())
                 .build();
     }
