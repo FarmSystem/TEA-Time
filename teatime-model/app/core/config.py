@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "TeaTime Base API Server"
     EUREKA_SERVER: str = "http://localhost:8761/eureka/"
     APP_NAME: str = "teatime-model"
-    INSTANCE_PORT = 8082
+    INSTANCE_PORT: int = 8082
 
     @staticmethod
     def assemble_cors_origin(self, v: Union[str, list[str]]) -> Union[list[str], str]:
