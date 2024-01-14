@@ -67,12 +67,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Diary> diaries = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Following> followers = new HashSet<>();
-
-    @OneToMany(mappedBy = "following", cascade = CascadeType.ALL)
-    private Set<Following> followings = new HashSet<>();
-
     @Builder
     public User(String email, String password, String nickname, EProvider provider, ERole role) {
         this.email = email;

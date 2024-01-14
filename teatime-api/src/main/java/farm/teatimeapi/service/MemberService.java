@@ -1,11 +1,14 @@
 package farm.teatimeapi.service;
 
 import farm.teatimeapi.dto.member.request.UpdateUserinfoDto;
+import farm.teatimeapi.dto.member.response.MemberCalendarDto;
 import farm.teatimeapi.dto.member.response.MemberLevelDto;
 import farm.teatimeapi.utils.ImageUtil;
 import farm.teatimecore.exception.CustomException;
 import farm.teatimecore.exception.ErrorCode;
+import farm.teatimedomain.domain.Diary;
 import farm.teatimedomain.domain.User;
+import farm.teatimedomain.reposiotry.DiaryRepository;
 import farm.teatimedomain.reposiotry.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,11 +16,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService {
     private final UserRepository userRepository;
+    private final DiaryRepository diaryRepository;
     private final ImageUtil imageUtil;
 
     public String getNickname(Long userId) {
@@ -25,8 +30,12 @@ public class MemberService {
         return user.getNickname();
     }
 
-    public void getCalendar(Long userId) {
+    public MemberCalendarDto getCalendar(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        List<Diary> diaries = diaryRepository.findDiariesByUserAndCreatedAtBetween(
+                user, LocalDate.now().minusMonths(1), LocalDate.now().plusMonths(1)
+        );
+        return MemberCalendarDto.fromEntity(diaries);
     }
 
     @Transactional
