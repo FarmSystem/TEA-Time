@@ -25,7 +25,17 @@ if settings.BACKEND_CORS_ORIGINS:
         allow_headers=["*"],
     )
 
-eureka_client.init(eureka_server = settings.EUREKA_SERVER, app_name = settings.APP_NAME, instance_port = settings.INSTANCE_PORT)
+
+"""
+Eureka Server Registration
+"""
+@app.on_event("startup")
+async def startup_event():
+    await eureka_client.init_async(
+        eureka_server = settings.EUREKA_SERVER,
+        app_name = settings.APP_NAME,
+        instance_port = settings.INSTANCE_PORT
+    )
 
 """
 API 라우터 경로를 /model으로 지정
