@@ -3,9 +3,9 @@ class UserNicknameModel {
 
   UserNicknameModel(this.nickname);
 
-  factory UserNicknameModel.fromJson(Map<String, dynamic> json) {
+  factory UserNicknameModel.fromJson(String nickname) {
     return UserNicknameModel(
-      json['nickname']
+      nickname,
     );
   }
 }
