@@ -5,7 +5,7 @@ import 'package:tea_time/util/class/app_routes.dart';
 import 'package:tea_time/view/base/base_screen.dart';
 import 'package:tea_time/view/base/base_widget.dart';
 import 'package:tea_time/viewModel/home/home_view_model.dart';
-import 'package:tea_time/widget/home/calendar_widget.dart';
+import 'package:tea_time/widget/home/diary_calendar.dart';
 
 class HomeScreen extends BaseScreen<HomeViewModel> {
   const HomeScreen({super.key});
@@ -16,7 +16,18 @@ class HomeScreen extends BaseScreen<HomeViewModel> {
       child: Column(
           children: [
             _TopWidget(),
+            SizedBox(height: 20),
             _MiddleWidget(),
+            SizedBox(height: 50),
+            Text(
+              '아직 오늘의 다이어리를 작성하지 않으셨나요?',
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: 'Pretendards',
+                color: Color.fromRGBO(38, 38, 38, 1),
+              ),
+            ),
+            SizedBox(height: 30),
             _BottomWidget(),
           ]
       )
@@ -83,19 +94,7 @@ class _MiddleWidget extends BaseWidget<HomeViewModel> {
 
   @override
   Widget buildView(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 16),
-        const Text("이번달의 다이어리",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Color.fromRGBO(38, 38, 38, 1),
-          )
-        ),
-        CalendarWidget(),
-      ]
-    );
+    return const DiaryCalendar();
   }
 }
 
