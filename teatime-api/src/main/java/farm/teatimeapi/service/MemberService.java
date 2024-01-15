@@ -2,6 +2,7 @@ package farm.teatimeapi.service;
 
 import farm.teatimeapi.dto.member.request.UpdateUserinfoDto;
 import farm.teatimeapi.dto.member.response.MemberCalendarDto;
+import farm.teatimeapi.dto.member.response.MemberInfoDto;
 import farm.teatimeapi.dto.member.response.MemberLevelDto;
 import farm.teatimeapi.utils.ImageUtil;
 import farm.teatimecore.exception.CustomException;
@@ -28,6 +29,12 @@ public class MemberService {
     public String getNickname(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
         return user.getNickname();
+    }
+
+    public MemberInfoDto getUserInfo(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        Long diaryCount = diaryRepository.countDiariesByUser(user);
+        return MemberInfoDto.fromEntity(user, diaryCount);
     }
 
     public MemberCalendarDto getCalendar(Long userId) {

@@ -2,6 +2,7 @@ package farm.teatimeapi.controller;
 
 import farm.teatimeapi.dto.member.request.UpdateUserinfoDto;
 import farm.teatimeapi.dto.member.response.MemberCalendarDto;
+import farm.teatimeapi.dto.member.response.MemberInfoDto;
 import farm.teatimeapi.dto.member.response.MemberLevelDto;
 import farm.teatimeapi.service.MemberService;
 import farm.teatimecore.annotation.UserId;
@@ -41,11 +42,11 @@ public class MemberController {
 
     @Operation(summary = "본인 프로필 화면 보기", description = "사용자의 프로필 화면을 불러옵니다.")
     @GetMapping("")
-    public ResponseDto<?> getMyProfile(
+    public ResponseDto<MemberInfoDto> getMyProfile(
 //            @UserId Long userId
     ) {
         Long userId = 1L;
-        return ResponseDto.ok(null);
+        return ResponseDto.ok(memberService.getUserInfo(userId));
     }
 
     @Operation(summary = "프로필 수정하기", description = "사용자의 프로필을 수정합니다.")
