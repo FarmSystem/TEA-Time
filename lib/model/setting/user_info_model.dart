@@ -19,7 +19,7 @@ class UserInfoModel {
     return UserInfoModel(
         nickname: json['nickname'],
         introduction: json['introduction'],
-        profileImageUrl: json['profile_image_url'],
+        profileImageUrl: json['profile_image'],
         diaryCount: json['diary_count'],
         userLevel: json['user_level'],
         userScore: json['user_score'],
