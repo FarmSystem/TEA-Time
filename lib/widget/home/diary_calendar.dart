@@ -20,8 +20,30 @@ class DiaryCalendar extends BaseWidget<DiaryCalendarViewModel> {
             focusedDay: viewModel.focusedDate,
             calendarFormat: viewModel.calendarFormat,
             daysOfWeekHeight: 30,
-              rowHeight: 50,
+            rowHeight: 50,
             sixWeekMonthsEnforced: true,
+
+            availableCalendarFormats: const {
+              CalendarFormat.month: '한 달씩 보기',
+            },
+
+            calendarStyle: const CalendarStyle(
+              selectedDecoration: BoxDecoration(
+                color: Color.fromRGBO(210, 232, 223, 1),
+                shape: BoxShape.circle,
+              ),
+              selectedTextStyle: TextStyle(
+                color: Colors.black,
+              ),
+              todayDecoration: BoxDecoration(
+                color: Color.fromRGBO(109, 178, 148, 1),
+                shape: BoxShape.circle,
+              ),
+              todayTextStyle: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+
             headerStyle: const HeaderStyle(
               titleTextStyle: TextStyle(
                 fontSize: 20,
@@ -39,6 +61,12 @@ class DiaryCalendar extends BaseWidget<DiaryCalendarViewModel> {
 
               selectedDayPredicate: (day) {
                 return isSameDay(viewModel.selectedDate, day);
+              },
+
+              onDaySelected: (selectedDay, focusedDay) {
+                if (!isSameDay(viewModel.selectedDate, selectedDay)) {
+                  viewModel.updateSelectedDate(selectedDay);
+                }
               },
             ),
           ),

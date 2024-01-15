@@ -37,7 +37,7 @@ class DiaryProvider {
   Future<Map<String, dynamic>> getDiaries() async {
     try {
       final response = await authDio.get(
-          "/calendar"
+          "/me/calendar"
       );
 
       if (response.statusCode == 200) {
@@ -53,7 +53,7 @@ class DiaryProvider {
     }
   }
 
-  Future getDiaryDetail(int diaryId) async {
+  Future<Map<String, dynamic>> getDiaryDetail(int diaryId) async {
     try {
       final response = await authDio.get("/diaries/$diaryId");
 
