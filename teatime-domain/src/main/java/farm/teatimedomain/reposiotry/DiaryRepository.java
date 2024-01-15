@@ -19,6 +19,9 @@ public interface DiaryRepository extends JpaRepository<Diary, Long> {
     @Query("select d from Diary d where d.user = :user order by d.createdAt desc")
     Page<Diary> findAllByUser(User user, Pageable pageable);
 
+    @Query("select count(d) from Diary d where d.user = :user")
+    Long countDiariesByUser(User user);
+
     @Query("select d from Diary d where d.user = :user and d.createdAt between :startDate and :endDate order by d.createdAt asc")
     List<Diary> findDiariesByUserAndCreatedAtBetween(User user, LocalDate startDate, LocalDate endDate);
 }
