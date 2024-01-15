@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:tea_time/model/setting/user_info_model.dart';
 import 'package:tea_time/provider/setting/user_info_provider.dart';
 
-class SettingRepository extends GetxService {
+class UserInfoRepository extends GetxService {
   late final UserInfoProvider _userInfoProvider;
   @override
   onInit() {
