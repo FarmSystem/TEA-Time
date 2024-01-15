@@ -38,6 +38,12 @@ class DiaryCalendarViewModel extends GetxController {
     _calendarFormat = CalendarFormat.month.obs;
   }
 
+  void updateSelectedDate(DateTime date) {
+    _calendarInfo.value = DiaryCalendarInfoModel.selectedDate(
+      selectedDate: date,
+    );
+  }
+
   Future<void> getDiaries() async {
     try {
       _diaries.value = await _repository.getDiaries();

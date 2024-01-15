@@ -16,6 +16,6 @@ class DiaryCalendarRepository extends GetxService {
 
   Future<List<DiarySmallModel>> getDiaries() async {
     Map<String, dynamic> response = await _diaryProvider.getDiaries();
-    return response["diaries"].map<DiarySmallModel>((diary) => DiarySmallModel.fromJson(diary)).toList();
+    return response["calendar"].map<DiarySmallModel>((diary) => DiarySmallModel.fromJson(diary)).toList();
   }
 }
