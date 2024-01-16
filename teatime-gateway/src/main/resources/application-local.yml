@@ -18,6 +18,10 @@ spring:
           uri: lb://TEATIME-API
           predicates:
             - Path=/api/**
+        - id: teatime-external
+          uri: lb://TEATIME-EXTERNAL
+          predicates:
+            - Path=/external/**
         - id: teatime-model
           uri: lb://TEATIME-MODEL
           predicates:
