@@ -1,0 +1,66 @@
+version: '3.8'
+services:
+  mysql-teatime:
+    image: mysql:8.0.33
+    networks:
+      - teatime-network
+    volumes:
+      - mysql-teatime:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3307:3306"
+    platform: linux/amd64
+    environment:
+      - TZ=Asia/Seoul
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=teatime
+
+  eureka:
+    image: kurtyoon/teatime-server:0.0.1
+    networks:
+      - teatime-network
+    ports:
+      - "8761:8761"
+
+  gateway:
+    image: kurtyoon/teatime-gateway:0.0.1
+    networks:
+      - teatime-network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka
+
+  api:
+    image: kurtyoon/teatime-api:0.0.1
+    networks:
+      - teatime-network
+    ports:
+      - "8081:8081"
+    depends_on:
+      - eureka
+
+  model:
+    image: kurtyoon/teatime-model:0.0.1
+    networks:
+      - teatime-network
+    ports:
+      - "8082:8082"
+    depends_on:
+      - eureka
+
+  external:
+    image: kurtyoon/teatime-external:0.0.1
+    networks:
+      - teatime-network
+    ports:
+      - "8083:8083"
+    depends_on:
+      - eureka
+
+volumes:
+  mysql-teatime:
+
+networks:
+  teatime-network:
+    driver: bridge
