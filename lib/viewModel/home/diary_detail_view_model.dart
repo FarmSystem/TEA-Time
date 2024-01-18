@@ -6,6 +6,10 @@ class DiaryDetailViewModel extends GetxController {
   late final DiaryDetailRepository _diaryDetailRepository;
   late final Rxn<DiaryDetailModel> _diaryDetailModel;
 
+  var isLoading = false.obs;
+
+  DiaryDetailModel? get diaryDetail => _diaryDetailModel.value;
+
   @override
   onInit() {
     super.onInit();
@@ -18,10 +22,13 @@ class DiaryDetailViewModel extends GetxController {
   }
 
   Future<void> getDiaryDetail(int id) async {
+    isLoading(true);
     try {
       _diaryDetailModel.value = await _diaryDetailRepository.getDiaryDetail(id);
     } on Exception catch (_) {
       _diaryDetailModel.value = null;
+    } finally {
+      isLoading(false);
     }
   }
 }
