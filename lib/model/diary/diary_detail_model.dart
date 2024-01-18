@@ -3,6 +3,7 @@ class DiaryDetailModel {
   final String username;
   final DateTime createdAt;
   final String title;
+  final String content;
   final String profileImage;
   final String diaryImage;
 
@@ -11,6 +12,7 @@ class DiaryDetailModel {
     required this.username,
     required this.createdAt,
     required this.title,
+    required this.content,
     required this.profileImage,
     required this.diaryImage
   });
@@ -21,6 +23,7 @@ class DiaryDetailModel {
       username: json['username'],
       createdAt: DateTime.parse(json['created_at']),
       title: json['title'],
+      content: json['content'],
       profileImage: json['profile_image'],
       diaryImage: json['diary_image'],
     );
