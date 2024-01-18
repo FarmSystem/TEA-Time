@@ -19,10 +19,11 @@ import java.util.UUID;
 public class ImageUtil {
     private final AmazonS3Client amazonS3Client;
     @Value("${cloud.aws.s3.bucket}") private String s3Bucket;
+    @Value("${image.default}") private String defaultImage;
 
     public String uploadImage(MultipartFile file) {
         if (file == null) {
-            return null;
+            return defaultImage;
         }
 
         String fileName = makeFileName();
@@ -41,6 +42,10 @@ public class ImageUtil {
     }
 
     public void deleteS3File(String path) {
+        if (path.equals(defaultImage)) {
+            return;
+        }
+
         try {
             amazonS3Client.deleteObject(s3Bucket, path);
         } catch (AmazonS3Exception e) {
