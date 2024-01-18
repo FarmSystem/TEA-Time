@@ -34,7 +34,7 @@ public class Diary {
     @OneToOne(mappedBy = "diary", cascade = CascadeType.ALL)
     private Analysis analysis = null;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
