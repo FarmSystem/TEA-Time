@@ -13,11 +13,17 @@ public record DiaryAnalysisDto (
 
         @JsonProperty("emotion")
         @Schema(name = "emotion", description = "감정")
-        EmotionDto emotion
+        EmotionDto emotion,
+
+        @JsonProperty("consultant")
+        @Schema(name = "consultant", description = "조언")
+        String consultant
 ) {
-    public static DiaryAnalysisDto fromEntity(Analysis analysis) {
+    public static DiaryAnalysisDto fromEntity(Analysis analysis, String consultant) {
         return DiaryAnalysisDto.builder()
                 .score(analysis.getScore())
-                .emotion(EmotionDto.fromEntity(analysis)).build();
+                .emotion(EmotionDto.fromEntity(analysis))
+                .consultant(consultant)
+                .build();
     }
 }
