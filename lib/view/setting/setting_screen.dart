@@ -16,8 +16,8 @@ class SettingScreen extends BaseScreen<UserInfoViewModel> {
           _UserInfoItem(),
           SizedBox(height: 30),
           _UserLevelItem(),
-          SizedBox(height: 30),
-          _DiaryTokenItem(),
+          SizedBox(height: 100),
+          _DiaryTokenItemTest(),
         ]
       )
     );
@@ -66,8 +66,11 @@ class _UserInfoItem extends BaseWidget<UserInfoViewModel> {
                           color: Color.fromRGBO(38, 38, 38, 1),
                         )
                     ),
+                    Text(
+                      '${viewModel.userInfoModel?.introduction}' ?? '자기소개가 없습니다.',
+                    )
                   ]
-              ))
+              ),)
             ]
         )
     );
@@ -88,6 +91,67 @@ class _UserLevelItem extends BaseWidget<UserInfoViewModel> {
         Text('사용자의 경험치는 ${viewModel.userInfoModel?.userScore ?? 0}입니다.')
       ]
     ))
+      ]
+    );
+  }
+}
+
+class _DiaryTokenItemTest extends StatefulWidget {
+  const _DiaryTokenItemTest();
+
+  @override
+  _DiaryTokenItemTestState createState() => _DiaryTokenItemTestState();
+}
+
+class _DiaryTokenItemTestState extends State<_DiaryTokenItemTest> {
+  final ScrollController _scrollController = ScrollController();
+  final UserInfoViewModel viewModel = Get.find<UserInfoViewModel>();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+      viewModel.getDiaryToken(viewModel.currentPage, 3);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+          ),
+          shrinkWrap: true,
+          controller: _scrollController,
+          itemCount: viewModel.diaryTokens.length,
+          itemBuilder: (context, index) {
+            final token = viewModel.diaryTokens[index];
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image(
+                  image: NetworkImage(token.diaryImage),
+                  width: MediaQuery.of(context).size.width / 3,
+                  height: MediaQuery.of(context).size.width / 3
+                )
+              ]
+            );
+          }
+        )
       ]
     );
   }
@@ -122,24 +186,3 @@ class _DiaryTokenItem extends BaseWidget<UserInfoViewModel> {
     );
   }
 }
-
-// class _DiaryTokenItem extends StatefulWidget {
-//   const _DiaryTokenItem({super.key});
-//
-//   @override
-//   _DiaryTokenItemState createState() => _DiaryTokenItemState();
-// }
-//
-// class _DiaryTokenItemState extends State<_DiaryTokenItem> {
-//   ScrollController _scrollController = ScrollController();
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _scrollController.addListener(() {
-//       if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
-//         viewModel.getDiaryToken(viewModel.currentPage, 9);
-//       }
-//     });
-//   }
-// }
