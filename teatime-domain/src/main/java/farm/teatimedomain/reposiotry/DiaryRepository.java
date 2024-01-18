@@ -9,7 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface DiaryRepository extends JpaRepository<Diary, Long> {
@@ -18,6 +20,9 @@ public interface DiaryRepository extends JpaRepository<Diary, Long> {
 
     @Query("select d from Diary d where d.user = :user order by d.createdAt desc")
     Page<Diary> findAllByUser(User user, Pageable pageable);
+
+    @Query("select d from Diary d where d.user = :user and d.createdAt = :date")
+    Optional<Diary> findByDate(User user, LocalDate date);
 
     @Query("select count(d) from Diary d where d.user = :user")
     Long countDiariesByUser(User user);

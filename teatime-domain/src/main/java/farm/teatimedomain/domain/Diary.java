@@ -31,8 +31,8 @@ public class Diary {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-    @OneToOne(mappedBy = "diary")
-    private Analysis analysis;
+    @OneToOne(mappedBy = "diary", cascade = CascadeType.ALL)
+    private Analysis analysis = null;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
