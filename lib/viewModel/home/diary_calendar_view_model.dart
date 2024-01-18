@@ -3,6 +3,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:tea_time/model/diary/diary_calendar_info_model.dart';
 import 'package:tea_time/model/diary/diary_small_model.dart';
 import 'package:tea_time/repository/home/diary_calendar_repository.dart';
+import 'package:tea_time/util/function/log_on_dev.dart';
 
 class DiaryCalendarViewModel extends GetxController {
   late final DiaryCalendarRepository _repository;
@@ -50,5 +51,11 @@ class DiaryCalendarViewModel extends GetxController {
     } on Exception catch (_) {
       _diaries.value = null;
     }
+
+    logOnDev(_diaries.value.toString());
+  }
+
+  bool isDiaryExist(DateTime date) {
+    return diaries!.any((diary) => diary.date == date);
   }
 }
