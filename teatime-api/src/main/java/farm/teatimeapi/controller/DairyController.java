@@ -25,7 +25,7 @@ public class DairyController {
     public ResponseDto<DiaryDetailDto> createDiary(
 //            @UserId Long userId,
             @Nullable @RequestPart("image") @Schema(description = "다이어리 관련 이미지") MultipartFile image,
-            @RequestParam("data") CreateDiaryDto createDiaryDto
+            @RequestPart("data") CreateDiaryDto createDiaryDto
             ) {
         Long userId = 1L;
         return ResponseDto.ok(diaryService.createDiary(userId, createDiaryDto, image));

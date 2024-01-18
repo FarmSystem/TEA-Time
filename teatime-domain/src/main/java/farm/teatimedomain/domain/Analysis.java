@@ -31,7 +31,7 @@ public class Analysis {
     @Column(name = "anxiety")
     private Float anxiety;
 
-    @OneToOne
+    @OneToOne()
     @MapsId
     @JoinColumn(name = "id")
     private Diary diary;
@@ -54,5 +54,17 @@ public class Analysis {
         this.anger = anger;
         this.sadness = sadness;
         this.anxiety = anxiety;
+    }
+
+    public static Analysis fromDto(Float score, Float happy, Float embarrassment, Float anger, Float sadness, Float anxiety, Diary diary) {
+        return Analysis.builder()
+                .score(score)
+                .happy(happy)
+                .embarrassment(embarrassment)
+                .anger(anger)
+                .sadness(sadness)
+                .anxiety(anxiety)
+                .diary(diary)
+                .build();
     }
 }

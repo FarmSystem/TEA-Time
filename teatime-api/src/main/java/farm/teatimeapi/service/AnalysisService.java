@@ -6,11 +6,17 @@ import farm.teatimecore.exception.ErrorCode;
 import farm.teatimedomain.domain.Analysis;
 import farm.teatimedomain.reposiotry.AnalysisRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 @RequiredArgsConstructor
 public class AnalysisService {
+    private final RestTemplate restTemplate;
     private final AnalysisRepository analysisRepository;
 
     public DiaryAnalysisDto getDiaryAnalysis(Long diaryId) {
