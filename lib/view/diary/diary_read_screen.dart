@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:tea_time/view/analysis/analysis_screen.dart';
 import 'package:tea_time/view/base/base_screen.dart';
 import 'package:tea_time/viewModel/home/diary_detail_view_model.dart';
 import 'package:tea_time/widget/Base/default_back_appbar.dart';
@@ -17,13 +18,6 @@ class DiaryReadScreen extends BaseScreen<DiaryDetailViewModel> {
 
   @override
   Color? get unSafeAreaColor => Colors.white;
-
-  // @override
-  // void initViewModel() {
-  //   // TODO: implement initViewModel
-  //   super.initViewModel();
-  //   viewModel.getDiaryDetail(id);
-  // }
 
   @override
   Widget buildBody(BuildContext context) {
@@ -42,20 +36,32 @@ class DiaryReadScreen extends BaseScreen<DiaryDetailViewModel> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: 100,
-                            child: Image(
-                              image: NetworkImage(viewModel.diaryDetail?.profileImage ?? ''),
-                            ),
+                            width: 50,
+                            child: ClipOval(
+                              child: Image(
+                                image: NetworkImage(viewModel.diaryDetail?.profileImage ?? ''),
+                                width: 50,
+                                height: 50,
+                              )
+                            )
                           ),
+                          const SizedBox(width: 16),
                           Expanded(
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.stretch,
                                   children: [
                                     Text(
                                       viewModel.diaryDetail?.nickname ?? '히잉',
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                      )
                                     ),
                                     Text(
                                       DateFormat('yyyy년 MM월 d일').format(viewModel.diaryDetail?.createdAt ?? DateTime.now()),
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey
+                                      )
                                     )
                                   ]
                               )
@@ -71,7 +77,7 @@ class DiaryReadScreen extends BaseScreen<DiaryDetailViewModel> {
                       image: NetworkImage(viewModel.diaryDetail?.diaryImage ?? ''),
                       width: 300,
                       height: 300,
-                    )
+                    ),
                   ]
               )
           ),
@@ -79,6 +85,23 @@ class DiaryReadScreen extends BaseScreen<DiaryDetailViewModel> {
       }
     });
   }
+
+  @override
+  Widget? get buildFloatingActionButton => Container(
+    padding: const EdgeInsets.all(16),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        FloatingActionButton(
+          onPressed: () {
+            Get.to(() => AnalysisScreen(viewModel.diaryDetail!.diaryId));
+          },
+          backgroundColor: const Color.fromRGBO(210, 232, 223, 1),
+          child: const Icon(Icons.align_vertical_bottom),
+        ),
+      ]
+    )
+  );
 
   @override
   PreferredSize buildAppBar(BuildContext context) {
