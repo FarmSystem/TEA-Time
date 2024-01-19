@@ -12,10 +12,12 @@ class DiaryCalendarViewModel extends GetxController {
   late final Rxn<Map<String, DiarySmallModel>> _diaries;
 
   late final Rx<DiaryCalendarInfoModel> _calendarInfo;
+
+  RxBool isLoading = false.obs;
   DateTime get selectedDate => _calendarInfo.value.selectedDate;
   DateTime get focusedDate => _calendarInfo.value.focusedDate;
 
-  Map<String, DiarySmallModel> get diaries => _diaries.value!;
+  Map<String, DiarySmallModel> get diaries => _diaries.value ?? {};
   CalendarFormat get calendarFormat => _calendarFormat.value;
 
   @override
@@ -47,10 +49,13 @@ class DiaryCalendarViewModel extends GetxController {
 
   Future<void> getDiaries() async {
     try {
+      isLoading.value = true;
       _diaries.value = await _repository.getDiaries();
     } on Exception catch (_) {
       logOnDev("DiaryCalendarViewModel.getDiaries() : Exception");
       _diaries.value = null;
+    } finally {
+      isLoading.value = false;
     }
   }
 
