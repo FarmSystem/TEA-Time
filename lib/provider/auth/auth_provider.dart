@@ -110,4 +110,32 @@ class AuthProvider {
       return false;
     }
   }
+
+  Future<bool> checkEmail(String email) async {
+    try {
+      final response = await dio.get("/auth/email?email=$email");
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } on DioException catch (_) {
+      return false;
+    }
+  }
+
+  Future<bool> checkNickname(String nickname) async {
+    try {
+      final response = await dio.get("/auth/nickname?nickname=$nickname");
+
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } on DioException catch (_) {
+      return false;
+    }
+  }
 }

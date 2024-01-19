@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:tea_time/util/function/log_on_dev.dart';
+import 'package:tea_time/util/function/user_level.dart';
 import 'package:tea_time/view/base/base_screen.dart';
 import 'package:tea_time/view/base/base_widget.dart';
+import 'package:tea_time/view/diary/diary_read_screen.dart';
 import 'package:tea_time/viewModel/setting/user_info_view_model.dart';
 import 'package:tea_time/widget/Base/default_appbar.dart';
 
@@ -16,7 +20,7 @@ class SettingScreen extends BaseScreen<UserInfoViewModel> {
           _UserInfoItem(),
           SizedBox(height: 30),
           _UserLevelItem(),
-          SizedBox(height: 100),
+          SizedBox(height: 30),
           _DiaryTokenItemTest(),
         ]
       )
@@ -39,14 +43,16 @@ class _UserInfoItem extends BaseWidget<UserInfoViewModel> {
   Widget buildView(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.all(16),
-        child: Row(
+        child: Obx(() => Row(
             children: [
-              const CircleAvatar(
-                radius: 25,
-                backgroundImage: AssetImage('assets/images/default.png'),
+              ClipOval(
+                child: Image(image: NetworkImage(viewModel.userInfoModel?.profileImageUrl ?? ''),
+                  width: 50,
+                  height: 50,
+                ),
               ),
               const SizedBox(width: 10),
-              Obx(() => Column(
+              Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -70,9 +76,9 @@ class _UserInfoItem extends BaseWidget<UserInfoViewModel> {
                       '${viewModel.userInfoModel?.introduction}' ?? '자기소개가 없습니다.',
                     )
                   ]
-              ),)
+              )
             ]
-        )
+        ))
     );
   }
 }
@@ -86,9 +92,15 @@ class _UserLevelItem extends BaseWidget<UserInfoViewModel> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Obx(() => Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-        Text('사용자의 레벨은 ${viewModel.userInfoModel?.userLevel ?? 0}입니다.'),
-        Text('사용자의 경험치는 ${viewModel.userInfoModel?.userScore ?? 0}입니다.')
+          SvgPicture.asset(
+            getLevelAsset(viewModel.userInfoModel?.userLevel ?? 1),
+            width: 100,
+            height: 100,
+          ),
+          const SizedBox(height: 10),
+        Text('${viewModel.userInfoModel?.nickname}님의 레벨은 ${viewModel.userInfoModel?.userLevel ?? 1}레벨 입니다.'),
       ]
     ))
       ]
@@ -131,57 +143,36 @@ class _DiaryTokenItemTestState extends State<_DiaryTokenItemTest> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-          ),
-          shrinkWrap: true,
-          controller: _scrollController,
-          itemCount: viewModel.diaryTokens.length,
-          itemBuilder: (context, index) {
-            final token = viewModel.diaryTokens[index];
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image(
-                  image: NetworkImage(token.diaryImage),
-                  width: MediaQuery.of(context).size.width / 3,
-                  height: MediaQuery.of(context).size.width / 3
-                )
-              ]
+        Obx(() {
+          if (viewModel.isLoading.isTrue) {
+            return const Center(child: CircularProgressIndicator());
+          } else {
+            return GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                ),
+                shrinkWrap: true,
+                controller: _scrollController,
+                itemCount: viewModel.diaryTokens.length,
+                itemBuilder: (context, index) {
+                  final token = viewModel.diaryTokens[index];
+                  return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          child: Image(image: NetworkImage(token.diaryImage),
+                              width: MediaQuery.of(context).size.width / 3,
+                              height: MediaQuery.of(context).size.width / 3),
+                          onTap: () {
+                            Get.to(() => DiaryReadScreen(token.diaryId));
+                          },
+                        )
+                      ]
+                  );
+                }
             );
           }
-        )
-      ]
-    );
-  }
-}
-
-class _DiaryTokenItem extends BaseWidget<UserInfoViewModel> {
-  const _DiaryTokenItem();
-
-  @override
-  Widget buildView(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        GridView.count(
-            crossAxisCount: 3,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            children: List.generate(viewModel.diaryTokens.length, (index) {
-                final token = viewModel.diaryTokens[index];
-                return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image(image: NetworkImage(token.diaryImage),
-                      width: MediaQuery.of(context).size.width / 3,
-                      height: MediaQuery.of(context).size.width / 3),
-                    ]
-                );
-              })
-
-        )
+        })
       ]
     );
   }

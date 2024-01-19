@@ -6,6 +6,7 @@ import 'package:tea_time/util/function/log_on_dev.dart';
 class CommunityViewModel extends GetxController {
   late final CommunityDiaryRepository _repository;
   late final Rxn<List<CommunityListModel>> _communityList;
+  RxBool isLoading = false.obs;
 
   List<CommunityListModel>? get communityList => _communityList.value;
 
@@ -26,9 +27,12 @@ class CommunityViewModel extends GetxController {
       int size
       ) async {
     try {
+      isLoading.value = true;
       _communityList.value = await _repository.getCommunity(page, size);
     } on Exception catch (_) {
       _communityList.value = null;
+    } finally {
+      isLoading.value = false;
     }
   }
 }

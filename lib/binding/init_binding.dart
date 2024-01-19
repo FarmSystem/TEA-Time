@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 import 'package:tea_time/provider/Auth/auth_provider.dart';
+import 'package:tea_time/provider/analysis/analysis_provider.dart';
 import 'package:tea_time/provider/community/community_provider.dart';
 import 'package:tea_time/provider/diary/diary_provider.dart';
 import 'package:tea_time/provider/home/home_provider.dart';
 import 'package:tea_time/provider/setting/user_info_provider.dart';
+import 'package:tea_time/repository/analysis/analysis_repository.dart';
 import 'package:tea_time/repository/community/community_diary_repository.dart';
 import 'package:tea_time/repository/home/diary_calendar_repository.dart';
 import 'package:tea_time/repository/home/diary_detail_repository.dart';
@@ -19,6 +21,7 @@ class InitBinding extends Bindings {
     Get.lazyPut<DiaryProvider>(() => DiaryProvider());
     Get.lazyPut<UserInfoProvider>(() => UserInfoProvider());
     Get.lazyPut<CommunityProvider>(() => CommunityProvider());
+    Get.lazyPut<AnalysisProvider>(() => AnalysisProvider());
 
     // Repository
     Get.lazyPut<HomeRepository>(() => HomeRepository());
@@ -26,5 +29,6 @@ class InitBinding extends Bindings {
     Get.lazyPut<DiaryDetailRepository>(() => DiaryDetailRepository());
     Get.lazyPut<UserInfoRepository>(() => UserInfoRepository());
     Get.lazyPut<CommunityDiaryRepository>(() => CommunityDiaryRepository());
+    Get.lazyPut<AnalysisRepository>(() => AnalysisRepository());
   }
 }

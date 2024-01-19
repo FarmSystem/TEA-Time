@@ -6,6 +6,7 @@ import 'package:tea_time/repository/setting/user_info_repository.dart';
 class UserInfoViewModel extends GetxController {
   late final UserInfoRepository _userInfoRepository;
   late final Rxn<UserInfoModel> _userInfoModel;
+  RxBool isLoading = false.obs;
   late final List<Rxn<DiaryTokenModel>> _diaryTokens;
   int currentPage = 1;
   bool isFetching = false;
@@ -47,6 +48,7 @@ class UserInfoViewModel extends GetxController {
     isFetching = true;
 
     try {
+      isLoading.value = true;
       final tokens = await _userInfoRepository.getDiaryToken(page, size);
       if (tokens.isNotEmpty) {
         _diaryTokens.addAll(tokens.map((e) => Rxn<DiaryTokenModel>(e)).toList());
@@ -55,6 +57,7 @@ class UserInfoViewModel extends GetxController {
     } on Exception catch (_) {
       _diaryTokens.clear();
     } finally {
+      isLoading.value = false;
       isFetching = false;
     }
   }

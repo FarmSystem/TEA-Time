@@ -17,7 +17,7 @@ class HttpUtil {
   static final _baseOption = BaseOptions(
     baseUrl: '${dotenv.env['REST_API_HOST']}',
     connectTimeout: const Duration(milliseconds: 5000),
-    receiveTimeout: const Duration(milliseconds: 30000),
+    receiveTimeout: const Duration(milliseconds: 60000),
     contentType: 'application/json; charset=utf-8',
     responseType: ResponseType.json,
     headers: <String, dynamic>{},

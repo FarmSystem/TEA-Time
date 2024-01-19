@@ -26,7 +26,6 @@ class DiaryDetailViewModel extends GetxController {
     isLoading(true);
     try {
       _diaryDetailModel.value = await _diaryDetailRepository.getDiaryDetail(id);
-      logOnDev("📝 [Diary Detail] ${_diaryDetailModel.value!.toString()}");
     } on Exception catch (_) {
       _diaryDetailModel.value = null;
     } finally {

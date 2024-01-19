@@ -37,6 +37,8 @@ abstract class BaseScreen<T extends GetxController> extends GetView<T> {
     return Scaffold(
       extendBody: extendBodyBehindAppBar,
       backgroundColor: safeAreaColor,
+      floatingActionButtonLocation: floatingActionButtonLocation,
+      floatingActionButton: buildFloatingActionButton,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       appBar: buildAppBar(context),
       body: wrapWithInnerSafeArea
@@ -97,7 +99,7 @@ abstract class BaseScreen<T extends GetxController> extends GetView<T> {
 
   /// Floating Action Button 구성
   @protected
-  FloatingActionButton? get buildFloatingActionButton => null;
+  Widget? get buildFloatingActionButton => null;
 
   /// Floating Action Button 위치
   @protected
