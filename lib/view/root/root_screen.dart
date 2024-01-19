@@ -17,8 +17,7 @@ class RootScreen extends BaseScreen<RootViewModel> {
 
   @override
   Widget buildBody(BuildContext context) {
-    return Obx(
-        () => IndexedStack(
+    return Obx(() => IndexedStack(
           index: viewModel.selectedIndex,
           children: const [
             HomeScreen(),
@@ -26,14 +25,14 @@ class RootScreen extends BaseScreen<RootViewModel> {
             ChartScreen(),
             SettingScreen(),
           ],
-        )
-    );
+        ));
   }
 
   @override
   Widget buildBottomNavigationBar(BuildContext context) {
     return const CustomBottomNavigationBar();
   }
+
   @override
   bool get setTopOuterSafeArea => false;
 
