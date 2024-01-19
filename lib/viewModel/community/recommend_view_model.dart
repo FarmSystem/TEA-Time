@@ -29,9 +29,4 @@ class RecommendViewModel extends GetxController {
   void setDiaryCount(int diaryCount) {
     _diaryCount.value = diaryCount;
   }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 }

@@ -49,10 +49,9 @@ class DiaryCalendarViewModel extends GetxController {
     try {
       _diaries.value = await _repository.getDiaries();
     } on Exception catch (_) {
+      logOnDev("DiaryCalendarViewModel.getDiaries() : Exception");
       _diaries.value = null;
     }
-
-    logOnDev(_diaries.value.toString());
   }
 
   bool isDiaryExist(DateTime date) {

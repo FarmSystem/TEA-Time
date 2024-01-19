@@ -46,6 +46,8 @@ class DiaryCalendar extends BaseWidget<DiaryCalendarViewModel> {
             ),
 
             headerStyle: const HeaderStyle(
+              titleCentered: true,
+              formatButtonVisible: false,
               titleTextStyle: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
