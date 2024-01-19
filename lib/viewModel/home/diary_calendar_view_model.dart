@@ -9,13 +9,13 @@ class DiaryCalendarViewModel extends GetxController {
   late final DiaryCalendarRepository _repository;
 
   late final Rx<CalendarFormat> _calendarFormat;
-  late final Rxn<List<DiarySmallModel>> _diaries;
+  late final Rxn<Map<String, DiarySmallModel>> _diaries;
 
   late final Rx<DiaryCalendarInfoModel> _calendarInfo;
   DateTime get selectedDate => _calendarInfo.value.selectedDate;
   DateTime get focusedDate => _calendarInfo.value.focusedDate;
 
-  List<DiarySmallModel>? get diaries => _diaries.value;
+  Map<String, DiarySmallModel> get diaries => _diaries.value!;
   CalendarFormat get calendarFormat => _calendarFormat.value;
 
   @override
@@ -25,7 +25,7 @@ class DiaryCalendarViewModel extends GetxController {
     _repository = Get.find<DiaryCalendarRepository>();
 
     // Initialize Fields
-    _diaries = Rxn<List<DiarySmallModel>>(null);
+    _diaries = Rxn<Map<String, DiarySmallModel>>(null);
 
     // Fetch Data
     initCalendarInfo();
@@ -54,7 +54,7 @@ class DiaryCalendarViewModel extends GetxController {
     }
   }
 
-  bool isDiaryExist(DateTime date) {
-    return diaries!.any((diary) => diary.date == date);
+  bool isDiaryExist(String date) {
+    return diaries.containsKey(date);
   }
 }

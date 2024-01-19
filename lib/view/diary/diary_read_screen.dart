@@ -32,47 +32,49 @@ class DiaryReadScreen extends BaseScreen<DiaryDetailViewModel> {
       if (viewModel.isLoading.value) {
         return const Center(child: CircularProgressIndicator());
       } else {
-        return Container(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: 100,
-                    child: Image(
-                      image: NetworkImage(viewModel.diaryDetail?.profileImage ?? ''),
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
+        return SingleChildScrollView(
+          child: Container(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            viewModel.diaryDetail?.nickname ?? '히잉',
+                          SizedBox(
+                            width: 100,
+                            child: Image(
+                              image: NetworkImage(viewModel.diaryDetail?.profileImage ?? ''),
+                            ),
                           ),
-                          Text(
-                            DateFormat('yyyy년 MM월 d일').format(viewModel.diaryDetail?.createdAt ?? DateTime.now()),
+                          Expanded(
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: [
+                                    Text(
+                                      viewModel.diaryDetail?.nickname ?? '히잉',
+                                    ),
+                                    Text(
+                                      DateFormat('yyyy년 MM월 d일').format(viewModel.diaryDetail?.createdAt ?? DateTime.now()),
+                                    )
+                                  ]
+                              )
                           )
                         ]
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      viewModel.diaryDetail?.content ?? '왜안나왕',
+                    ),
+                    const SizedBox(height: 12),
+                    Image(
+                      image: NetworkImage(viewModel.diaryDetail?.diaryImage ?? ''),
+                      width: 300,
+                      height: 300,
                     )
-                  )
-                ]
-              ),
-              const SizedBox(height: 16),
-              Text(
-                viewModel.diaryDetail?.content ?? '왜안나왕',
-              ),
-              const SizedBox(height: 12),
-              Image(
-                image: NetworkImage(viewModel.diaryDetail?.diaryImage ?? ''),
-                width: 300,
-                height: 300,
+                  ]
               )
-            ]
-          )
+          ),
         );
       }
     });
@@ -80,6 +82,7 @@ class DiaryReadScreen extends BaseScreen<DiaryDetailViewModel> {
 
   @override
   PreferredSize buildAppBar(BuildContext context) {
+
     return const PreferredSize(
       preferredSize: Size.fromHeight(kToolbarHeight),
       child: DefaultBackAppBar(title: '다이어리 자세히 보기')

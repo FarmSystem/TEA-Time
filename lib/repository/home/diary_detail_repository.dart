@@ -16,7 +16,6 @@ class DiaryDetailRepository extends GetxService {
 
   Future<DiaryDetailModel> getDiaryDetail(int id) async {
     Map<String, dynamic> response = await _diaryProvider.getDiaryDetail(id);
-    logOnDev("📝 [Diary Detail] $response");
     return DiaryDetailModel.fromJson(response);
   }
 }
