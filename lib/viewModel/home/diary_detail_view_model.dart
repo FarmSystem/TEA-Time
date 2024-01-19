@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:tea_time/model/diary/diary_detail_model.dart';
 import 'package:tea_time/repository/home/diary_detail_repository.dart';
+import 'package:tea_time/util/function/log_on_dev.dart';
 
 class DiaryDetailViewModel extends GetxController {
   late final DiaryDetailRepository _diaryDetailRepository;
@@ -25,6 +26,7 @@ class DiaryDetailViewModel extends GetxController {
     isLoading(true);
     try {
       _diaryDetailModel.value = await _diaryDetailRepository.getDiaryDetail(id);
+      logOnDev("📝 [Diary Detail] ${_diaryDetailModel.value!.toString()}");
     } on Exception catch (_) {
       _diaryDetailModel.value = null;
     } finally {

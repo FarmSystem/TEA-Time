@@ -10,12 +10,24 @@ class DiaryReadScreen extends BaseScreen<DiaryDetailViewModel> {
   const DiaryReadScreen(this.id, {super.key});
 
   @override
-  void initViewModel() {
-    viewModel.getDiaryDetail(id);
-  }
+  bool get wrapWithOuterSafeArea => false;
+
+  @override
+  bool get wrapWithInnerSafeArea => true;
+
+  @override
+  Color? get unSafeAreaColor => Colors.white;
+
+  // @override
+  // void initViewModel() {
+  //   // TODO: implement initViewModel
+  //   super.initViewModel();
+  //   viewModel.getDiaryDetail(id);
+  // }
 
   @override
   Widget buildBody(BuildContext context) {
+    viewModel.getDiaryDetail(id);
     return Obx(() {
       if (viewModel.isLoading.value) {
         return const Center(child: CircularProgressIndicator());
@@ -28,29 +40,36 @@ class DiaryReadScreen extends BaseScreen<DiaryDetailViewModel> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image(
-                    image: NetworkImage(viewModel.diaryDetail?.profileImage ?? ''),
+                  SizedBox(
+                    width: 100,
+                    child: Image(
+                      image: NetworkImage(viewModel.diaryDetail?.profileImage ?? ''),
+                    ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        viewModel.diaryDetail?.username ?? '',
-                      ),
-                      Text(
-                        DateFormat('yyyy년 MM월 d일').format(viewModel.diaryDetail?.createdAt ?? DateTime.now()),
-                      )
-                    ]
+                  Expanded(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            viewModel.diaryDetail?.nickname ?? '히잉',
+                          ),
+                          Text(
+                            DateFormat('yyyy년 MM월 d일').format(viewModel.diaryDetail?.createdAt ?? DateTime.now()),
+                          )
+                        ]
+                    )
                   )
                 ]
               ),
               const SizedBox(height: 16),
               Text(
-                viewModel.diaryDetail?.content ?? '',
+                viewModel.diaryDetail?.content ?? '왜안나왕',
               ),
               const SizedBox(height: 12),
               Image(
                 image: NetworkImage(viewModel.diaryDetail?.diaryImage ?? ''),
+                width: 300,
+                height: 300,
               )
             ]
           )
