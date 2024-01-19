@@ -1,26 +1,34 @@
 import 'package:get/get.dart';
+import 'package:tea_time/model/community/community_list_model.dart';
+import 'package:tea_time/repository/community/community_diary_repository.dart';
+import 'package:tea_time/util/function/log_on_dev.dart';
 
 class CommunityViewModel extends GetxController {
-  late final RxInt _diaryId;
-  late final RxString _username;
-  late final RxString _profileImage;
-  late final RxString _createdAt;
-  late final RxString _title;
+  late final CommunityDiaryRepository _repository;
+  late final Rxn<List<CommunityListModel>> _communityList;
 
-  RxInt get diaryId => _diaryId;
-  RxString get username => _username;
-  RxString get profileImage => _profileImage;
-  RxString get createdAt => _createdAt;
-  RxString get title => _title;
+  List<CommunityListModel>? get communityList => _communityList.value;
 
   @override
   void onInit() {
     super.onInit();
 
-    _diaryId = 0.obs;
-    _username = "".obs;
-    _profileImage = "".obs;
-    _createdAt = "".obs;
-    _title = "".obs;
+    // Dependency Injection
+    _repository = Get.find<CommunityDiaryRepository>();
+
+    // Initialize Fields
+    _communityList = Rxn<List<CommunityListModel>>(null);
+    getCommunityList(0, 10);
+  }
+
+  Future<void> getCommunityList(
+      int page,
+      int size
+      ) async {
+    try {
+      _communityList.value = await _repository.getCommunity(page, size);
+    } on Exception catch (_) {
+      _communityList.value = null;
+    }
   }
 }
