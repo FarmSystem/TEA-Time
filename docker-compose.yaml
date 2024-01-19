@@ -22,15 +22,6 @@ services:
     ports:
       - "8761:8761"
 
-  gateway:
-    image: kurtyoon/teatime-gateway:0.0.1
-    networks:
-      - teatime-network
-    ports:
-      - "8080:8080"
-    depends_on:
-      - eureka
-
   api:
     image: kurtyoon/teatime-api:0.0.1
     networks:
@@ -56,6 +47,18 @@ services:
     ports:
       - "8083:8083"
     depends_on:
+      - eureka
+
+  gateway:
+    image: kurtyoon/teatime-gateway:0.0.1
+    networks:
+      - teatime-network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api
+      - model
+      - external
       - eureka
 
 volumes:
