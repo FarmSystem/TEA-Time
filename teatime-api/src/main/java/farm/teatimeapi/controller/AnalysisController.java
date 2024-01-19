@@ -1,6 +1,7 @@
 package farm.teatimeapi.controller;
 
 import farm.teatimeapi.dto.analysis.response.DiaryAnalysisDto;
+import farm.teatimeapi.dto.analysis.response.WeeklyAnalysisDto;
 import farm.teatimeapi.service.AnalysisService;
 import farm.teatimecore.annotation.UserId;
 import farm.teatimecore.dto.ResponseDto;
@@ -22,19 +23,18 @@ public class AnalysisController {
     @Operation(summary = "월별 다이어리 분석 불러오기", description = "월별 다이어리 분석을 불러옵니다.")
     @GetMapping("/monthly")
     public ResponseDto<?> getMonthlyAnalysis(
-//            @UserId Long userId
+            @UserId Long userId
     ) {
-        Long userId = 1L;
+//        return ResponseDto.ok(analysisService.getMonthlyAnalysis(userId));
         return ResponseDto.ok(null);
     }
 
     @Operation(summary = "주별 다이어리 분석 불러오기", description = "주별 다이어리 분석을 불러옵니다.")
     @GetMapping("/weekly")
-    public ResponseDto<?> getWeeklyAnalysis(
-//            @UserId Long userId
+    public ResponseDto<WeeklyAnalysisDto> getWeeklyAnalysis(
+            @UserId Long userId
     ) {
-        Long userId = 1L;
-        return ResponseDto.ok(null);
+        return ResponseDto.ok(analysisService.getWeeklyAnalysis(userId));
     }
 
     @Operation(summary = "회원 다이어리 분석 내용 조회", description = "회원의 다이어리 분석 내용을 조회합니다.")

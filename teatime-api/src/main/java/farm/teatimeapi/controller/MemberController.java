@@ -4,6 +4,7 @@ import farm.teatimeapi.dto.member.request.UpdateUserinfoDto;
 import farm.teatimeapi.dto.member.response.MemberCalendarDto;
 import farm.teatimeapi.dto.member.response.MemberInfoDto;
 import farm.teatimeapi.dto.member.response.MemberLevelDto;
+import farm.teatimeapi.dto.member.response.MyDiaryDto;
 import farm.teatimeapi.service.MemberService;
 import farm.teatimecore.annotation.UserId;
 import farm.teatimecore.dto.ResponseDto;
@@ -25,38 +26,44 @@ public class MemberController {
     @Operation(summary  = "회원 닉네임 불러오기", description = "회원의 닉네임을 불러옵니다.")
     @GetMapping("/nickname")
     public ResponseDto<?> getNickname(
-//            @UserId Long userId
+            @UserId Long userId
     ) {
-        Long userId = 1L;
         return ResponseDto.ok(memberService.getNickname(userId));
     }
 
     @Operation(summary = "마이페이지 달력 화면 불러오기", description = "마이페이지 달력 화면을 불러옵니다.")
     @GetMapping("/calendar")
     public ResponseDto<MemberCalendarDto> getCalendar(
-//            @UserId Long userId
+            @UserId Long userId
     ) {
-        Long userId = 1L;
         return ResponseDto.ok(memberService.getCalendar(userId));
     }
 
     @Operation(summary = "본인 프로필 화면 보기", description = "사용자의 프로필 화면을 불러옵니다.")
     @GetMapping("")
     public ResponseDto<MemberInfoDto> getMyProfile(
-//            @UserId Long userId
+            @UserId Long userId
     ) {
-        Long userId = 1L;
         return ResponseDto.ok(memberService.getUserInfo(userId));
+    }
+
+    @Operation(summary = "본인 다이어리 불러오기", description = "프로필 화면에서 본인이 작성한 다이어리를 불러옵니다.")
+    @GetMapping("/diaries")
+    public ResponseDto<MyDiaryDto> getMyDiaries(
+             @UserId Long userId,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "1") int size
+    ) {
+        return ResponseDto.ok(memberService.getMyDiaries(userId, page, size));
     }
 
     @Operation(summary = "프로필 수정하기", description = "사용자의 프로필을 수정합니다.")
     @PatchMapping(value = "/profile", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseDto<?> updateProfile(
-//            @UserId Long userId,
+            @UserId Long userId,
             @Nullable @RequestPart("image") MultipartFile image,
-            @RequestParam("data")UpdateUserinfoDto updateUserinfoDto
+            @RequestPart("data") UpdateUserinfoDto updateUserinfoDto
             ) {
-        Long userId = 1L;
         memberService.updateProfile(userId, updateUserinfoDto, image);
         return ResponseDto.ok(null);
     }
