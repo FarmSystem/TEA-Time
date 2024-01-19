@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:tea_time/viewModel/analysis/analysis_diary_view_model.dart';
 import 'package:tea_time/viewModel/community/community_view_model.dart';
 import 'package:tea_time/viewModel/home/diary_calendar_view_model.dart';
 import 'package:tea_time/viewModel/home/diary_detail_view_model.dart';
@@ -18,5 +19,7 @@ class RootBinding extends Bindings {
     Get.lazyPut(() => DiaryDetailViewModel());
     Get.put(DiaryDetailViewModel());
     Get.lazyPut(() => CommunityViewModel());
+    Get.put(AnalysisDiaryViewModel());
+    Get.lazyPut(() => AnalysisDiaryViewModel());
   }
 }
