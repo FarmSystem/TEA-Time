@@ -11,33 +11,25 @@ import 'package:tea_time/view/setting/setting_screen.dart';
 
 List<GetPage> appPages = [
   GetPage(
-    name: Routes.ROOT,
-    page: () => const RootScreen(),
-    binding: RootBinding()
-  ),
+      name: Routes.ROOT,
+      page: () => const RootScreen(),
+      binding: RootBinding()),
   GetPage(
-    name: Routes.JOIN,
-    page: () => const JoinScreen(),
-    binding: EntryBinding()
-  ),
+      name: Routes.JOIN,
+      page: () => const JoinScreen(),
+      binding: EntryBinding()),
   GetPage(
-    name: Routes.ENTRY,
-    page: () => SignInScreen(),
-    binding: EntryBinding()
-  ),
+      name: Routes.ENTRY, page: () => SignInScreen(), binding: EntryBinding()),
   GetPage(
-    name: Routes.HOME,
-    page: () => const HomeScreen(),
-    binding: RootBinding()
-  ),
+      name: Routes.HOME,
+      page: () => const HomeScreen(),
+      binding: RootBinding()),
   GetPage(
-    name: Routes.POSTING,
-    page: () => const PostingScreen(),
-    binding: RootBinding()
-  ),
+      name: Routes.POSTING,
+      page: () => const PostingScreen(),
+      binding: RootBinding()),
   GetPage(
-    name: Routes.SETTING,
-    page: () => const SettingScreen(),
-    binding: RootBinding()
-  )
+      name: Routes.SETTING,
+      page: () => const SettingScreen(),
+      binding: RootBinding())
 ];

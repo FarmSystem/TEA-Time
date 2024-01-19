@@ -134,7 +134,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                 ),
                                 keyboardType: TextInputType.emailAddress,
                                 inputFormatters: [
-                                  FilteringTextInputFormatter.singleLineFormatter,
+                                  FilteringTextInputFormatter
+                                      .singleLineFormatter,
                                   LengthLimitingTextInputFormatter(320),
                                 ],
                                 textInputAction: TextInputAction.next,
@@ -202,7 +203,8 @@ class _SignInScreenState extends State<SignInScreen> {
                             },
                             child: Container(
                               margin: EdgeInsets.only(
-                                  left: MediaQuery.of(context).size.width * 0.1),
+                                  left:
+                                      MediaQuery.of(context).size.width * 0.1),
                               width: MediaQuery.of(context).size.width * 0.38,
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 5),
@@ -232,13 +234,15 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                             child: InkWell(
                               onTap: () => {
-                                if (canSend()) {
-                                  onTapNext(),
-                                }
+                                if (canSend())
+                                  {
+                                    onTapNext(),
+                                  }
                               },
                               child: Container(
                                 margin: EdgeInsets.only(
-                                    right: MediaQuery.of(context).size.width * 0.1),
+                                    right: MediaQuery.of(context).size.width *
+                                        0.1),
                                 width: MediaQuery.of(context).size.width * 0.38,
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 5),
@@ -269,7 +273,6 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 }
