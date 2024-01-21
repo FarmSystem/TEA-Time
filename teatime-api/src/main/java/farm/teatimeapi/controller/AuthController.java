@@ -48,11 +48,13 @@ public class AuthController {
         return ResponseDto.ok(jwtTokenDto);
     }
 
+    @Deprecated
     @GetMapping("/email")
     public ResponseDto<?> emailDuplication(@RequestParam String email) {
         return ResponseDto.ok(authService.emailDuplication(email));
     }
 
+    @Deprecated
     @GetMapping("/nickname")
     public ResponseDto<?> nicknameDuplication(@RequestParam String nickname) {
         return ResponseDto.ok(authService.nicknameDuplication(nickname));

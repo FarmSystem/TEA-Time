@@ -39,6 +39,7 @@ public class DairyController {
         return ResponseDto.ok(diaryService.getDiaryDetail(diaryId));
     }
 
+    @Deprecated
     @Operation(summary = "다이어리 수정하기", description = "다이어리를 수정합니다.")
     @PatchMapping(value = "/{diaryId}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseDto<DiaryDetailDto> updateDiary(

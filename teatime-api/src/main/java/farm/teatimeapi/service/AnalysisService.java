@@ -2,6 +2,7 @@ package farm.teatimeapi.service;
 
 import farm.teatimeapi.dto.analysis.request.AnalysisDto;
 import farm.teatimeapi.dto.analysis.response.DiaryAnalysisDto;
+import farm.teatimeapi.dto.analysis.response.EmotionScoreDto;
 import farm.teatimeapi.dto.analysis.response.WeeklyAnalysisDto;
 import farm.teatimecore.dto.ResponseDto;
 import farm.teatimecore.exception.CustomException;
@@ -58,5 +59,11 @@ public class AnalysisService {
         log.info("now is {}", LocalDate.now());
         log.info("before is {}", LocalDate.now().minusDays(7));
         return WeeklyAnalysisDto.fromEntity(diaries);
+    }
+
+    public List<EmotionScoreDto> getChartScore(Long userId, int period) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        List<Diary> diaries = diaryRepository.findDiariesByUserAndCreatedAtBetween(user, LocalDate.now().minusDays(period - 1), LocalDate.now());
+        return diaries.stream().map(EmotionScoreDto::fromEntity).toList();
     }
 }
