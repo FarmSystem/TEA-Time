@@ -4,6 +4,7 @@ import farm.teatimedomain.domain.User;
 import farm.teatimedomain.type.ERole;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -29,6 +30,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findById(Long id);
 
+    @Query(value = "select * from users where match (nickname) against (?1)", nativeQuery = true)
+    List<User> findUserByFullTextSearch(String keyword);
+
+    @EntityGraph(attributePaths = {"diaries"})
+    @Query("select u from User u where u.nickname = :nickname and u.isPublic = true")
+    List<User> findByNickname(String nickname);
+
+    @EntityGraph(attributePaths = {"diaries"})
     @Query("select u from User u where u.id != :id and u.isPublic = true")
     Page<User> findAllByIdNot(Long id, Pageable pageable);
 

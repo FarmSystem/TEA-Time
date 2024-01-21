@@ -4,6 +4,7 @@ import farm.teatimeapi.dto.member.request.UpdateUserinfoDto;
 import farm.teatimeapi.dto.member.response.MemberCalendarDto;
 import farm.teatimeapi.dto.member.response.MemberInfoDto;
 import farm.teatimeapi.dto.member.response.MemberLevelDto;
+import farm.teatimeapi.dto.member.response.MyDiaryDto;
 import farm.teatimeapi.utils.ImageUtil;
 import farm.teatimecore.exception.CustomException;
 import farm.teatimecore.exception.ErrorCode;
@@ -12,6 +13,8 @@ import farm.teatimedomain.domain.User;
 import farm.teatimedomain.reposiotry.DiaryRepository;
 import farm.teatimedomain.reposiotry.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -59,5 +62,11 @@ public class MemberService {
     public MemberLevelDto getMemberLevel(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
         return MemberLevelDto.fromEntity(user);
+    }
+
+    public MyDiaryDto getMyDiaries(Long userId, int page, int size) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
+        Page<Diary> diaries = diaryRepository.findAllByUser(user, PageRequest.of(page, size));
+        return MyDiaryDto.fromEntity(diaries.getContent());
     }
 }

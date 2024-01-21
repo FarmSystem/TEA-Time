@@ -5,6 +5,10 @@ import farm.teatimedomain.domain.Diary;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public record CommunityDto(
+
+        @JsonProperty("user_id")
+        @Schema(name = "user_id", description = "유저 ID")
+        Long userId,
         @JsonProperty("diary_id")
         @Schema(name = "diary_id", description = "다이어리 ID")
         Long diaryId,
@@ -30,6 +34,7 @@ public record CommunityDto(
 ) {
         public static CommunityDto fromEntity(Diary diary) {
                 return new CommunityDto(
+                        diary.getUser().getId(),
                         diary.getId(),
                         diary.getTitle(),
                         diary.getUser().getNickname(),

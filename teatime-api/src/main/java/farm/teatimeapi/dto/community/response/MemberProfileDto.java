@@ -22,14 +22,6 @@ public record MemberProfileDto (
         @Schema(name = "nickname", description = "닉네임")
         String nickname,
 
-        @JsonProperty("following")
-        @Schema(name = "following", description = "팔로잉 수")
-        int following,
-
-        @JsonProperty("follower")
-        @Schema(name = "follower", description = "팔로워 수")
-        int follower,
-
         @JsonProperty("diaries")
         @Schema(name = "diaries", description = "다이어리")
         List<DiaryTokenDto> diaries
