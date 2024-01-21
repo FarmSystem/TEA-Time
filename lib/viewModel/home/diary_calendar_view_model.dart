@@ -51,6 +51,7 @@ class DiaryCalendarViewModel extends GetxController {
     try {
       isLoading.value = true;
       _diaries.value = await _repository.getDiaries();
+      print(_diaries.value);
     } on Exception catch (_) {
       logOnDev("DiaryCalendarViewModel.getDiaries() : Exception");
       _diaries.value = null;
