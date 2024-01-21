@@ -37,7 +37,7 @@ class EmotionCalendarItem extends StatelessWidget {
           child: Text(
             '${date.day}',
             style: const TextStyle(
-              color: Colors.black,
+              color: Colors.black
             ),
           ),
         )
@@ -47,7 +47,7 @@ class EmotionCalendarItem extends StatelessWidget {
   Color _getBackgroundColor() {
     if (diarySmallModel!.emotionScore >= 80) {
       return const Color.fromRGBO(174, 203, 244, 1);
-    } else if (diarySmallModel!.emotionScore >= 50) {
+    } else if (diarySmallModel!.emotionScore >= 30) {
       return const Color.fromRGBO(252, 239, 166, 1);
     } else {
       return const Color.fromRGBO(223, 145, 142, 1);

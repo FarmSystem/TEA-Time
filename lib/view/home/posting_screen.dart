@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tea_time/view/base/base_screen.dart';
 import 'package:tea_time/viewModel/home/posting_view_model.dart';
 import 'package:tea_time/widget/Base/default_back_appbar.dart';
@@ -39,6 +40,7 @@ class PostingScreen extends BaseScreen<PostingViewModel> {
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(8),
             ),
+            padding: const EdgeInsets.all(8),
             child: const TextField(
               maxLines: null,
               decoration: InputDecoration(
@@ -70,7 +72,9 @@ class PostingScreen extends BaseScreen<PostingViewModel> {
           const SizedBox(height: 16), // 간격 조절
 
           MaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.back();
+            },
             color: const Color.fromRGBO(210, 232, 223, 1),
             textColor: const Color.fromRGBO(38, 38, 38, 1),
             minWidth: MediaQuery.of(context).size.width * 0.8,
