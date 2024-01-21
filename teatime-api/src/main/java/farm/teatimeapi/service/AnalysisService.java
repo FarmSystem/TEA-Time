@@ -15,10 +15,10 @@ import farm.teatimedomain.reposiotry.DiaryRepository;
 import farm.teatimedomain.reposiotry.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -33,6 +33,7 @@ public class AnalysisService {
     private final AnalysisRepository analysisRepository;
     private final DiaryRepository diaryRepository;
     private final UserRepository userRepository;
+    @Value("${client.external.url}") private String externalUrl;
 
     public DiaryAnalysisDto getDiaryAnalysis(Long diaryId) {
         Analysis analysis = analysisRepository.findByDiaryId(diaryId)
@@ -43,13 +44,11 @@ public class AnalysisService {
     private String getConsultant(Long diaryId) {
         Diary diary = diaryRepository.findById(diaryId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_DIARY));
-
-        String url = "http://localhost:8080/external";
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         AnalysisDto analysisDto = AnalysisDto.fromEntity(diary);
         HttpEntity<AnalysisDto> request = new HttpEntity<>(analysisDto, headers);
-        ResponseEntity<ResponseDto> response = restTemplate.postForEntity(url, request, ResponseDto.class);
+        ResponseEntity<ResponseDto> response = restTemplate.postForEntity(externalUrl, request, ResponseDto.class);
         return response.getBody().data().toString();
     }
 

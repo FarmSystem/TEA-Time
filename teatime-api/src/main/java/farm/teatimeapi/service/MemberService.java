@@ -43,7 +43,7 @@ public class MemberService {
     public MemberCalendarDto getCalendar(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_USER));
         List<Diary> diaries = diaryRepository.findDiariesByUserAndCreatedAtBetween(
-                user, LocalDate.now().minusMonths(1), LocalDate.now().plusMonths(1)
+                user, LocalDate.now().minusMonths(2), LocalDate.now().plusMonths(1)
         );
         return MemberCalendarDto.fromEntity(diaries);
     }
