@@ -48,7 +48,7 @@ class JoinScreen extends BaseScreen<SignUpViewModel> {
                     text: 'Tea Time',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white, // Tea Time 텍스트 색상 변경
+                      color: Colors.black, // Tea Time 텍스트 색상 변경
                     ),
                   ),
                   TextSpan(text: '에서 일상을 공유하고\n 자신을 알아가봐요 !'), // 기본 스타일 적용
@@ -125,14 +125,5 @@ class JoinScreen extends BaseScreen<SignUpViewModel> {
     return const PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: DefaultBackAppBar(title: '회원가입'));
-  }
-}
-
-class _MiddleWidget extends BaseWidget<SignUpViewModel> {
-  const _MiddleWidget();
-
-  @override
-  Widget buildView(BuildContext context) {
-    return Container();
   }
 }

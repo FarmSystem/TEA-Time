@@ -17,7 +17,7 @@ class DiaryCalendarViewModel extends GetxController {
   DateTime get selectedDate => _calendarInfo.value.selectedDate;
   DateTime get focusedDate => _calendarInfo.value.focusedDate;
 
-  Map<String, DiarySmallModel> get diaries => _diaries.value ?? {};
+  Map<String, DiarySmallModel>? get diaries => _diaries.value;
   CalendarFormat get calendarFormat => _calendarFormat.value;
 
   @override
@@ -57,9 +57,5 @@ class DiaryCalendarViewModel extends GetxController {
     } finally {
       isLoading.value = false;
     }
-  }
-
-  bool isDiaryExist(String date) {
-    return diaries.containsKey(date);
   }
 }
