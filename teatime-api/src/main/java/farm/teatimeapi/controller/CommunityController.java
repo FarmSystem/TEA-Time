@@ -28,6 +28,7 @@ public class CommunityController {
         return ResponseDto.ok(communityService.getCommunity(userId, page, size));
     }
 
+    @Deprecated
     @Operation(summary = "회원 찾기 페이지", description = "회원 찾기 페이지를 불러옵니다. 랜덤으로 추천친구를 불러옵니다.")
     @GetMapping("/member")
     public ResponseDto<FindMemberDto> getMember(
@@ -36,6 +37,7 @@ public class CommunityController {
         return ResponseDto.ok(communityService.findMember(userId));
     }
 
+    @Deprecated
     @Operation(summary = "회원 검색 기능", description = "회원을 검색합니다.")
     @PostMapping("/member")
     public ResponseDto<FindMemberDto> searchMember(
@@ -44,6 +46,7 @@ public class CommunityController {
         return ResponseDto.ok(communityService.searchMember(nickname));
     }
 
+    @Deprecated
     @Operation(summary = "회원 프로필 페이지", description = "선택한 회원의 프로필 페이지를 불러옵니다.")
     @GetMapping("/member/{memberId}")
     public ResponseDto<?> getMemberProfile(

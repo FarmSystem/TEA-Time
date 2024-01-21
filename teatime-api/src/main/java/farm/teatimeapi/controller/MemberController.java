@@ -57,6 +57,7 @@ public class MemberController {
         return ResponseDto.ok(memberService.getMyDiaries(userId, page, size));
     }
 
+    @Deprecated
     @Operation(summary = "프로필 수정하기", description = "사용자의 프로필을 수정합니다.")
     @PatchMapping(value = "/profile", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseDto<?> updateProfile(
