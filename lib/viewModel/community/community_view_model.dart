@@ -19,7 +19,7 @@ class CommunityViewModel extends GetxController {
 
     // Initialize Fields
     _communityList = Rxn<List<CommunityListModel>>(null);
-    getCommunityList(0, 10);
+    getCommunityList(0, 100);
   }
 
   Future<void> getCommunityList(
