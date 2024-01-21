@@ -18,4 +18,10 @@ class DiarySmallModel {
       emotionScore: json["emotion_score"],
     );
   }
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return "id: $id,\ndate: $date,\nemotionScore: $emotionScore";
+  }
 }

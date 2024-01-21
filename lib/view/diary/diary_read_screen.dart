@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:tea_time/view/analysis/analysis_screen.dart';
+import 'package:tea_time/view/analysis/diary_analysis_screen.dart';
 import 'package:tea_time/view/base/base_screen.dart';
 import 'package:tea_time/viewModel/home/diary_detail_view_model.dart';
 import 'package:tea_time/widget/Base/default_back_appbar.dart';
@@ -94,7 +94,7 @@ class DiaryReadScreen extends BaseScreen<DiaryDetailViewModel> {
       children: [
         FloatingActionButton(
           onPressed: () {
-            Get.to(() => AnalysisScreen(viewModel.diaryDetail!.diaryId));
+            Get.to(() => DiaryAnalysisScreen(viewModel.diaryDetail!.diaryId));
           },
           backgroundColor: const Color.fromRGBO(210, 232, 223, 1),
           child: const Icon(Icons.align_vertical_bottom),
