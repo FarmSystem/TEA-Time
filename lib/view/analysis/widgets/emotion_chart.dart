@@ -35,7 +35,7 @@ class EmotionChart extends BaseWidget<AnalysisViewModel> {
               child: Text(
                 '${period.value}일간의 감정',
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -182,7 +182,7 @@ class EmotionChart extends BaseWidget<AnalysisViewModel> {
     int term = period == TimePeriod.thirty ? 5 : 1;
 
     DateTime valueDate =
-    DateTime.now().subtract(Duration(days: period.value - value.toInt()));
+    DateTime.now().subtract(Duration(days: period.value - value.toInt() - 1));
 
     int currentPoint = period.value - value.toInt() + 1;
 
