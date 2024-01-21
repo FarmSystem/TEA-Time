@@ -34,8 +34,6 @@ class UserInfoViewModel extends GetxController {
   Future<void> getUserInfo() async {
     try {
       _userInfoModel.value = await _userInfoRepository.getUserInfo();
-
-      print(_userInfoModel.value!.toString());
     } on Exception catch (_) {
       _userInfoModel.value = null;
     }

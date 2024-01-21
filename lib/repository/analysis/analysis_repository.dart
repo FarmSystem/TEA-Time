@@ -19,7 +19,6 @@ class AnalysisRepository extends GetxService {
   Future<DiaryAnalysisModel> getDiaryAnalysis(int diaryId) async {
     try {
       Map<String, dynamic> response = await _analysisProvider.getDiaryAnalysis(diaryId);
-      logOnDev(response.toString());
       return DiaryAnalysisModel.fromJson(response);
     } on Exception catch(e) {
       return Future.error(e);

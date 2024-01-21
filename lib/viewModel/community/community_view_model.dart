@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:tea_time/model/community/community_list_model.dart';
 import 'package:tea_time/repository/community/community_diary_repository.dart';
-import 'package:tea_time/util/function/log_on_dev.dart';
 
 class CommunityViewModel extends GetxController {
   late final CommunityDiaryRepository _repository;

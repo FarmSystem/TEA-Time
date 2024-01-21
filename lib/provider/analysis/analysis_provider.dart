@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:dio/dio.dart';
-import 'package:tea_time/model/analysis/diary_analysis_model.dart';
 import 'package:tea_time/provider/base/http_util.dart';
 
 class AnalysisProvider {

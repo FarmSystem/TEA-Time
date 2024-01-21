@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:tea_time/model/analysis/diary_analysis_model.dart';
 import 'package:tea_time/repository/analysis/analysis_repository.dart';
-import 'package:tea_time/util/function/log_on_dev.dart';
 
 class AnalysisDiaryViewModel extends GetxController {
   late final Rxn<DiaryAnalysisModel> _diaryAnalysisModel;
