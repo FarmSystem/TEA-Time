@@ -28,7 +28,7 @@ class UserInfoViewModel extends GetxController {
 
     // Fetch data
     getUserInfo();
-    getDiaryToken(0, 12);
+    getDiaryToken(0, 100);
   }
 
   Future<void> getUserInfo() async {
