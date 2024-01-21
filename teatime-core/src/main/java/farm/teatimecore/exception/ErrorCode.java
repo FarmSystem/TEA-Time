@@ -21,6 +21,7 @@ public enum ErrorCode {
     USER_NOT_MATCH(400, HttpStatus.BAD_REQUEST, "사용자가 작성자와 일치하지 않습니다."),
     USER_EQUAL_MEMBER(400, HttpStatus.BAD_REQUEST, "자기 자신을 팔로우할 수 없습니다."),
     ALREADY_FOLLOWING(400, HttpStatus.BAD_REQUEST, "이미 팔로우 중인 사용자입니다."),
+    ALREADY_WRITE_DIARY(400, HttpStatus.BAD_REQUEST, "오늘의 다이어리를 이미 작성하였습니다"),
 
     /**
      * 401 Unauthorized

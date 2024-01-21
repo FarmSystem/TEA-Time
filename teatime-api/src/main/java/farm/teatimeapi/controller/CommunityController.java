@@ -3,6 +3,7 @@ package farm.teatimeapi.controller;
 import farm.teatimeapi.dto.community.response.FindMemberDto;
 import farm.teatimeapi.dto.community.response.GetCommunityDto;
 import farm.teatimeapi.service.CommunityService;
+import farm.teatimecore.annotation.UserId;
 import farm.teatimecore.dto.ResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,25 +21,27 @@ public class CommunityController {
     @Operation(summary = "커뮤니티 다이어리 불러오기", description = "다른 유저의 다이어리 목록을 불러옵니다.")
     @GetMapping("")
     public ResponseDto<GetCommunityDto> getCommunity(
-            @RequestParam(defaultValue = "1") int page,
+            @UserId Long userId,
+            @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size
     ) {
-        return ResponseDto.ok(communityService.getCommunity(page, size));
+        return ResponseDto.ok(communityService.getCommunity(userId, page, size));
     }
 
     @Operation(summary = "회원 찾기 페이지", description = "회원 찾기 페이지를 불러옵니다. 랜덤으로 추천친구를 불러옵니다.")
     @GetMapping("/member")
     public ResponseDto<FindMemberDto> getMember(
-//            @UserId Long userId
+            @UserId Long userId
     ) {
-        Long userId = 1L;
         return ResponseDto.ok(communityService.findMember(userId));
     }
 
     @Operation(summary = "회원 검색 기능", description = "회원을 검색합니다.")
     @PostMapping("/member")
-    public ResponseDto<?> searchMember() {
-        return ResponseDto.ok(null);
+    public ResponseDto<FindMemberDto> searchMember(
+            @RequestParam("nickname") String nickname
+    ) {
+        return ResponseDto.ok(communityService.searchMember(nickname));
     }
 
     @Operation(summary = "회원 프로필 페이지", description = "선택한 회원의 프로필 페이지를 불러옵니다.")
