@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.0
-  fl_chart: ^0.41.0
+  fl_chart: ^0.66.0
   flutter_localizations:
     sdk: flutter
   collection: any

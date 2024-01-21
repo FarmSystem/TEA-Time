@@ -25,4 +25,10 @@ class UserInfoModel {
         userScore: json['user_score'],
     );
   }
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return 'nickname: $nickname, introduction: $introduction, profileImageUrl: $profileImageUrl, diaryCount: $diaryCount, userLevel: $userLevel, userScore: $userScore';
+  }
 }

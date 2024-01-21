@@ -96,8 +96,8 @@ class _UserLevelItem extends BaseWidget<UserInfoViewModel> {
         children: [
           SvgPicture.asset(
             getLevelAsset(viewModel.userInfoModel?.userLevel ?? 1),
-            width: 100,
-            height: 100,
+            width: 80,
+            height: 80,
           ),
           const SizedBox(height: 10),
         Text('${viewModel.userInfoModel?.nickname}님의 레벨은 ${viewModel.userInfoModel?.userLevel ?? 1}레벨 입니다.'),

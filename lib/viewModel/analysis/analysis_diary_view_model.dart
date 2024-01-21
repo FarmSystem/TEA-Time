@@ -26,7 +26,6 @@ class AnalysisDiaryViewModel extends GetxController {
       isLoading.value = true;
       _diaryAnalysisModel.value = await _analysisRepository.getDiaryAnalysis(diaryId);
     } on Exception catch(e) {
-      logOnDev("AnalysisDiaryViewModel.getDiaryAnalysis");
       return Future.error(e);
     } finally {
       isLoading.value = false;
